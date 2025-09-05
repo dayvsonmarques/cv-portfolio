@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { useApp } from '@/contexts/AppContext';
 
 const About = () => {
@@ -11,14 +12,13 @@ const About = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6 font-heading">{t('about.title')}</h2>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-10">{t('about.subtitle')}</p>
           <div className="w-32 h-1 bg-gray-600 dark:bg-gray-400 mx-auto"></div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="w-96 h-96 mx-auto bg-gradient-to-br from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 rounded-full flex items-center justify-center text-white text-7xl font-bold">
-              👨‍💻
+            <div className="w-96 h-96 mx-auto bg-gradient-to-br  dark:from-gray-700 dark:to-gray-900 rounded-full flex items-center justify-center text-white text-7xl font-bold">
+              <Image src="/yo-2k25.jpeg" alt="Profile" width={350} height={350} className="rounded-full object-cover" />
             </div>
           </div>
           
