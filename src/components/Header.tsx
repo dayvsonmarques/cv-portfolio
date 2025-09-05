@@ -23,27 +23,27 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-sm z-50">
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">
+          <div className="text-3xl font-bold text-gray-800 dark:text-white font-heading">
             Portfolio
           </div>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             <button 
               onClick={() => scrollToSection('about')}
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
+              className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
             >
               {t('nav.about')}
             </button>
             <button 
               onClick={() => scrollToSection('skills')}
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
+              className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
             >
               {t('nav.skills')}
             </button>
             <button 
               onClick={() => scrollToSection('experience')}
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
+              className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
             >
               {t('nav.experience')}
             </button>
