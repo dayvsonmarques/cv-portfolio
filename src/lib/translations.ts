@@ -3,21 +3,22 @@ export const translations = {
     // Header
     about: 'Sobre',
     skills: 'Habilidades',
+    experience: 'Experiência',
     projects: 'Projetos',
     contact: 'Contato',
     
     // Hero
-    heroTitle: 'Desenvolvedor',
-    heroSubtitle: 'Full Stack',
-    heroDescription: 'Criando experiências digitais excepcionais com tecnologias modernas. Especializado em React, Next.js, Node.js e muito mais.',
+    heroTitle: 'Dayvson Marques',
+    heroSubtitle: 'Desenvolvedor Web Full-Stack',
+    heroDescription: 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
     contactButton: 'Entre em Contato',
     projectsButton: 'Ver Projetos',
     
     // About
     aboutTitle: 'Sobre Mim',
-    aboutSubtitle: 'Desenvolvedor Full Stack apaixonado por tecnologia',
-    aboutText1: 'Com mais de 3 anos de experiência em desenvolvimento web, especializo-me em criar soluções digitais inovadoras e eficientes. Minha jornada começou com curiosidade sobre como as coisas funcionam na web e evoluiu para uma paixão por construir experiências excepcionais para usuários.',
-    aboutText2: 'Trabalho com tecnologias modernas como React, Next.js, Node.js, TypeScript e bancos de dados relacionais e não-relacionais. Estou sempre aprendendo e me adaptando às novas tendências do mercado de tecnologia.',
+    aboutSubtitle: 'Desenvolvedor Web especializado em WordPress e tecnologias modernas',
+    aboutText1: 'Sou Dayvson Marques, desenvolvedor web com mais de 5 anos de experiência baseado em Recife-PE. Especializado em WordPress, desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
+    aboutText2: 'Trabalho com tecnologias como React, Next.js, PHP, WordPress, Node.js e tenho expertise em e-commerce, otimização de performance e desenvolvimento responsivo. Sempre em busca de entregar soluções que combinem funcionalidade e design moderno.',
     frontend: 'Frontend',
     backend: 'Backend',
     
@@ -33,6 +34,11 @@ export const translations = {
     // Projects
     projectsTitle: 'Projetos',
     projectsDescription: 'Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência em diferentes tecnologias.',
+    
+    // Experience
+    experienceTitle: 'Experiência Profissional',
+    experienceSubtitle: 'Minha jornada no desenvolvimento web',
+    
     featuredProjects: 'Projetos em Destaque',
     otherProjects: 'Outros Projetos',
     viewDemo: 'Ver Demo',
@@ -45,7 +51,7 @@ export const translations = {
     contactInfo: 'Informações de Contato',
     email: 'Email',
     phone: 'Telefone',
-    location: 'Localização',
+    location: 'Recife, PE - Brasil',
     socialMedia: 'Redes Sociais',
     sendMessage: 'Envie uma Mensagem',
     name: 'Nome',
@@ -77,6 +83,7 @@ export const translations = {
     // Header
     about: 'About',
     skills: 'Skills',
+    experience: 'Experience',
     projects: 'Projects',
     contact: 'Contact',
     
@@ -107,6 +114,11 @@ export const translations = {
     // Projects
     projectsTitle: 'Projects',
     projectsDescription: 'Here are some of the projects I have developed, demonstrating my skills and experience in different technologies.',
+    
+    // Experience
+    experienceTitle: 'Professional Experience',
+    experienceSubtitle: 'My journey in web development',
+    
     featuredProjects: 'Featured Projects',
     otherProjects: 'Other Projects',
     viewDemo: 'View Demo',
@@ -151,6 +163,7 @@ export const translations = {
     // Header
     about: 'Acerca',
     skills: 'Habilidades',
+    experience: 'Experiencia',
     projects: 'Proyectos',
     contact: 'Contacto',
     
@@ -181,6 +194,11 @@ export const translations = {
     // Projects
     projectsTitle: 'Proyectos',
     projectsDescription: 'Aquí están algunos de los proyectos que he desarrollado, demostrando mis habilidades y experiencia en diferentes tecnologías.',
+    
+    // Experience
+    experienceTitle: 'Experiencia Profesional',
+    experienceSubtitle: 'Mi trayectoria en el desarrollo web',
+    
     featuredProjects: 'Proyectos Destacados',
     otherProjects: 'Otros Proyectos',
     viewDemo: 'Ver Demo',

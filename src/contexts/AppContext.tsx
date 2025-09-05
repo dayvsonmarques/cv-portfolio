@@ -11,6 +11,7 @@ const translations = {
     nav: {
       about: 'Sobre',
       skills: 'Habilidades',
+      experience: 'Experiência',
       projects: 'Projetos',
       contact: 'Contato'
     },
@@ -36,6 +37,10 @@ const translations = {
       frontend: 'Frontend',
       backend: 'Backend',
       tools: 'Ferramentas'
+    },
+    experience: {
+      title: 'Experiência Profissional',
+      subtitle: 'Minha jornada no desenvolvimento web'
     },
     projects: {
       title: 'Projetos',
@@ -66,6 +71,7 @@ const translations = {
     nav: {
       about: 'About',
       skills: 'Skills',
+      experience: 'Experience',
       projects: 'Projects',
       contact: 'Contact'
     },
@@ -91,6 +97,10 @@ const translations = {
       frontend: 'Frontend',
       backend: 'Backend',
       tools: 'Tools'
+    },
+    experience: {
+      title: 'Professional Experience',
+      subtitle: 'My journey in web development'
     },
     projects: {
       title: 'Projects',
@@ -121,6 +131,7 @@ const translations = {
     nav: {
       about: 'Acerca',
       skills: 'Habilidades',
+      experience: 'Experiencia',
       projects: 'Proyectos',
       contact: 'Contacto'
     },
@@ -146,6 +157,10 @@ const translations = {
       frontend: 'Frontend',
       backend: 'Backend',
       tools: 'Herramientas'
+    },
+    experience: {
+      title: 'Experiencia Profesional',
+      subtitle: 'Mi trayectoria en desarrollo web'
     },
     projects: {
       title: 'Proyectos',

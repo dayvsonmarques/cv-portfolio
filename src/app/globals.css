@@ -24,14 +24,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Remover scroll horizontal */
+/* Remover scroll horizontal global */
 html, body {
   overflow-x: hidden;
 }
 
-/* Estilizar scrollbar */
+/* Estilizar scrollbar vertical */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -47,53 +48,107 @@ html, body {
   background: #a1a1a1;
 }
 
-/* Scroll suave */
-html {
-  scroll-behavior: smooth;
+/* Scroll horizontal customizado para Experience */
+.horizontal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
 }
 
-/* Remover scroll horizontal */
-html, body {
-  overflow-x: hidden;
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
 }
 
-/* Estilizar scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
+.horizontal-scroll::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 4px;
+  margin: 0 80px;
 }
 
-::-webkit-scrollbar-thumb {
+.horizontal-scroll::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.horizontal-scroll::-webkit-scrollbar-thumb:hover {
   background: #a1a1a1;
 }
 
-/* Remover scroll horizontal */
-html, body {
-  overflow-x: hidden;
+/* Dark mode scrollbar */
+.dark .horizontal-scroll {
+  scrollbar-color: #4a5568 #2d3748;
 }
 
-/* Estilizar scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.dark .horizontal-scroll::-webkit-scrollbar-track {
+  background: #2d3748;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.dark .horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #4a5568;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+.dark .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #718096;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #6B7280;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* Scrollbar horizontal para timeline */
+.horizontal-scroll {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+/* Scrollbar visível apenas quando necessário */
+.horizontal-scroll-visible {
+  scrollbar-width: thin;
+  scrollbar-color: #3B82F6 #E5E7EB;
+}
+
+.horizontal-scroll-visible::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontal-scroll-visible::-webkit-scrollbar-track {
+  background: #E5E7EB;
+  border-radius: 3px;
+}
+
+.horizontal-scroll-visible::-webkit-scrollbar-thumb {
+  background: #3B82F6;
+  border-radius: 3px;
+}
+
+.horizontal-scroll-visible::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}
+
+.dark .horizontal-scroll-visible {
+  scrollbar-color: #60A5FA #374151;
+}
+
+.dark .horizontal-scroll-visible::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark .horizontal-scroll-visible::-webkit-scrollbar-thumb {
+  background: #60A5FA;
+}
+
+.dark .horizontal-scroll-visible::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
 }
