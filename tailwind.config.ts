@@ -1,7 +1,7 @@
+import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-/** @type {import('tailwindcss').Config} */
-export default {
+const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -26,14 +26,12 @@ export default {
           },
           '50%': {
             'background-position': '100% 50%'
-          },
+          }
         }
-      },
-      animation: {
-        gradient: 'gradient 15s ease infinite',
-      },
+      }
     },
   },
   plugins: [],
-}
+};
 
+export default config;

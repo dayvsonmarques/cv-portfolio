@@ -47,7 +47,7 @@ const Skills = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">{t('skills.title')}</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+          <div className="w-24 h-1 bg-gray-600 dark:bg-gray-400 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('skills.subtitle')}
           </p>
@@ -68,7 +68,7 @@ const Skills = () => {
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <div 
-                        className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-400 dark:to-gray-200 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>

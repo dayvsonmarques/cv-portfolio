@@ -68,7 +68,7 @@ const Projects = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">Projetos</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+          <div className="w-24 h-1 bg-gray-700 dark:bg-gray-300 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas 
             habilidades e experiência em diferentes tecnologias.
@@ -90,7 +90,7 @@ const Projects = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span 
                         key={techIndex}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full"
+                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full"
                       >
                         {tech}
                       </span>
@@ -100,13 +100,13 @@ const Projects = () => {
                   <div className="flex space-x-4">
                     <a 
                       href={project.liveUrl}
-                      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg text-center hover:bg-blue-700 transition-colors"
+                      className="flex-1 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 py-2 px-4 rounded-lg text-center hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors"
                     >
                       Ver Demo
                     </a>
                     <a 
                       href={project.githubUrl}
-                      className="flex-1 border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 py-2 px-4 rounded-lg text-center hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-colors"
+                      className="flex-1 border-2 border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 py-2 px-4 rounded-lg text-center hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-900 transition-colors"
                     >
                       GitHub
                     </a>
@@ -146,7 +146,7 @@ const Projects = () => {
                 <div className="flex space-x-2">
                   <a 
                     href={project.liveUrl}
-                    className="flex-1 text-blue-600 dark:text-blue-400 text-sm text-center py-2 hover:underline"
+                    className="flex-1 text-gray-800 dark:text-gray-200 text-sm text-center py-2 hover:underline"
                   >
                     Demo
                   </a>
