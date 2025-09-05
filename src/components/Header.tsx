@@ -42,6 +42,12 @@ const Header = () => {
               {t('nav.skills')}
             </button>
             <button 
+              onClick={() => scrollToSection('experience')}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
+            >
+              {t('nav.experience')}
+            </button>
+            <button 
               onClick={() => scrollToSection('projects')}
               className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors"
             >
@@ -96,6 +102,12 @@ const Header = () => {
                 className="text-left text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors py-2"
               >
                 {t('nav.skills')}
+              </button>
+              <button 
+                onClick={() => scrollToSection('experience')}
+                className="text-left text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors py-2"
+              >
+                {t('nav.experience')}
               </button>
               <button 
                 onClick={() => scrollToSection('projects')}
