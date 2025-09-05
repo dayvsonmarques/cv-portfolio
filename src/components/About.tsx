@@ -12,12 +12,12 @@ const About = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">{t('about.title')}</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">{t('about.subtitle')}</p>
-          <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-gray-600 dark:bg-gray-400 mx-auto"></div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center text-white text-6xl font-bold">
+            <div className="w-80 h-80 mx-auto bg-gradient-to-br from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 rounded-full flex items-center justify-center text-white text-6xl font-bold">
               👨‍💻
             </div>
           </div>
@@ -33,15 +33,15 @@ const About = () => {
             
             <div className="grid grid-cols-3 gap-8 mt-12">
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">5+</div>
+                <div className="text-4xl font-bold text-gray-700 dark:text-gray-300 mb-2">5+</div>
                 <div className="text-gray-600 dark:text-gray-400">{t('about.experience')}</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
+                <div className="text-4xl font-bold text-gray-700 dark:text-gray-300 mb-2">50+</div>
                 <div className="text-gray-600 dark:text-gray-400">{t('about.projects')}</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">20+</div>
+                <div className="text-4xl font-bold text-gray-700 dark:text-gray-300 mb-2">20+</div>
                 <div className="text-gray-600 dark:text-gray-400">{t('about.clients')}</div>
               </div>
             </div>
