@@ -21,29 +21,31 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20 relative">
       <ParallaxBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-        <div className="mb-8">
-          <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-gray-600 to-gray-700 flex items-center justify-center text-white text-4xl font-bold">
+        <div className="mb-12">
+          <div className="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-gray-600 to-gray-700 flex items-center justify-center text-white text-5xl font-bold font-heading">
             Dev
           </div>
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-700 dark:text-white mb-6">
-          Dayvson Marques
-          <span className="block text-gray-800 dark:text-gray-200">Desenvolvedor Web</span>
+        <h1 className="text-6xl md:text-8xl font-bold text-gray-700 dark:text-white mb-8 font-heading">
+          {t('hero.greeting')} <span className="block text-gray-800 dark:text-gray-200 text-4xl md:text-5xl mt-4">{t('hero.name')}</span>
         </h1>
+        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-10 max-w-4xl mx-auto">
+          {t('hero.subtitle')}
+        </p>
       
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <button 
             onClick={scrollToContact}
-            className="bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors"
+            className="bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 px-10 py-4 rounded-lg text-xl font-semibold hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors"
           >
-            {t('contactButton')}
+            {t('hero.contact')}
           </button>
           <button 
             onClick={scrollToProjects}
-            className="border-2 border-gray-800 text-gray-800 dark:text-gray-200 dark:border-gray-200 px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-900 transition-colors"
+            className="border-2 border-gray-800 text-gray-800 dark:text-gray-200 dark:border-gray-200 px-10 py-4 rounded-lg text-xl font-semibold hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-900 transition-colors"
           >
-            {t('projectsButton')}
+            {t('hero.cta')}
           </button>
           <a 
             href="https://webdev.recife.br/wp-content/uploads/2025/09/CV-2k25-DAYVSON-MARQUES.pdf" 
@@ -54,7 +56,7 @@ const Hero = () => {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            Baixar CV
+            {t('hero.download')}
           </a>
         </div>
         
