@@ -16,17 +16,17 @@ const translations = {
       contact: 'Contato'
     },
     hero: {
-      greeting: 'Olá, eu sou',
-      name: 'Desenvolvedor Full Stack',
-      subtitle: 'Criando experiências digitais excepcionais com tecnologias modernas',
+      greeting: 'Dayvson Marques',
+      name: 'Desenvolvedor Web Full Stack',
+      subtitle: 'Criando projetos digitais com tecnologias modernas',
       description: 'Especializado em React, Next.js, Node.js e muito mais. Transformo ideias em soluções digitais inovadoras.',
       cta: 'Ver Projetos',
       contact: 'Entre em Contato'
     },
     about: {
       title: 'Sobre Mim',
-      subtitle: 'Conheça um pouco da minha história',
-      description: 'Sou um desenvolvedor apaixonado por tecnologia com mais de 5 anos de experiência criando aplicações web modernas. Especializado em JavaScript, TypeScript, React, Next.js e Node.js.',
+      subtitle: 'Recife, PE • 35 anos • Web Dev',
+      description: 'Sou desenvolvedor web, graduado em Sistemas de Informação (UniNabuco, 2012), com mais de 15 anos  de experiência criando aplicações web modernas. Especializado em PHP, JavaScript, TypeScript, React, Next.js e Node.js.',
       experience: 'Anos de Experiência',
       projects: 'Projetos Concluídos',
       clients: 'Clientes Satisfeitos'
