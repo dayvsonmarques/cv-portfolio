@@ -10,6 +10,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Content {
+  id        Int      @id @default(autoincrement())
+  section   String   // Ex: 'hero', 'about', 'skills', etc.
+  language  String   // Ex: 'pt', 'en', 'es'
+  title     String?
+  subtitle  String?
+  description String?
+  data      Json?
+  updatedAt DateTime @updatedAt
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String
