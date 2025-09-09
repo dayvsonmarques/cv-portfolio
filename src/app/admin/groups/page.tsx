@@ -21,31 +21,20 @@ export default function GroupsPage() {
   useEffect(() => {
     fetch("/api/admin/groups")
       .then(res => res.json())
-      .then(data => setGroups(data.groups));
+      .then(setGroups);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const perms = permissions.split(",").map(p => p.trim()).filter(Boolean);
-    try {
-      const res = await fetch("/api/admin/groups", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, permissions: perms })
-      });
-      const data = await res.json();
-      
-      if (res.ok) {
-        setMessage("Grupo criado com sucesso!");
-        setGroups([...groups, data]);
-        setName("");
-        setPermissions("");
-      } else {
-        setMessage(data.error || "Erro ao criar grupo");
-      }
-    } catch (error) {
-      setMessage("Erro ao criar grupo. Tente novamente.");
-    }
+    const res = await fetch("/api/admin/groups", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, permissions: perms })
+    });
+    const data = await res.json();
+    setMessage(data.error || "Grupo criado!");
+    if (!data.error) setGroups([...groups, { ...data, permissions: data.permissions || [] }]);
   };
 
   return (
