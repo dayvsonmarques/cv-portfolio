@@ -21,7 +21,8 @@ const translations = {
       subtitle: 'Criando projetos digitais com tecnologias modernas',
       description: 'Especializado em React, Next.js, Node.js e muito mais. Transformo ideias em soluções digitais inovadoras.',
       cta: 'Ver Projetos',
-      contact: 'Entre em Contato'
+      contact: 'Entre em Contato',
+      download: 'Baixar CV'
     },
     about: {
       title: 'Sobre Mim',
@@ -81,7 +82,8 @@ const translations = {
       subtitle: 'Creating exceptional digital experiences with modern technologies',
       description: 'Specialized in React, Next.js, Node.js and much more. I transform ideas into innovative digital solutions.',
       cta: 'View Projects',
-      contact: 'Get in Touch'
+      contact: 'Get in Touch',
+      download: 'Download CV'
     },
     about: {
       title: 'About Me',
@@ -141,7 +143,8 @@ const translations = {
       subtitle: 'Creando experiencias digitales excepcionales con tecnologías modernas',
       description: 'Especializado en React, Next.js, Node.js y mucho más. Transformo ideas en soluciones digitales innovadoras.',
       cta: 'Ver Proyectos',
-      contact: 'Ponerse en Contacto'
+      contact: 'Ponerse en Contacto',
+      download: 'Descargar CV'
     },
     about: {
       title: 'Acerca de Mí',
