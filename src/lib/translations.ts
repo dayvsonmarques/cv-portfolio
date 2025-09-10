@@ -1,13 +1,11 @@
 export const translations = {
   'pt-BR': {
-    // Navigation
     'nav.about': 'Sobre',
     'nav.skills': 'Habilidades',
     'nav.experience': 'Experiência',
     'nav.projects': 'Projetos',
     'nav.contact': 'Contato',
 
-    // Hero Section
     'hero.title': 'Dayvson Marques',
     'hero.subtitle': 'Desenvolvedor Web Full-Stack',
     'hero.description': 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
@@ -17,31 +15,13 @@ export const translations = {
     'hero.greeting': 'Olá,',
     'hero.name': 'Sou Dayvson Marques',
 
-    // Project descriptions
     'projects.ecommerce': 'Plataforma completa de e-commerce com carrinho de compras, sistema de pagamento e painel administrativo. Construído com Next.js, Stripe e PostgreSQL.',
     'projects.taskManagement': 'Aplicativo de gerenciamento de tarefas com recursos de arrastar e soltar, colaboração em tempo real e notificações push.',
     'projects.portfolio': 'Site de portfólio responsivo e moderno para um designer com galeria interativa e formulário de contato integrado.',
     'projects.weather': 'Painel meteorológico com previsões detalhadas, mapas interativos e alertas personalizados para várias cidades.',
     'projects.socialMedia': 'Painel de análise de mídia social com métricas em tempo real, gráficos interativos e relatórios automatizados.',
     'projects.chat': 'Aplicativo de chat em tempo real com salas privadas, compartilhamento de arquivos e suporte a emojis personalizados.',
-    // 'nav.skills': 'Habilidades',
-    // 'nav.experience': 'Experiência',
-    // 'nav.projects': 'Projetos',
-    // 'nav.contact': 'Contato',
-    
-    // Hero
-    // 'hero.title': 'Dayvson Marques',
-    // 'hero.subtitle': 'Desenvolvedor Web Full-Stack',
-    // 'hero.description': 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
-    // 'hero.contactButton': 'Entre em Contato',
-    // 'hero.projectsButton': 'Ver Projetos',
-    // 'hero.download': 'Baixar CV',
-    // 'hero.contact': 'Entre em Contato',
-    // 'hero.cta': 'Ver Projetos',
-    // 'hero.greeting': 'Olá,',
-    // 'hero.name': 'Sou Dayvson Marques',
-    
-    // About
+
     'about.title': 'Sobre Mim',
     'about.subtitle': 'Desenvolvedor Web especializado em tecnologias modernas',
     'about.experience': 'Anos de Experiência',
@@ -52,7 +32,6 @@ export const translations = {
     'about.frontend': 'Frontend',
     'about.backend': 'Backend',
     
-    // Skills
     'skills.title': 'Habilidades',
     'skills.description': 'Aqui estão as principais tecnologias e ferramentas que domino, com anos de experiência prática e projetos reais.',
     'skills.toolsAndOthers': 'Ferramentas & Outros',
@@ -61,11 +40,9 @@ export const translations = {
     'skills.technologies': 'Tecnologias',
     'skills.satisfaction': 'Satisfação',
     
-    // Projects
     'projects.title': 'Projetos',
     'projects.description': 'Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência em diferentes tecnologias.',
     
-    // Experience
     'experience.title': 'Experiência Profissional',
     'experience.subtitle': 'Minha jornada no desenvolvimento web',
     
@@ -75,7 +52,6 @@ export const translations = {
     github: 'GitHub',
     demo: 'Demo',
     
-    // Contact
     contactTitle: 'Entre em Contato',
     contactDescription: 'Tem um projeto em mente? Vamos conversar! Estou sempre aberto a novas oportunidades e desafios interessantes.',
     contactInfo: 'Informações de Contato',
@@ -93,14 +69,12 @@ export const translations = {
     yourMessage: 'Sua mensagem...',
     sendMessageButton: 'Enviar Mensagem',
     
-    // Footer
     'footer.quickLinks': 'Links Rápidos',
     'footer.home': 'Início',
     'footer.allRightsReserved': 'Todos os direitos reservados.',
     'footer.developedWith': 'Desenvolvido com',
     'footer.using': 'usando',
     
-    // Project descriptions
     'projects.ecommerce.description': 'Plataforma de e-commerce completa com carrinho de compras, sistema de pagamentos e painel administrativo. Desenvolvida com Next.js, Stripe e PostgreSQL.',
     'projects.taskManagement.description': 'Aplicativo de gerenciamento de tarefas com funcionalidades de drag-and-drop, colaboração em tempo real e notificações push.',
     'projects.portfolio.description': 'Site portfólio responsivo e moderno para um designer, com galeria interativa e formulário de contato integrado.',
@@ -110,14 +84,12 @@ export const translations = {
   },
   
   'en-US': {
-    // Navigation
     'nav.about': 'About',
     'nav.skills': 'Skills',
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
     
-    // Hero
     'hero.title': 'Dayvson Marques',
     'hero.subtitle': 'Full Stack Developer',
     'hero.description': 'Creating exceptional digital experiences with modern technologies. Specialized in React, Next.js, Node.js with over 5 years of experience transforming ideas into digital solutions.',
@@ -129,7 +101,6 @@ export const translations = {
     'hero.greeting': 'Hi,',
     'hero.name': "I'm Dayvson Marques",
     
-    // About
     'about.title': 'About Me',
     'about.subtitle': 'Full Stack Developer passionate about technology',
     'about.experience': 'Years of Experience',
@@ -141,7 +112,6 @@ export const translations = {
     'about.backend': 'Backend',
 
     
-    // Skills
     'skills.title': 'Skills',
     'skills.description': 'Here are the main technologies and tools I master, with years of practical experience and real projects.',
     'skills.toolsAndOthers': 'Tools & Others',
@@ -150,11 +120,9 @@ export const translations = {
     'skills.technologies': 'Technologies',
     'skills.satisfaction': 'Satisfaction',
     
-    // Projects
     'projects.title': 'Projects',
     'projects.description': 'Here are some of the projects I have developed, demonstrating my skills and experience in different technologies.',
     
-    // Experience
     'experience.title': 'Professional Experience',
     'experience.subtitle': 'My journey in web development',
     
@@ -164,7 +132,6 @@ export const translations = {
     github: 'GitHub',
     demo: 'Demo',
     
-    // Contact
     contactTitle: 'Get In Touch',
     contactDescription: 'Have a project in mind? Let\'s talk! I\'m always open to new opportunities and interesting challenges.',
     contactInfo: 'Contact Information',
@@ -182,14 +149,12 @@ export const translations = {
     yourMessage: 'Your message...',
     sendMessageButton: 'Send Message',
     
-    // Footer
     'footer.quickLinks': 'Quick Links',
     'footer.home': 'Home',
     'footer.allRightsReserved': 'All rights reserved.',
     'footer.developedWith': 'Developed with',
     'footer.using': 'using',
     
-    // Project descriptions
     ecommerceDescription: 'Complete e-commerce platform with shopping cart, payment system and administrative panel. Developed with Next.js, Stripe and PostgreSQL.',
     taskManagementDescription: 'Task management application with drag-and-drop functionality, real-time collaboration and push notifications.',
     portfolioDescription: 'Responsive and modern portfolio website for a designer, with interactive gallery and integrated contact form.',
@@ -199,21 +164,18 @@ export const translations = {
   },
   
   'es-ES': {
-    // Header
     about: 'Acerca',
     skills: 'Habilidades',
     experience: 'Experiencia',
     projects: 'Proyectos',
     contact: 'Contacto',
     
-    // Hero
     heroTitle: 'Desarrollador',
     heroSubtitle: 'Full Stack',
     heroDescription: 'Creando experiencias digitales excepcionales con tecnologías modernas. Especializado en React, Next.js, Node.js y mucho más.',
     contactButton: 'Ponerse en Contacto',
     projectsButton: 'Ver Proyectos',
     
-    // About
     aboutTitle: 'Acerca de Mí',
     aboutSubtitle: 'Desarrollador Full Stack apasionado por la tecnología',
     aboutText1: 'Con más de 3 años de experiencia en desarrollo web, me especializo en crear soluciones digitales innovadoras y eficientes. Mi viaje comenzó con curiosidad sobre cómo funcionan las cosas en la web y evolucionó hacia una pasión por construir experiencias excepcionales para usuarios.',
@@ -221,7 +183,6 @@ export const translations = {
     frontend: 'Frontend',
     backend: 'Backend',
     
-    // Skills
     skillsTitle: 'Habilidades',
     skillsDescription: 'Aquí están las principales tecnologías y herramientas que domino, con años de experiencia práctica y proyectos reales.',
     toolsAndOthers: 'Herramientas y Otros',
@@ -230,11 +191,9 @@ export const translations = {
     technologies: 'Tecnologías',
     satisfaction: 'Satisfacción',
     
-    // Projects
     projectsTitle: 'Proyectos',
     projectsDescription: 'Aquí están algunos de los proyectos que he desarrollado, demostrando mis habilidades y experiencia en diferentes tecnologías.',
     
-    // Experience
     experienceTitle: 'Experiencia Profesional',
     experienceSubtitle: 'Mi trayectoria en el desarrollo web',
     
@@ -244,7 +203,6 @@ export const translations = {
     github: 'GitHub',
     demo: 'Demo',
     
-    // Contact
     contactTitle: 'Ponerse en Contacto',
     contactDescription: '¿Tienes un proyecto en mente? ¡Hablemos! Siempre estoy abierto a nuevas oportunidades y desafíos interesantes.',
     contactInfo: 'Información de Contacto',
@@ -262,14 +220,12 @@ export const translations = {
     yourMessage: 'Tu mensaje...',
     sendMessageButton: 'Enviar Mensaje',
     
-    // Footer
     quickLinks: 'Enlaces Rápidos',
     home: 'Inicio',
     allRightsReserved: 'Todos los derechos reservados.',
     developedWith: 'Desarrollado con',
     using: 'usando',
     
-    // Project descriptions
     ecommerceDescription: 'Plataforma de comercio electrónico completa con carrito de compras, sistema de pagos y panel administrativo. Desarrollada con Next.js, Stripe y PostgreSQL.',
     taskManagementDescription: 'Aplicación de gestión de tareas con funcionalidad de arrastrar y soltar, colaboración en tiempo real y notificaciones push.',
     portfolioDescription: 'Sitio web de portafolio responsivo y moderno para un diseñador, con galería interactiva y formulario de contacto integrado.',
