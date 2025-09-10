@@ -1,24 +1,45 @@
 export const translations = {
   'pt-BR': {
     // Navigation
-    'nav.about'    // Project descriptions
-    'projects.ecommerce': 'Complete e-commerce platform with shopping cart, payment system, and admin panel. Built with Next.js, Stripe, and PostgreSQL.',
-    'projects.taskManagement': 'Task management app with drag-and-drop features, real-time collaboration, and push notifications.',
-    'projects.portfolio': 'Responsive and modern portfolio website for a designer with interactive gallery and integrated contact form.',
-    'projects.weather': 'Weather dashboard with detailed forecasts, interactive maps, and custom alerts for multiple cities.',
-    'projects.socialMedia': 'Social media analytics dashboard with real-time metrics, interactive charts, and automated reports.',
-    'projects.chat': 'Real-time chat application with private rooms, file sharing, and custom emoji support.',
+    'nav.about': 'Sobre',
     'nav.skills': 'Habilidades',
     'nav.experience': 'Experiência',
     'nav.projects': 'Projetos',
     'nav.contact': 'Contato',
-    
-    // Hero
+
+    // Hero Section
     'hero.title': 'Dayvson Marques',
     'hero.subtitle': 'Desenvolvedor Web Full-Stack',
     'hero.description': 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
-    'hero.contactButton': 'Entre em Contato',
-    'hero.projectsButton': 'Ver Projetos',
+    'hero.contact': 'Entre em Contato',
+    'hero.cta': 'Ver Projetos',
+    'hero.download': 'Baixar CV',
+    'hero.greeting': 'Olá,',
+    'hero.name': 'Sou Dayvson Marques',
+
+    // Project descriptions
+    'projects.ecommerce': 'Plataforma completa de e-commerce com carrinho de compras, sistema de pagamento e painel administrativo. Construído com Next.js, Stripe e PostgreSQL.',
+    'projects.taskManagement': 'Aplicativo de gerenciamento de tarefas com recursos de arrastar e soltar, colaboração em tempo real e notificações push.',
+    'projects.portfolio': 'Site de portfólio responsivo e moderno para um designer com galeria interativa e formulário de contato integrado.',
+    'projects.weather': 'Painel meteorológico com previsões detalhadas, mapas interativos e alertas personalizados para várias cidades.',
+    'projects.socialMedia': 'Painel de análise de mídia social com métricas em tempo real, gráficos interativos e relatórios automatizados.',
+    'projects.chat': 'Aplicativo de chat em tempo real com salas privadas, compartilhamento de arquivos e suporte a emojis personalizados.',
+    // 'nav.skills': 'Habilidades',
+    // 'nav.experience': 'Experiência',
+    // 'nav.projects': 'Projetos',
+    // 'nav.contact': 'Contato',
+    
+    // Hero
+    // 'hero.title': 'Dayvson Marques',
+    // 'hero.subtitle': 'Desenvolvedor Web Full-Stack',
+    // 'hero.description': 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
+    // 'hero.contactButton': 'Entre em Contato',
+    // 'hero.projectsButton': 'Ver Projetos',
+    // 'hero.download': 'Baixar CV',
+    // 'hero.contact': 'Entre em Contato',
+    // 'hero.cta': 'Ver Projetos',
+    // 'hero.greeting': 'Olá,',
+    // 'hero.name': 'Sou Dayvson Marques',
     
     // About
     'about.title': 'Sobre Mim',
@@ -102,6 +123,11 @@ export const translations = {
     'hero.description': 'Creating exceptional digital experiences with modern technologies. Specialized in React, Next.js, Node.js with over 5 years of experience transforming ideas into digital solutions.',
     'hero.contactButton': 'Get In Touch',
     'hero.projectsButton': 'View Projects',
+    'hero.download': 'Download CV',
+    'hero.contact': 'Get In Touch',
+    'hero.cta': 'View Projects',
+    'hero.greeting': 'Hi,',
+    'hero.name': "I'm Dayvson Marques",
     
     // About
     'about.title': 'About Me',

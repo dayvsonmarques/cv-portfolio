@@ -24,7 +24,7 @@ const Header = () => {
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="text-3xl font-bold text-gray-800 dark:text-white font-heading">
-            Portfolio
+            Dayvson Marques
           </div>
           
           {/* Desktop Menu */}
