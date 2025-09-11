@@ -1,58 +1,125 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
+
+interface ExperienceType {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  technologies: string[];
+}
 
 const Experience = () => {
   const { t } = useApp();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-  const scrollLeft = () => {
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleScroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -350, behavior: 'smooth' });
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 350, behavior: 'smooth' });
-    }
-  };
-
-  const experiences = [
+  const experiences: ExperienceType[] = [
     {
-      title: "Desenvolvedor Web Full-Stack",
-      company: "WebDev Recife",
-      period: "2022 - Presente",
-      description: "Desenvolvimento de sites, lojas online e aplicações web usando WordPress, React e tecnologias modernas. Especialização em soluções personalizadas para clientes diversos.",
-      technologies: ["WordPress", "React", "Next.js", "PHP", "JavaScript", "CSS3"]
+      title: "Desenvolvedor Web",
+      company: "Corptech",
+      period: "04/2011 - 04/2013",
+      description: "Desenvolvimento e manutenção de aplicação web ERP integrada com SAP, geração de gráficos e relatórios customizados.",
+      technologies: ["Java (J2EE)", "JSP", "JSF", "Hibernate", "MySQL", "PostgreSQL", "Google Maps & Charts", "HTML", "CSS", "JavaScript", "jQuery"]
     },
     {
-      title: "Desenvolvedor WordPress",
+      title: "Desenvolvedor Web",
       company: "Freelancer",
-      period: "2020 - 2022",
-      description: "Criação de sites responsivos e lojas online com WordPress. Desenvolvimento de temas customizados e integração com sistemas de pagamento.",
-      technologies: ["WordPress", "PHP", "MySQL", "JavaScript", "WooCommerce"]
+      period: "06/2013 - 01/2015",
+      description: "Análise e manutenção de sites e lojas online, correção de bugs e implementação de melhorias.",
+      technologies: ["WordPress", "PHP", "HTML5", "CSS3", "MySQL"]
     },
     {
-      title: "Desenvolvedor Front-End",
-      company: "Agência Digital",
-      period: "2019 - 2020",
-      description: "Desenvolvimento de interfaces web responsivas e otimização de experiência do usuário. Colaboração em projetos de e-commerce e sites institucionais.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "jQuery"]
+      title: "Desenvolvedor Front-end",
+      company: "Agências de Publicidade",
+      period: "02/2015 - 11/2015",
+      description: "Desenvolvimento e manutenção de lojas online, plugins e templates para diversos clientes do setor publicitário.",
+      technologies: ["PHP", "WordPress", "WooCommerce", "OpenCart", "MySQL", "HTML", "CSS", "JavaScript"]
     },
     {
-      title: "Desenvolvedor Junior",
-      company: "Startup Local",
-      period: "2018 - 2019",
-      description: "Início da carreira profissional desenvolvendo aplicações web. Aprendizado de melhores práticas e metodologias ágeis de desenvolvimento.",
-      technologies: ["HTML", "CSS", "JavaScript", "Git", "Bootstrap"]
+      title: "Desenvolvedor Web",
+      company: "Bold Comunicação",
+      period: "12/2015 - 02/2017",
+      description: "Desenvolvimento de protótipo de ecommerce B2B integrado com ERPs, focando em usabilidade e performance.",
+      technologies: ["Laravel", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap"]
+    },
+    {
+      title: "Desenvolvedor Web",
+      company: "Freelancer",
+      period: "03/2017 - 03/2018",
+      description: "Desenvolvimento de lojas online, plugins e templates customizados para diversos clientes.",
+      technologies: ["WordPress", "WooCommerce", "Laravel", "PHP 7", "HTML5", "CSS3/Sass", "JavaScript"]
+    },
+    {
+      title: "Desenvolvedor PHP",
+      company: "Idealizza",
+      period: "03/2018 - 01/2019",
+      description: "Desenvolvimento de lojas online, plugins e templates customizados para diversos clientes.",
+      technologies: ["WordPress", "WooCommerce", "Laravel", "PHP 7", "HTML5", "CSS3/Sass", "JavaScript"]
+    },
+    {
+      title: "Desenvolvedor Ecommerce",
+      company: "Agile Ecommerce",
+      period: "01/2019 - 07/2019",
+      description: "Desenvolvimento de protótipo de ecommerce B2B integrado com ERPs, focando em usabilidade e performance.",
+      technologies: ["Laravel", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap"]
+    },
+    {
+      title: "Front-end Analista (Pleno)",
+      company: "Accenture",
+      period: "08/2019 - 12/2023",
+      description: "Desenvolvimento e manutenção de aplicações front-end com foco em performance e acessibilidade.",
+      technologies: ["React", "TypeScript", "Node.js", "Jest", "Cypress", "HTML5", "CSS3", "JavaScript"]
+    },
+    {
+      title: "Desenvolvedor Fullstack",
+      company: "Agile Ecommerce",
+      period: "01/2024 - 07/2024",
+      description: "Desenvolvimento e manutenção de ecommerce web (B2B), implementação de funcionalidades complexas e integração com sistemas.",
+      technologies: ["Laravel", "PHP 7", "HTML5", "CSS3", "JavaScript"]
+    },
+    {
+      title: "Desenvolvedor Web Fullstack",
+      company: "Freelancer",
+      period: "08/2023 - Presente",
+      description: "Desenvolvimento de soluções web personalizadas, incluindo sites, sistemas e integrações.",
+      technologies: ["Next.js", "React", "Node.js", "TypeScript", "Tailwind CSS", "PostgreSQL"]
     }
   ];
 
   return (
     <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="w-full px-4">
+      <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
             {t('experience.title')}
@@ -64,28 +131,32 @@ const Experience = () => {
 
         <div className="relative">
           <button
-            onClick={scrollLeft}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+            onClick={() => handleScroll('left')}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300"
             aria-label="Voltar"
           >
-            <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button
-            onClick={scrollRight}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+            onClick={() => handleScroll('right')}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300"
             aria-label="Avançar"
           >
-            <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
           <div 
             ref={scrollContainerRef}
-            className="overflow-x-auto overflow-y-hidden horizontal-scroll pb-4"
+            className="overflow-x-auto overflow-y-hidden horizontal-scroll pb-4 cursor-grab active:cursor-grabbing select-none"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
           >
             <div className="relative flex items-start gap-8 px-16 py-8" style={{ width: `${experiences.length * 350}px` }}>
               <div 
@@ -98,30 +169,18 @@ const Experience = () => {
               
               {experiences.map((exp, index) => (
                 <div key={index} className="relative flex-shrink-0 w-80">
-                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900 z-10 shadow-lg"></div>
-                  
-                  <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
-                    <div className="mb-4">
-                      <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
-                        {exp.title}
-                      </h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-semibold mb-1">
-                        {exp.company}
-                      </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                        {exp.period}
-                      </p>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 h-[400px] flex flex-col">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{exp.title}</h3>
+                      <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">{exp.company}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{exp.period}</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">{exp.description}</p>
                     </div>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
-                      {exp.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-4">
                       {exp.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex}
-                          className="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs rounded-full font-medium"
+                          className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded"
                         >
                           {tech}
                         </span>
@@ -130,18 +189,6 @@ const Experience = () => {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-          
-          <div className="flex justify-center mt-6">
-            <div className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-              </svg>
-              <span className="font-medium">Use as setas ou deslize para navegar</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </div>
           </div>
         </div>
