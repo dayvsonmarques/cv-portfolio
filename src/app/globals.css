@@ -7,6 +7,7 @@
     --font-space-grotesk: var(--font-space-grotesk);
     --font-inter: var(--font-inter);
     --font-jetbrains: var(--font-jetbrains);
+    --font-lovers-quarrel: var(--font-lovers-quarrel);
   }
 
   html {
@@ -39,6 +40,10 @@
   code, pre {
     font-family: var(--font-jetbrains), monospace;
     font-size: 1rem;
+  }
+
+  .font-logo {
+    font-family: var(--font-lovers-quarrel), cursive;
   }
 }
 

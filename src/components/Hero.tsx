@@ -22,12 +22,9 @@ const Hero = () => {
       <ParallaxBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
         
-        <h1 className="text-6xl md:text-8xl font-bold text-gray-700 dark:text-white mb-8 font-heading">
-          {t('hero.greeting')} <span className="block text-gray-800 dark:text-gray-200 text-4xl md:text-5xl mt-4">{t('hero.name')}</span>
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-10 max-w-4xl mx-auto">
+        <h1 className="text-6xl md:text-6xl font-bold text-gray-700 dark:text-white mb-8 font-heading pb-8">
           {t('hero.subtitle')}
-        </p>
+        </h1>
       
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <button 
