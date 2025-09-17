@@ -73,7 +73,7 @@ const Hero = () => {
           
           <div className="relative group">
             <a 
-              href="https://wa.me/5581999623374"
+              href="https://wa.me/5581999623374?text=Oi%2C%20tudo%20bem%3F%20Gostaria%20de%20entrar%20em%20contato.%20Aguardo%20retorno"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon flex items-center justify-center w-20 h-20 bg-white dark:bg-gray-100 rounded-full shadow-lg text-gray-600 hover:text-green-600 transition-all duration-300 hover:shadow-xl hover:scale-105"
