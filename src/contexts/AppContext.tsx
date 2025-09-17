@@ -18,9 +18,9 @@ const translations = {
     hero: {
       title: 'Dayvson Marques',
       subtitle: 'Desenvolvedor Web',
-      greeting: 'Dayvson Marques',
+      greeting: 'sites * ecommerces * aplicações web',
       name: 'Desenvolvedor Web Full Stack',
-      description: 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
+      description: 'desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 15 anos de experiência transformando ideias em soluções digitais.',
       cta: 'Ver Projetos',
       contact: 'Entre em Contato',
       download: 'Baixar CV'

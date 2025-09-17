@@ -1,22 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Language } from '@/lib/translations';
+import { useApp } from '@/contexts/AppContext';
 
 const LanguageSelector = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage } = useApp();
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
-    { code: 'pt-BR' as Language, name: 'Português', flag: '🇧🇷' },
-    { code: 'en-US' as Language, name: 'English', flag: '🇺🇸' },
-    { code: 'es-ES' as Language, name: 'Español', flag: '🇪🇸' },
+    { code: 'pt' as const, name: 'Português', flag: '🇧🇷' },
+    { code: 'en' as const, name: 'English', flag: '🇺🇸' },
+    { code: 'es' as const, name: 'Español', flag: '🇪🇸' },
   ];
 
   const currentLanguage = languages.find(lang => lang.code === language);
 
-  const handleLanguageChange = (newLanguage: Language) => {
+  const handleLanguageChange = (newLanguage: 'pt' | 'en' | 'es') => {
     setLanguage(newLanguage);
     setIsOpen(false);
   };
