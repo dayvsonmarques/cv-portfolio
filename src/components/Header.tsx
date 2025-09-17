@@ -56,7 +56,7 @@ const Header = () => {
       >
         <nav className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <div className={`text-2xl font-bold text-gray-800 dark:text-white z-50 relative font-[var(--font-inter)] uppercase tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`text-2xl font-bold text-gray-800 dark:text-white z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
               Dayvson Marques
             </div>
             

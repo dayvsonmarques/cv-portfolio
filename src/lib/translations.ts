@@ -7,7 +7,7 @@ export const translations = {
     'nav.contact': 'Contato',
 
     'hero.title': 'Dayvson Marques',
-    'hero.subtitle': 'Desenvolvedor Web Full-Stack',
+    'hero.subtitle': 'Desenvolvedor Web Fullstack',
     'hero.description': 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
     'hero.contact': 'Entre em Contato',
     'hero.cta': 'Ver Projetos',

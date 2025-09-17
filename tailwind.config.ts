@@ -14,6 +14,7 @@ const config: Config = {
         sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
         heading: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-jetbrains)', ...defaultTheme.fontFamily.mono],
+        logo: ['var(--font-lovers-quarrel)', 'cursive', ...defaultTheme.fontFamily.serif],
       },
       colors: {
         background: "var(--background)",
