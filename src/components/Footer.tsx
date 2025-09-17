@@ -74,7 +74,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-10 pt-8 text-center text-gray-400">
           <p className="text-white">
-            {t('hero.greeting')} © {currentYear}
+            {t('hero.title')} © {currentYear}
           </p>
           {/* <p className="mt-2">
             {t('footer.madeWith')}

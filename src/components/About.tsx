@@ -17,8 +17,14 @@ const About = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="w-96 h-96 mx-auto bg-gradient-to-br  dark:from-gray-700 dark:to-gray-900 rounded-full flex items-center justify-center text-white text-7xl font-bold">
-              <Image src="/yo-2k25.jpeg" alt="Profile" width={350} height={350} className="rounded-full object-cover" />
+            <div className="w-96 h-96 mx-auto bg-gradient-to-br dark:from-gray-700 dark:to-gray-900 rounded-full flex items-center justify-center text-white text-7xl font-bold overflow-hidden">
+              <Image 
+                src="/yo-2k25.jpeg" 
+                alt="Profile" 
+                width={384} 
+                height={384} 
+                className="w-full h-full rounded-full object-cover aspect-square" 
+              />
             </div>
           </div>
 

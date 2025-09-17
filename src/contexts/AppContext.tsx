@@ -27,8 +27,8 @@ const translations = {
     },
     about: {
       title: 'Sobre Mim',
-      subtitle: 'Desenvolvedor Web especializado em tecnologias modernas',
-      description: 'Sou Dayvson Marques, desenvolvedor web com mais de 5 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
+      subtitle: 'Desenvolvedor web fullstack especializado na desenvolvimento (front-end & back-end) usando tecnologias modernas',
+      description: ' Desenvolvedor web a +15 anos * Recife/PE * Graduado em Sistemas de Informação pela UniNabuco (2012). Especializado em desenvolvimento web full-stack, criação e customização de soluções digitais personalizadas',
       text1: 'Sou Dayvson Marques, desenvolvedor web com mais de 5 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
       text2: 'Trabalho com tecnologias como React, Next.js, Node.js e tenho expertise em otimização de performance e desenvolvimento responsivo. Sempre em busca de entregar soluções que combinem funcionalidade e design moderno.',
       experience: 'Anos de Experiência',
@@ -193,6 +193,7 @@ const translations = {
       contact: 'Contacto'
     },
     hero: {
+      title: 'Dayvson Marques',
       greeting: 'Hola, soy',
       name: 'Desarrollador Full Stack',
       subtitle: 'Creando experiencias digitales excepcionales con tecnologías modernas',
