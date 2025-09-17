@@ -13,10 +13,10 @@ const Hero = () => {
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
         
         <h1 className="text-6xl md:text-6xl font-bold text-gray-700 dark:text-white font-heading pb-4">
-          {t('hero.title')}
-        </h1>
-         <h2 className="text-6xl md:text-6xl font-bold text-gray-700 dark:text-white font-heading pb-8">
           {t('hero.subtitle')}
+        </h1>
+         <h2 className="text-6xl md:text-5xl font-light text-gray-700 dark:text-white font-heading pb-8">
+          {t('hero.greeting')}
         </h2>
         
         <div className="mt-12 flex justify-center space-x-8">
