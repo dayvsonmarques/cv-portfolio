@@ -16,28 +16,39 @@ const translations = {
       contact: 'Contato'
     },
     hero: {
+      title: 'Dayvson Marques',
+      subtitle: 'Desenvolvedor Web',
       greeting: 'Dayvson Marques',
       name: 'Desenvolvedor Web Full Stack',
-      subtitle: 'Criando projetos digitais com tecnologias modernas',
-      description: 'Especializado em React, Next.js, Node.js e muito mais. Transformo ideias em soluções digitais inovadoras.',
+      description: 'Especializado em desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 5 anos de experiência transformando ideias em soluções digitais.',
       cta: 'Ver Projetos',
       contact: 'Entre em Contato',
       download: 'Baixar CV'
     },
     about: {
       title: 'Sobre Mim',
-      subtitle: 'Recife, PE • 35 anos • Web Dev',
-      description: 'Sou desenvolvedor web, graduado em Sistemas de Informação (UniNabuco, 2012), com mais de 15 anos  de experiência criando aplicações web modernas. Especializado em PHP, JavaScript, TypeScript, React, Next.js e Node.js.',
+      subtitle: 'Desenvolvedor Web especializado em tecnologias modernas',
+      description: 'Sou Dayvson Marques, desenvolvedor web com mais de 5 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
+      text1: 'Sou Dayvson Marques, desenvolvedor web com mais de 5 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
+      text2: 'Trabalho com tecnologias como React, Next.js, Node.js e tenho expertise em otimização de performance e desenvolvimento responsivo. Sempre em busca de entregar soluções que combinem funcionalidade e design moderno.',
       experience: 'Anos de Experiência',
-      projects: 'Projetos Concluídos',
-      clients: 'Clientes Satisfeitos'
+      projects: 'Projetos Realizados',
+      clients: 'Clientes Satisfeitos',
+      frontend: 'Frontend',
+      backend: 'Backend'
     },
     skills: {
       title: 'Habilidades',
       subtitle: 'Tecnologias que domino',
+      description: 'Aqui estão as principais tecnologias e ferramentas que domino, com anos de experiência prática e projetos reais.',
       frontend: 'Frontend',
       backend: 'Backend',
-      tools: 'Ferramentas'
+      tools: 'Ferramentas',
+      toolsAndOthers: 'Ferramentas & Outros',
+      projectsCompleted: 'Projetos Concluídos',
+      yearsExperience: 'Anos de Experiência',
+      technologies: 'Tecnologias',
+      satisfaction: 'Satisfação'
     },
     experience: {
       title: 'Experiência Profissional',
@@ -46,26 +57,59 @@ const translations = {
     projects: {
       title: 'Projetos',
       subtitle: 'Alguns dos meus trabalhos recentes',
+      description: 'Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência em diferentes tecnologias.',
       viewProject: 'Ver Projeto',
-      sourceCode: 'Código Fonte'
+      sourceCode: 'Código Fonte',
+      github: {
+        title: 'Projetos no GitHub',
+        subtitle: 'Confira meus projetos open source mais recentes',
+        viewMore: 'Ver mais no GitHub',
+        noDescription: 'Sem descrição disponível',
+        viewCode: 'Ver Código',
+        liveDemo: 'Ver Demo'
+      },
+      featuredProjects: 'Projetos em Destaque',
+      otherProjects: 'Outros Projetos',
+      viewDemo: 'Ver Demo',
+      githubLink: 'GitHub',
+      demo: 'Demo',
+      ecommerce: 'Plataforma completa de e-commerce com carrinho de compras, sistema de pagamento e painel administrativo. Construído com Next.js, Stripe e PostgreSQL.',
+      taskManagement: 'Aplicativo de gerenciamento de tarefas com recursos de arrastar e soltar, colaboração em tempo real e notificações push.',
+      portfolio: 'Site de portfólio responsivo e moderno para um designer com galeria interativa e formulário de contato integrado.',
+      weather: 'Painel meteorológico com previsões detalhadas, mapas interativos e alertas personalizados para várias cidades.',
+      socialMedia: 'Painel de análise de mídia social com métricas em tempo real, gráficos interativos e relatórios automatizados.',
+      chat: 'Aplicativo de chat em tempo real com salas privadas, compartilhamento de arquivos e suporte a emojis personalizados.'
     },
     contact: {
       title: 'Contato',
       subtitle: 'Vamos trabalhar juntos',
+      description: 'Tem um projeto em mente? Vamos conversar! Estou sempre aberto a novas oportunidades e desafios interessantes.',
       name: 'Nome',
       email: 'Email',
+      phone: 'Telefone',
+      location: 'Recife, PE - Brasil',
       message: 'Mensagem',
       send: 'Enviar Mensagem',
       info: 'Informações de Contato',
-      phone: 'Telefone',
-      location: 'Localização'
+      socialMedia: 'Redes Sociais',
+      sendMessage: 'Envie uma Mensagem',
+      yourName: 'Seu nome',
+      yourEmail: 'seu@email.com',
+      subject: 'Assunto',
+      messageSubject: 'Assunto da mensagem',
+      yourMessage: 'Sua mensagem...',
+      sendMessageButton: 'Enviar Mensagem'
     },
     footer: {
       description: 'Criando experiências digitais excepcionais com tecnologias modernas. Especializado em React, Next.js, Node.js e muito mais.',
       quickLinks: 'Links Rápidos',
+      home: 'Início',
       contactInfo: 'Informações de Contato',
       rights: 'Todos os direitos reservados.',
-      madeWith: 'Desenvolvido com ❤️ usando Next.js & Tailwind CSS'
+      madeWith: 'Desenvolvido com ❤️ usando Next.js & Tailwind CSS',
+      allRightsReserved: 'Todos os direitos reservados.',
+      developedWith: 'Desenvolvido com',
+      using: 'usando'
     }
   },
   en: {
@@ -77,28 +121,39 @@ const translations = {
       contact: 'Contact'
     },
     hero: {
+      title: 'Dayvson Marques',
+      subtitle: 'Full Stack Developer',
       greeting: 'Hello, I am',
       name: 'Full Stack Developer',
-      subtitle: 'Creating exceptional digital experiences with modern technologies',
-      description: 'Specialized in React, Next.js, Node.js and much more. I transform ideas into innovative digital solutions.',
+      description: 'Creating exceptional digital experiences with modern technologies. Specialized in React, Next.js, Node.js with over 5 years of experience transforming ideas into digital solutions.',
       cta: 'View Projects',
       contact: 'Get in Touch',
       download: 'Download CV'
     },
     about: {
       title: 'About Me',
-      subtitle: 'Get to know a little of my story',
-      description: 'I am a technology-passionate developer with over 5 years of experience creating modern web applications. Specialized in JavaScript, TypeScript, React, Next.js and Node.js.',
+      subtitle: 'Full Stack Developer passionate about technology',
+      description: "I'm Dayvson Marques, a web developer with over 5 years of experience based in Recife-PE, Brazil. I specialize in full-stack development and creating custom digital solutions. My passion is turning ideas into exceptional web experiences.",
+      text1: "I'm Dayvson Marques, a web developer with over 5 years of experience based in Recife-PE, Brazil. I specialize in full-stack development and creating custom digital solutions. My passion is turning ideas into exceptional web experiences.",
+      text2: 'I work with technologies like React, Next.js, Node.js and have expertise in performance optimization and responsive development. Always striving to deliver solutions that combine functionality and modern design.',
       experience: 'Years of Experience',
       projects: 'Completed Projects',
-      clients: 'Satisfied Clients'
+      clients: 'Happy Clients',
+      frontend: 'Frontend',
+      backend: 'Backend'
     },
     skills: {
       title: 'Skills',
       subtitle: 'Technologies I master',
+      description: 'Here are the main technologies and tools I master, with years of practical experience and real projects.',
       frontend: 'Frontend',
       backend: 'Backend',
-      tools: 'Tools'
+      tools: 'Tools',
+      toolsAndOthers: 'Tools & Others',
+      projectsCompleted: 'Completed Projects',
+      yearsExperience: 'Years Experience',
+      technologies: 'Technologies',
+      satisfaction: 'Satisfaction'
     },
     experience: {
       title: 'Professional Experience',

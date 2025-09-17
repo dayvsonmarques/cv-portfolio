@@ -45,6 +45,15 @@
   .font-logo {
     font-family: var(--font-lovers-quarrel), cursive;
   }
+
+  /* Disable native tooltips for custom tooltip elements */
+  .social-icon[title=""] {
+    pointer-events: auto;
+  }
+  
+  .social-icon[title=""]:hover::before {
+    content: none;
+  }
 }
 
 @keyframes pulse {
