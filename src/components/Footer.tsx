@@ -66,14 +66,8 @@ const Footer = () => {
 
           {/* Social Links Section */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-6 font-heading">
-              Redes Sociais
-            </h3>
-            <div className="flex flex-col items-start">
-              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                Conecte-se comigo nas redes sociais e acompanhe meu trabalho.
-              </p>
-              <SocialIcons variant="footer" showTooltips={false} />
+            <div className="flex flex-col items-start justify-center h-full">
+              <SocialIcons variant="footer-large" showTooltips={false} />
             </div>
           </div>
 
