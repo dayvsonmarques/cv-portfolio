@@ -118,13 +118,14 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="experience" className="py-20 bg-white dark:bg-gray-900">
       <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+          <h2 className="text-display font-heading font-bold text-black dark:text-white mb-4 tracking-tight">
             {t('experience.title')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
+          <p className="text-large font-body text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
             {t('experience.subtitle')}
           </p>
         </div>
@@ -132,7 +133,7 @@ const Experience = () => {
         <div className="relative">
           <button
             onClick={() => handleScroll('left')}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
             aria-label="Voltar"
           >
             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +143,7 @@ const Experience = () => {
           
           <button
             onClick={() => handleScroll('right')}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
             aria-label="Avançar"
           >
             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +161,7 @@ const Experience = () => {
           >
             <div className="relative flex items-start gap-8 px-16 py-8" style={{ width: `${experiences.length * 350}px` }}>
               <div 
-                className="absolute top-24 h-0.5 bg-blue-600 dark:bg-blue-400"
+                className="absolute top-24 h-0.5 bg-black dark:bg-white"
                 style={{ 
                   left: '80px', 
                   right: '80px'
@@ -169,18 +170,18 @@ const Experience = () => {
               
               {experiences.map((exp, index) => (
                 <div key={index} className="relative flex-shrink-0 w-80">
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 h-[400px] flex flex-col">
+                  <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 h-[400px] flex flex-col hover:shadow-xl transition-shadow duration-300">
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{exp.title}</h3>
-                      <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">{exp.company}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{exp.period}</p>
-                      <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">{exp.description}</p>
+                      <h3 className="text-xl font-heading font-bold text-black dark:text-white mb-2 tracking-tight">{exp.title}</h3>
+                      <h4 className="text-lg font-body font-medium text-gray-800 dark:text-gray-200 mb-1">{exp.company}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 font-medium">{exp.period}</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm font-body leading-relaxed">{exp.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {exp.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex}
-                          className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded"
+                          className="text-xs bg-black dark:bg-white text-white dark:text-black font-medium px-3 py-1 rounded-full"
                         >
                           {tech}
                         </span>
