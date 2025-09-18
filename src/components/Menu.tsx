@@ -34,7 +34,7 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
       {/* Menu Button */}
       <button 
         onClick={onToggle}
-        className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors z-50 relative"
+        className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors z-50 relative"
         aria-label="Toggle menu"
       >
         <svg 
@@ -54,37 +54,37 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
       {/* Fullscreen Menu */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-white dark:bg-gray-900 z-40 transition-all duration-300 ease-in-out"
+          className="fixed inset-0 bg-white dark:bg-black z-40 transition-all duration-300 ease-in-out"
         >
           <div className="h-full flex items-center justify-center pt-20 pb-10">
             <div className="flex flex-col items-center justify-between h-full max-h-[600px]">
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-4xl lg:text-5xl font-medium text-gray-800 dark:text-gray-100 hover:text-amber-500 dark:hover:text-amber-400 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
+                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
               >
                 {t('nav.about')}
               </button>
               <button 
                 onClick={() => scrollToSection('skills')}
-                className="text-4xl lg:text-5xl font-medium text-gray-800 dark:text-gray-100 hover:text-amber-500 dark:hover:text-amber-400 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
+                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
               >
                 {t('nav.skills')}
               </button>
               <button 
                 onClick={() => scrollToSection('experience')}
-                className="text-4xl lg:text-5xl font-medium text-gray-800 dark:text-gray-100 hover:text-amber-500 dark:hover:text-amber-400 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
+                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
               >
                 {t('nav.experience')}
               </button>
               <button 
                 onClick={() => scrollToSection('projects')}
-                className="text-4xl lg:text-5xl font-medium text-gray-800 dark:text-gray-100 hover:text-amber-500 dark:hover:text-amber-400 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
+                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
               >
                 {t('nav.projects')}
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-4xl lg:text-5xl font-medium text-gray-800 dark:text-gray-100 hover:text-amber-500 dark:hover:text-amber-400 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
+                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
               >
                 {t('nav.contact')}
               </button>

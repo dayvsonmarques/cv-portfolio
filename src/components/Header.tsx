@@ -31,12 +31,12 @@ const Header = () => {
   return (
     <header 
       className={`${
-        isScrolled ? 'fixed bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-sm' : 'absolute bg-transparent'
+        isScrolled ? 'fixed bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-800' : 'absolute bg-transparent'
       } top-0 left-0 right-0 transition-all duration-300 z-50`}
     >
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className={`text-3xl md:text-4xl font-bold text-gray-800 dark:text-white z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
+          <div className={`text-3xl md:text-4xl font-bold text-black dark:text-white z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
             Dayvson Marques
           </div>
           
