@@ -15,9 +15,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-16">
+    <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-12">
           
           {/* Contact Info Section */}
           <div className="space-y-6">
@@ -67,7 +67,7 @@ const Footer = () => {
           {/* Social Links Section */}
           <div className="space-y-6">
             <div className="flex flex-col items-start justify-center h-full">
-              <SocialIcons variant="footer-large" showTooltips={false} />
+              <SocialIcons variant="hero" showTooltips={false} />
             </div>
           </div>
 

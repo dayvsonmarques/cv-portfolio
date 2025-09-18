@@ -12,16 +12,24 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const heroSection = document.querySelector('section');
+      let heroHeight = 0;
       if (heroSection) {
-        const heroHeight = heroSection.offsetHeight;
-        const scrolled = window.scrollY > heroHeight - 100; // -100 para começar a transição um pouco antes
-        setIsScrolled(scrolled);
+        heroHeight = heroSection.offsetHeight;
       }
+      // Se não encontrar heroSection, considera 0 para garantir menu fixo
+      // Em mobile, heroHeight pode ser menor, então ajusta o threshold
+      const threshold = window.innerWidth < 640 ? 40 : 100;
+      const scrolled = window.scrollY > (heroHeight ? heroHeight - threshold : threshold);
+      setIsScrolled(scrolled);
     };
 
     handleScroll(); // Verificar posição inicial
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const toggleMobileMenu = () => {

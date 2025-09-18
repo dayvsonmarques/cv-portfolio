@@ -8,9 +8,9 @@ interface SocialIconsProps {
 }
 
 const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps) => {
-  const iconSize = variant === 'hero' ? 'w-20 h-20' : variant === 'footer-large' ? 'w-16 h-16' : 'w-12 h-12';
-  const svgSize = variant === 'hero' ? 'w-10 h-10' : variant === 'footer-large' ? 'w-8 h-8' : 'w-6 h-6';
-  const containerSpacing = variant === 'hero' ? 'space-x-8' : variant === 'footer-large' ? 'space-x-6' : 'space-x-4';
+  const iconSize = variant === 'hero' ? 'w-16 h-16 sm:w-20 sm:h-20' : variant === 'footer-large' ? 'w-16 h-16' : 'w-12 h-12';
+  const svgSize = variant === 'hero' ? 'w-8 h-8 sm:w-10 sm:h-10' : variant === 'footer-large' ? 'w-8 h-8' : 'w-6 h-6';
+  const containerSpacing = variant === 'hero' ? 'flex-wrap gap-4 sm:gap-8 justify-center' : variant === 'footer-large' ? 'space-x-6' : 'space-x-4';
 
   const socialLinks = [
     {
@@ -74,7 +74,7 @@ const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps
   ];
 
   return (
-    <div className={`flex justify-center ${containerSpacing}`}>
+    <div className={`flex ${containerSpacing}`}>
       {socialLinks.map((link, index) => (
         <div key={index} className="relative group">
           <a 
