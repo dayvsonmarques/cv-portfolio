@@ -13,6 +13,7 @@
   html {
     font-family: var(--font-inter), system-ui, sans-serif;
     font-size: 16px;
+    scroll-behavior: smooth;
   }
 
   @media (min-width: 768px) {
@@ -21,29 +22,136 @@
     }
   }
 
+  /* Modern Typography Scale */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-space-grotesk), system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin: 0;
   }
 
-  h1 { font-size: 3.5rem; line-height: 1.1; }
-  h2 { font-size: 2.5rem; line-height: 1.2; }
-  h3 { font-size: 2rem; line-height: 1.3; }
-  h4 { font-size: 1.5rem; line-height: 1.4; }
-  h5 { font-size: 1.25rem; line-height: 1.4; }
-  h6 { font-size: 1.1rem; line-height: 1.4; }
+  h1 { 
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1; 
+  }
+  
+  h2 { 
+    font-size: clamp(2rem, 4vw, 3rem); 
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15; 
+  }
+  
+  h3 { 
+    font-size: clamp(1.5rem, 3vw, 2.25rem); 
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25; 
+  }
+  
+  h4 { 
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem); 
+    font-weight: 600;
+    line-height: 1.3; 
+  }
+  
+  h5 { 
+    font-size: clamp(1.125rem, 2vw, 1.5rem); 
+    font-weight: 500;
+    line-height: 1.35; 
+  }
+  
+  h6 { 
+    font-size: clamp(1rem, 1.5vw, 1.25rem); 
+    font-weight: 500;
+    line-height: 1.4; 
+  }
 
+  /* Body Text */
   p, li {
-    font-size: 1.125rem;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.7;
+    font-weight: 400;
+    color: inherit;
+  }
+
+  /* Large Text */
+  .text-large {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* Small Text */
+  .text-small {
+    font-size: clamp(0.875rem, 1.25vw, 1rem);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Code and Monospace */
+  code, pre {
+    font-family: var(--font-jetbrains), monospace;
+    font-size: clamp(0.875rem, 1.25vw, 1rem);
     line-height: 1.6;
   }
 
-  code, pre {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 1rem;
-  }
-
+  /* Logo Font */
   .font-logo {
     font-family: var(--font-lovers-quarrel), cursive;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  /* Heading Font Classes */
+  .font-heading {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+
+  .font-body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  /* Weight Utilities */
+  .font-light { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
+  .font-extrabold { font-weight: 800; }
+  .font-black { font-weight: 900; }
+
+  /* Letter Spacing */
+  .tracking-tight { letter-spacing: -0.025em; }
+  .tracking-normal { letter-spacing: 0; }
+  .tracking-wide { letter-spacing: 0.025em; }
+  .tracking-wider { letter-spacing: 0.05em; }
+  .tracking-widest { letter-spacing: 0.1em; }
+
+  /* Custom Text Sizes */
+  .text-hero {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+
+  .text-display {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
+  .text-subtitle {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   /* Disable native tooltips for custom tooltip elements */
