@@ -3,14 +3,14 @@
 import React from 'react';
 
 interface SocialIconsProps {
-  variant?: 'hero' | 'footer';
+  variant?: 'hero' | 'footer' | 'footer-large';
   showTooltips?: boolean;
 }
 
 const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps) => {
-  const iconSize = variant === 'hero' ? 'w-20 h-20' : 'w-12 h-12';
-  const svgSize = variant === 'hero' ? 'w-10 h-10' : 'w-6 h-6';
-  const containerSpacing = variant === 'hero' ? 'space-x-8' : 'space-x-4';
+  const iconSize = variant === 'hero' ? 'w-20 h-20' : variant === 'footer-large' ? 'w-16 h-16' : 'w-12 h-12';
+  const svgSize = variant === 'hero' ? 'w-10 h-10' : variant === 'footer-large' ? 'w-8 h-8' : 'w-6 h-6';
+  const containerSpacing = variant === 'hero' ? 'space-x-8' : variant === 'footer-large' ? 'space-x-6' : 'space-x-4';
 
   const socialLinks = [
     {
