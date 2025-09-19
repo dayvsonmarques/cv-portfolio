@@ -17,6 +17,8 @@ const Experience = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
@@ -44,13 +46,33 @@ const Experience = () => {
     }
   };
 
+  // Atualiza visibilidade das setas ao scrollar
+  const updateScrollButtons = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft + el.offsetWidth < el.scrollWidth - 10);
+  };
+
+  React.useEffect(() => {
+    updateScrollButtons();
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('resize', updateScrollButtons);
+    return () => {
+      el.removeEventListener('scroll', updateScrollButtons);
+      window.removeEventListener('resize', updateScrollButtons);
+    };
+  }, []);
+
   const experiences: ExperienceType[] = [
     {
       title: "Desenvolvedor Web",
       company: "Corptech",
       period: "04/2011 - 04/2013",
       description: "Desenvolvimento e manutenção de aplicação web ERP integrada com SAP, geração de gráficos e relatórios customizados.",
-      technologies: ["Java (J2EE)", "JSP", "JSF", "Hibernate", "MySQL", "PostgreSQL", "Google Maps & Charts", "HTML", "CSS", "JavaScript", "jQuery"]
+      technologies: ["Java (J2EE)", "JSP / JSF", "Hibernate", "MySQL", "PostgreSQL", "Google Maps & Charts", "HTML", "CSS", "JavaScript", "jQuery"]
     },
     {
       title: "Desenvolvedor Web",
@@ -128,25 +150,28 @@ const Experience = () => {
         </div>
 
         <div className="relative">
-          <button
-            onClick={() => handleScroll('left')}
-            className="absolute left-0.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
-            aria-label="Voltar"
-          >
-            <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button
-            onClick={() => handleScroll('right')}
-            className="absolute right-0.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
-            aria-label="Avançar"
-          >
-            <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+          {canScrollLeft && (
+            <button
+              onClick={() => handleScroll('left')}
+              className="absolute left-0.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+              aria-label="Voltar"
+            >
+              <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+          {canScrollRight && (
+            <button
+              onClick={() => handleScroll('right')}
+              className="absolute right-0.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+              aria-label="Avançar"
+            >
+              <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
 
           <div 
             ref={scrollContainerRef}
@@ -156,22 +181,22 @@ const Experience = () => {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
           >
-            <div className="relative flex items-start gap-8 px-16 py-8" style={{ width: `${experiences.length * 350}px` }}>
+            <div className="relative flex items-stretch gap-8 px-16 py-8" style={{ width: `${experiences.length * 350}px` }}>
               
               {experiences.map((exp, index) => (
                 <div key={index} className="relative flex-shrink-0 w-80">
-                  <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 h-[400px] flex flex-col hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-heading font-bold text-black dark:text-white mb-2 tracking-tight">{exp.title}</h3>
-                      <h4 className="text-lg font-body font-medium text-gray-800 dark:text-gray-200 mb-1">{exp.company}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 font-medium">{exp.period}</p>
-                      <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm font-body leading-relaxed">{exp.description}</p>
+                  <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 h-full">
+                    <div>
+                      <h3 className="text-xl font-heading font-bold text-black dark:text-white tracking-tight">{exp.title}</h3>
+                      <h4 className="text-lg font-body font-medium text-gray-800 dark:text-gray-200">{exp.company}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 font-medium">({exp.period})</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-2 text-md text-justify font-body leading-relaxed">{exp.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {exp.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex}
-                          className="text-xs bg-black dark:bg-white text-white dark:text-black font-medium px-3 py-1 rounded-full"
+                          className="text-xs bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full"
                         >
                           {tech}
                         </span>
