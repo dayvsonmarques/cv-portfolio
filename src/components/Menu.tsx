@@ -54,40 +54,20 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
       {/* Fullscreen Menu */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-white dark:bg-black z-40 transition-all duration-300 ease-in-out"
+          className="fixed inset-0 bg-white z-40 transition-all duration-300 ease-in-out"
         >
-          <div className="h-full flex items-center justify-center pt-20 pb-10">
-            <div className="flex flex-col items-center justify-between h-full max-h-[600px]">
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
-              >
-                {t('nav.about')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('skills')}
-                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
-              >
-                {t('nav.skills')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('experience')}
-                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
-              >
-                {t('nav.experience')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('projects')}
-                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
-              >
-                {t('nav.projects')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-4xl lg:text-5xl font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-500 ease-in-out font-[var(--font-inter)] uppercase tracking-wider"
-              >
-                {t('nav.contact')}
-              </button>
+          <div className="h-full flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-8">
+              {[{id:'about',label:t('nav.about')},{id:'skills',label:t('nav.skills')},{id:'experience',label:t('nav.experience')},{id:'projects',label:t('nav.projects')},{id:'contact',label:t('nav.contact')}].map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="menu-fullscreen-item text-4xl lg:text-5xl font-heading text-black font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out"
+                >
+                  {item.label}
+                  <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
+                </button>
+              ))}
             </div>
           </div>
         </div>
