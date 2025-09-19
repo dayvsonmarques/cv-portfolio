@@ -51,8 +51,8 @@ const translations = {
       satisfaction: 'Satisfação'
     },
     experience: {
-      title: 'Experiência Profissional',
-      subtitle: 'Minha jornada no desenvolvimento web'
+      title: 'Experiência',
+      subtitle: 'Jornada profissional no desenvolvimento web'
     },
     projects: {
       title: 'Projetos',
