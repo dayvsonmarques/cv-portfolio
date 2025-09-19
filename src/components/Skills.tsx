@@ -48,9 +48,6 @@ const Skills = () => {
         <div className="text-center mb-16">
           <h2 className="text-display font-heading font-bold text-black dark:text-white mb-4 tracking-tight">{t('skills.title')}</h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
-          <p className="text-large font-body text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            {t('skills.subtitle')}
-          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
