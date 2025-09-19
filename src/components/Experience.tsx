@@ -133,7 +133,7 @@ const Experience = () => {
         <div className="relative">
           <button
             onClick={() => handleScroll('left')}
-            className="absolute left-2.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+            className="absolute left-0.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
             aria-label="Voltar"
           >
             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,7 +143,7 @@ const Experience = () => {
           
           <button
             onClick={() => handleScroll('right')}
-            className="absolute right-2.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+            className="absolute right-0.5 top-1/2 transform -translate-y-1/2 z-20 p-3 text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
             aria-label="Avançar"
           >
             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,13 +160,6 @@ const Experience = () => {
             onMouseLeave={handleMouseUp}
           >
             <div className="relative flex items-start gap-8 px-16 py-8" style={{ width: `${experiences.length * 350}px` }}>
-              <div 
-                className="absolute top-24 h-0.5 bg-black dark:bg-white"
-                style={{ 
-                  left: '80px', 
-                  right: '80px'
-                }}
-              ></div>
               
               {experiences.map((exp, index) => (
                 <div key={index} className="relative flex-shrink-0 w-80">
