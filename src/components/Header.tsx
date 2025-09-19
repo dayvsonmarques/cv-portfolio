@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
-import LanguageSelector from './LanguageSelectorSimple';
+import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
 
 const Header = () => {
