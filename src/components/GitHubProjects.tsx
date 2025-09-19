@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { fetchGithubRepos, type GithubRepo } from '@/lib/github';
-import Image from 'next/image';
 
 const GitHubProjects = () => {
   const { t } = useApp();
@@ -60,11 +59,8 @@ const GitHubProjects = () => {
       <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
         <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">{t('projects.title')}</h2>
+          <h2 className="text-display font-bold text-gray-800 dark:text-white mb-4">{t('projects.title')}</h2>
           <div className="w-24 h-1 bg-gray-700 dark:bg-gray-300 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            {t('projects.subtitle')}
-          </p>
         </div>
       
       </div>

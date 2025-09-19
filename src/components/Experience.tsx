@@ -125,9 +125,6 @@ const Experience = () => {
             {t('experience.title')}
           </h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
-          <p className="text-large font-body text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            {t('experience.subtitle')}
-          </p>
         </div>
 
         <div className="relative">
