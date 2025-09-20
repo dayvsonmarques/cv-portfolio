@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
+import Link from 'next/link';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,14 +17,13 @@ const Header = () => {
       if (heroSection) {
         heroHeight = heroSection.offsetHeight;
       }
-      // Se não encontrar heroSection, considera 0 para garantir menu fixo
-      // Em mobile, heroHeight pode ser menor, então ajusta o threshold
+      // Margem para o conteúdo da próxima sessão
       const threshold = window.innerWidth < 640 ? 40 : 100;
       const scrolled = window.scrollY > (heroHeight ? heroHeight - threshold : threshold);
       setIsScrolled(scrolled);
     };
 
-    handleScroll(); // Verificar posição inicial
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
     return () => {
@@ -32,21 +32,26 @@ const Header = () => {
     };
   }, []);
 
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <header 
-      className={`${
-        isScrolled ? 'fixed bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-800' : 'absolute bg-transparent'
-      } top-0 left-0 right-0 transition-all duration-300 z-50`}
+      className={
+        `${isScrolled ? 'fixed bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-800' : 'absolute bg-transparent'} top-0 left-0 right-0 transition-all duration-300 z-50`
+      }
     >
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className={`text-3xl md:text-4xl font-bold text-black dark:text-white z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
+          <Link
+            href="/"
+            className={`text-3xl md:text-4xl font-bold text-black dark:text-white z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'} focus:outline-none hover:text-yellow-500 hover:opacity-70 hover:transition-colors hover:duration-300 cursor-pointer`}
+            aria-label="Ir para a página inicial"
+          >
             Dayvson Marques
-          </div>
+          </Link>
           
           <div className="flex items-center space-x-3 z-50 relative">
             <div className={`flex items-center space-x-3 transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>

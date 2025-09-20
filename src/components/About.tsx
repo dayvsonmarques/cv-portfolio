@@ -8,7 +8,7 @@ const About = () => {
   const { t } = useApp();
 
   return (
-    <section id="about" className="py-12 sm:py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="about" className="py-12 sm:py-20 bg-gray-50 dark:bg-gray-900 mt-10 pt-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12 sm:mb-20">
           <h2 className="text-display font-heading font-bold text-black dark:text-white mb-6 tracking-tight">{t('about.title')}</h2>
@@ -29,10 +29,11 @@ const About = () => {
           </div>
 
           <div>
-            <h3 className="text-subtitle font-heading font-semibold text-black dark:text-white mb-6 sm:mb-8 tracking-tight">
-              {t('about.subtitle')}
+            <h3 className="text-1xl font-heading font-semibold text-black dark:text-white mb-1 sm:mb-4 tracking-tight">
+              {t('hero.title')}
             </h3>
-            <p className="text-large text-left font-body text-black dark:text-white font-light mb-4 sm:mb-6 leading-relaxed">
+            <h4 className="text-1xl mb-4">{t('about.subtitle')}</h4>
+            <p className="text-2xl text-left font-body text-black dark:text-white font-light mb-4 sm:mb-6 leading-relaxed">
               {t('about.description')}
             </p>
           </div>
