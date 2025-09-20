@@ -349,33 +349,43 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     setMounted(true);
-    
+
     // Carregar tema do localStorage ou usar preferência do sistema
     let initialTheme: Theme = 'light';
-    
     try {
       const savedTheme = localStorage.getItem('theme') as Theme;
       if (savedTheme === 'dark' || savedTheme === 'light') {
         initialTheme = savedTheme;
       } else {
-        // Usar preferência do sistema se não houver tema salvo
         initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
     } catch (error) {
       console.log('Error loading theme:', error);
       initialTheme = 'light';
     }
-    
     setTheme(initialTheme);
 
-    // Carregar idioma do localStorage
+    // Carregar idioma do localStorage ou detectar idioma do navegador
     try {
       const savedLanguage = localStorage.getItem('language') as Language;
       if (savedLanguage === 'pt' || savedLanguage === 'en' || savedLanguage === 'es') {
         setLanguage(savedLanguage);
+      } else {
+        // Detecta idioma do navegador
+        const browserLang = (navigator.language || navigator.languages?.[0] || '').toLowerCase();
+        if (browserLang.startsWith('pt')) {
+          setLanguage('pt');
+        } else if (browserLang.startsWith('en')) {
+          setLanguage('en');
+        } else if (browserLang.startsWith('es')) {
+          setLanguage('es');
+        } else {
+          setLanguage('pt'); // padrão
+        }
       }
     } catch (error) {
       console.log('Error loading language:', error);
+      setLanguage('pt');
     }
   }, []);
 
