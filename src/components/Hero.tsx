@@ -18,7 +18,7 @@ const Hero = () => {
         <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-black dark:text-white mb-4 sm:mb-6 tracking-tight break-words">
           {t('hero.subtitle')}
         </h1>
-        <h2 className="text-xll sm:text-display font-bold text-gray-800 dark:text-gray-200 mb-8 sm:mb-12 tracking-tight break-words">
+        <h2 className="text-xll sm:text-xll font-bold text-gray-800 dark:text-gray-200 mb-8 sm:mb-12 tracking-tight break-words">
           {t('hero.greeting')}
         </h2>
         <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-8">
