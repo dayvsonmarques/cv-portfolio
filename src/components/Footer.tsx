@@ -67,7 +67,7 @@ const Footer = () => {
           {/* Social Links Section */}
           <div className="space-y-6">
             <div className="flex flex-col items-start justify-center h-full">
-              <SocialIcons variant="hero" showTooltips={false} />
+              <SocialIcons variant="hero" showTooltips={true} />
             </div>
           </div>
 
