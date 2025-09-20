@@ -7,10 +7,6 @@ import SocialIcons from './SocialIcons';
 const Footer = () => {
   const { t } = useApp();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const currentYear = new Date().getFullYear();
 
