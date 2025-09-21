@@ -1,4 +1,12 @@
 import React from 'react';
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Blog | Dayvson Marques',
+  description: 'Postagens sobre desenvolvimento web, Next.js, Tailwind e IA.',
+  alternates: {
+    canonical: '/blog',
+  },
+};
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogPosts from '@/components/BlogPosts';
@@ -16,6 +24,7 @@ const BlogPage = () => {
       <Footer />
     </div>
   );
+
 };
 
 export default BlogPage;
