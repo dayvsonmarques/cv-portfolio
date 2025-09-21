@@ -10,21 +10,21 @@ export type BlogPost = {
   content: string;
 };
 
-// Imagens aleatórias (unsplash)
+// Imagens fixas do Unsplash para garantir funcionamento
 const images = [
-  'https://source.unsplash.com/random/800x400?code',
-  'https://source.unsplash.com/random/800x400?web',
-  'https://source.unsplash.com/random/800x400?github',
-  'https://source.unsplash.com/random/800x400?ai',
-  'https://source.unsplash.com/random/800x400?react',
-  'https://source.unsplash.com/random/800x400?nextjs',
-  'https://source.unsplash.com/random/800x400?tailwind',
+  'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
 ];
 
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: 'Como o GitHub Copilot acelerou meu portfólio Next.js',
+  title: 'Acelerando o portfólio Next.js com IA',
     image: images[0],
     date: '2025-09-01',
     excerpt: 'Descubra como o Copilot ajudou a criar componentes, resolver bugs e estilizar o layout do portfólio com Tailwind.',
@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 2,
-    title: 'Refatorando componentes com Copilot: erros comuns e soluções',
+  title: 'Refatoração inteligente: erros comuns e soluções',
     image: images[1],
     date: '2025-09-03',
     excerpt: 'Veja como o Copilot ajudou a identificar e corrigir duplicidades e erros de sintaxe em componentes React.',
@@ -40,7 +40,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
-    title: 'Estilizando com Tailwind e Copilot: dicas práticas',
+  title: 'Tailwind na prática: dicas de estilização moderna',
     image: images[2],
     date: '2025-09-05',
     excerpt: 'Copilot sugeriu classes Tailwind para gradientes, responsividade e animações, tornando o visual moderno e fluido.',
@@ -48,23 +48,23 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 4,
-    title: 'Criando navegação dinâmica com Copilot',
-    image: images[3],
+    title: 'Navegação dinâmica e rotas intuitivas',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // estrada sinuosa representando rotas
     date: '2025-09-07',
     excerpt: 'A adição do menu Blog e navegação entre páginas foi automatizada com sugestões do Copilot.',
     content: 'A inclusão do item Blog no menu principal e a criação da página /blog foram feitas rapidamente com o Copilot. Ele sugeriu como modificar o Menu, adicionar traduções e criar rotas, tornando a navegação do site mais completa e intuitiva.'
   },
   {
     id: 5,
-    title: 'Gerando conteúdo técnico com Copilot: posts automáticos',
-    image: images[4],
+    title: 'Conteúdo técnico automatizado: posts do projeto',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80', // notebook com código
     date: '2025-09-10',
     excerpt: 'Os posts do blog foram criados com base na interação do projeto, mostrando o potencial do Copilot para geração de conteúdo.',
     content: 'Os sete posts do blog foram gerados automaticamente pelo Copilot, usando como base toda a interação do projeto. Isso mostra como a IA pode ser usada não só para código, mas também para criar conteúdo técnico relevante e contextualizado.'
   },
   {
     id: 6,
-    title: 'Copilot na resolução de problemas: erros, patches e aprendizado',
+  title: 'Resolvendo problemas: erros, patches e aprendizado',
     image: images[5],
     date: '2025-09-12',
     excerpt: 'Acompanhe como o Copilot ajudou a resolver erros persistentes e sugerir correções eficazes durante o desenvolvimento.',
@@ -72,7 +72,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 7,
-    title: 'Integração Next.js, Tailwind e Copilot: experiência real',
+  title: 'Integração Next.js e Tailwind: experiência real',
     image: images[6],
     date: '2025-09-15',
     excerpt: 'Relato prático de como Next.js, Tailwind CSS e Copilot se complementam para criar projetos modernos e escaláveis.',
