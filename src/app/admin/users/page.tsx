@@ -112,7 +112,7 @@ export default function UsersPage() {
         </div>
         <button type="submit" className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Criar</button>
       </form>
-      <div className="bg-white p-4 rounded-xl shadow-lg w-full max-w-4xl mb-8 flex flex-col gap-4 border border-gray-200">
+      <div className="bg-white p-4 rounded-xl shadow-lg w-full max-w-6xl mb-8 flex flex-col gap-4 border border-gray-200">
         <div className="flex flex-wrap gap-4 mb-4">
           <input name="name" type="text" placeholder="Filtrar por nome" className="p-2 border rounded" value={filter.name} onChange={handleFilterChange} />
           <input name="email" type="text" placeholder="Filtrar por email" className="p-2 border rounded" value={filter.email} onChange={handleFilterChange} />
