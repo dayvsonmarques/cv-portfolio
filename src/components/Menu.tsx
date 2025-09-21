@@ -68,6 +68,14 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
                   <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
                 </button>
               ))}
+              {/* Blog button */}
+              <a
+                href="/blog"
+                className="menu-fullscreen-item text-4xl lg:text-5xl font-heading text-black font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out"
+              >
+                {t('nav.blog')}
+                <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
+              </a>
             </div>
           </div>
         </div>

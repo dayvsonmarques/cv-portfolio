@@ -13,7 +13,8 @@ const translations = {
       skills: 'Habilidades',
       experience: 'Experiência',
       projects: 'Projetos',
-      contact: 'Contato'
+  contact: 'Contato',
+  blog: 'Blog'
     },
     hero: {
       title: 'Dayvson Marques',
@@ -118,7 +119,8 @@ const translations = {
       skills: 'Skills',
       experience: 'Experience',
       projects: 'Projects',
-      contact: 'Contact'
+  contact: 'Contact',
+  blog: 'Blog'
     },
     hero: {
       title: 'Dayvson Marques',
@@ -223,7 +225,8 @@ const translations = {
       skills: 'Habilidades',
       experience: 'Experiencia',
       projects: 'Proyectos',
-      contact: 'Contacto'
+  contact: 'Contacto',
+  blog: 'Blog'
     },
     hero: {
       title: 'Dayvson Marques',
