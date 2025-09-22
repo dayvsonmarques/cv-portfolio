@@ -2,8 +2,9 @@ import React from 'react';
 import { blogPosts } from '@/components/BlogPosts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
+import BlogImageParallax from '@/components/BlogImageParallax';
 import Link from 'next/link';
+import Breadcrumb from '@/components/Breadcrumb';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
@@ -42,19 +43,17 @@ const BlogPostPage = ({ params }: { params: { slug: string } }) => {
   return (
     <div className="min-h-screen bg-white dark:bg-black flex flex-col">
       <Header />
-      <main className="flex-1 py-10 mt-10">
-        <div className="w-full h-64 relative mb-8 rounded-lg overflow-hidden">
-          <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" priority unoptimized />
-        </div>
-
+      <main className="flex-1 py-10 mt-10 relative">
+        <BlogImageParallax src={post.image} alt={post.title} />
         <div className="container mx-auto max-w-6xl px-4">
 
           {/* Breadcrumbs */}
-          <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2" aria-label="Breadcrumb">
-            <Link href="/blog" className="hover:underline text-yellow-600">Blog</Link>
-            <span>/</span>
-            <span className="text-black dark:text-white font-bold">{post.title}</span>
-          </nav>
+          <Breadcrumb
+            items={[
+              { href: "/blog", label: "Blog" },
+              { href: `/blog/${post.slug}`, label: post.title, active: true },
+            ]}
+          />
 
           <h1 className="text-4xl font-bold mb-6 mt-12 text-black dark:text-white text-center">{post.title}</h1>
           <div className="flex flex-col items-center mb-4">
@@ -66,7 +65,12 @@ const BlogPostPage = ({ params }: { params: { slug: string } }) => {
             <span className="block text-xs text-gray-400 mb-2">Por {post.author}</span>
           </div>
 
-          <p className="text-sm text-gray-500 mb-4 text-center">{new Date(post.date).toLocaleDateString()}</p>
+          {/* Renderiza a data apenas no cliente para evitar mismatch SSR/CSR */}
+          {typeof window !== 'undefined' ? (
+            <p className="text-sm text-gray-500 mb-4 text-center">{new Date(post.date).toLocaleDateString()}</p>
+          ) : (
+            <p className="text-sm text-gray-500 mb-4 text-center">{post.date}</p>
+          )}
           <article className="prose prose-lg dark:prose-invert mx-auto">
             <p>{post.excerpt}</p>
             <div className="mt-6">
@@ -77,13 +81,16 @@ const BlogPostPage = ({ params }: { params: { slug: string } }) => {
           </article>
           {/* Navegação entre posts */}
           <div className="flex justify-between items-center mt-12">
-            {prevPost ? (
-              <Link href={`/blog/${prevPost.slug}`} className="px-4 py-2 bg-gray-200 dark:bg-gray-800 rounded hover:bg-yellow-500 hover:text-white transition-colors">← {prevPost.title}</Link>
-            ) : <span />}
-            <Link href="/blog" className="px-4 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 transition-colors">Voltar ao Blog</Link>
-            {nextPost ? (
-              <Link href={`/blog/${nextPost.slug}`} className="px-4 py-2 bg-gray-200 dark:bg-gray-800 rounded hover:bg-yellow-500 hover:text-white transition-colors">{nextPost.title} →</Link>
-            ) : <span />}
+            <Link href="/blog" className="text-black italic text-lg font-title transition-colors flex items-center gap-2 hover:text-yellow-500">
+              <span aria-hidden="true">←</span>
+              Voltar ao Blog
+            </Link>
+            {nextPost && (
+              <Link href={`/blog/${nextPost.slug}`} className="text-black italic text-lg font-title transition-colors flex items-center gap-2 hover:text-yellow-500">
+                Próximo Post
+                <span aria-hidden="true">→</span>
+              </Link>
+            )}
           </div>
         </div>
       </main>

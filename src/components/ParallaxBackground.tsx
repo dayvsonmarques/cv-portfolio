@@ -1,16 +1,21 @@
+"use client";
 import React from 'react';
 import { useTheme } from 'next-themes';
+import { useParallax } from '@/hooks/useParallax';
 
 export const ParallaxBackground = () => {
   const { theme } = useTheme();
+  const { x, y } = useParallax();
 
   return (
     <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none select-none">
       {/* Fundo gradiente sutil */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-gray-100 to-slate-50 dark:from-slate-900 dark:via-gray-800 dark:to-slate-900" />
-      
-      {/* SVG do mangue-circuito inline */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-20 dark:opacity-30">
+      {/* SVG do mangue-circuito inline com parallax */}
+      <div
+        className="absolute inset-0 flex items-center justify-center opacity-20 dark:opacity-30"
+        style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
+      >
         <svg width="600" height="400" viewBox="0 0 600 400" className="w-full h-full scale-150">
           <g className="text-black dark:text-white">
             {/* Raízes centrais principais */}
@@ -28,14 +33,12 @@ export const ParallaxBackground = () => {
               strokeWidth="2"
               opacity="0.8"
             />
-            
             {/* Nós principais */}
             <circle cx="300" cy="180" r="5" fill="currentColor" opacity="0.9"/>
             <circle cx="200" cy="140" r="4" fill="currentColor" opacity="0.8"/>
             <circle cx="400" cy="180" r="4" fill="currentColor" opacity="0.8"/>
             <circle cx="150" cy="80" r="4" fill="currentColor" opacity="0.8"/>
             <circle cx="450" cy="80" r="4" fill="currentColor" opacity="0.8"/>
-
             {/* Raízes de base (estilo manguezal) */}
             <path
               d="M50 400 C80 380, 120 390, 150 370"
