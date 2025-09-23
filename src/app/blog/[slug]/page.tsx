@@ -75,11 +75,11 @@ const BlogPostPage = ({ params }: { params: { slug: string } }) => {
               </div>
             </div>
           </div>
-          <article className="prose prose-lg dark:prose-invert mx-auto mt-10 pt-10 mb-10 pb-10">
-            <p>{post.excerpt}</p>
+          <article className="prose prose-xl dark:prose-invert mx-auto mt-10 pt-10 mb-10 pb-10 font-roboto">
+            <p className="text-2xl mb-5 font-roboto">{post.excerpt}</p>
             <div className="mt-6">
               {post.content.split('\n').map((paragraph, idx) => (
-                <p key={idx} className="mb-5">{paragraph}</p>
+                <p key={idx} className="mb-5 text-2xl font-roboto">{paragraph}</p>
               ))}
             </div>
           </article>

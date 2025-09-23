@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono, Lovers_Quarrel } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono, Lovers_Quarrel, Roboto } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
@@ -22,6 +22,12 @@ const loversQuarrel = Lovers_Quarrel({
   variable: "--font-lovers-quarrel",
   subsets: ["latin"],
   weight: "400",
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -62,7 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${loversQuarrel.variable} font-sans antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${loversQuarrel.variable} ${roboto.variable} font-sans antialiased`}
       >
         <Providers>
           {children}
