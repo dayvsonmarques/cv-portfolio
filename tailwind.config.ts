@@ -15,6 +15,7 @@ const config: Config = {
         heading: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-jetbrains)', ...defaultTheme.fontFamily.mono],
         logo: ['var(--font-lovers-quarrel)', 'cursive', ...defaultTheme.fontFamily.serif],
+        roboto: ['var(--font-roboto)', 'sans-serif'],
       },
       colors: {
         background: "var(--background)",
