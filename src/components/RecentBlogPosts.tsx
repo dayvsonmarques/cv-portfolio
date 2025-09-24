@@ -25,7 +25,7 @@ const RecentBlogPosts: React.FC = () => {
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-bold text-black dark:text-white mb-2">{post.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">{new Date(post.date).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500 mb-2">{post.date}</p>
                 <p className="text-gray-700 dark:text-gray-300 line-clamp-2">{post.excerpt}</p>
               </div>
             </Link>

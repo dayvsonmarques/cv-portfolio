@@ -3,12 +3,10 @@
 import React from 'react';
 import { useApp } from '@/contexts/AppContext';
 import SocialIcons from './SocialIcons';
+import CurrentYear from './CurrentYear';
 
 const Footer = () => {
   const { t } = useApp();
-
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-10 sm:py-16">
@@ -73,7 +71,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-300 text-lg font-medium">
-              {t('hero.title')} © {currentYear}
+              {t('hero.title')} © <CurrentYear />
             </p>
             <p className="text-gray-400 text-base">
               Desenvolvido com ❤️ usando <span className="text-white font-medium">Next.js</span> e <span className="text-white font-medium">Tailwind CSS</span>
