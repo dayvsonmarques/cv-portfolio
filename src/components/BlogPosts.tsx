@@ -265,10 +265,14 @@ Por fim, o projeto se tornou referência em navegação dinâmica e boas prátic
 
 export default function BlogPosts() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-        Blog Posts
-      </h1>
+    <div className="max-w-6xl mx-auto px-6 py-12 mt-10">
+      <div className="text-center pb-10 mb-10">
+        <h1 className="text-display font-heading font-bold text-black dark:text-white mb-6 tracking-tight">
+          Postagens
+        </h1>
+        <div className="w-24 sm:w-32 h-1 bg-black dark:bg-white mx-auto rounded-full"></div>
+      </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogPosts.map((post) => (
           <article
