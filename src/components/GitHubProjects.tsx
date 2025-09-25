@@ -5,7 +5,7 @@ import { useApp } from '@/contexts/AppContext';
 import { fetchGithubRepos, type GithubRepo } from '@/lib/github';
 
 const GitHubProjects = () => {
-  const { t, language } = useApp();
+  const { t } = useApp();
   const [repos, setRepos] = useState<GithubRepo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');

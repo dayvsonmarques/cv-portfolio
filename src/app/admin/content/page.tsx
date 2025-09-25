@@ -11,7 +11,7 @@ export default function AdminContentPage() {
     title?: string;
     subtitle?: string;
     description?: string;
-    data?: any;
+  data?: Record<string, unknown>;
     updatedAt?: string;
   }
   const [contents, setContents] = React.useState<Content[]>([]);
@@ -34,14 +34,14 @@ export default function AdminContentPage() {
     { key: "es", label: "Espanhol" },
   ];
 
-  const fetchContents = async () => {
+  const fetchContents = React.useCallback(async () => {
     setLoading(true);
     const res = await fetch("/api/admin/content");
-    const data = await res.json();
+    const data: Content[] = await res.json();
     setContents(data);
     setLoading(false);
-  };
-  React.useEffect(() => { fetchContents(); }, []);
+  }, []);
+  React.useEffect(() => { fetchContents(); }, [fetchContents]);
 
   const handleEdit = (content: Content) => {
     setEditing(content);

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import { useApp } from '@/contexts/AppContext';
 
 interface MenuProps {
@@ -29,12 +30,16 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
     onToggle(); // Fecha o menu
   };
 
+  const buttonIconClasses = isOpen
+    ? 'text-black dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400'
+    : 'text-white dark:text-gray-300 hover:text-yellow-400 dark:hover:text-white';
+
   return (
     <>
       {/* Menu Button */}
       <button 
         onClick={onToggle}
-        className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors z-50 relative"
+        className={`transition-colors z-50 relative ${buttonIconClasses}`}
         aria-label="Toggle menu"
       >
         <svg 
@@ -54,7 +59,7 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
       {/* Fullscreen Menu */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-white z-40 transition-all duration-300 ease-in-out"
+          className="fixed inset-0 z-40 transition-all duration-300 ease-in-out bg-white text-black dark:bg-black dark:text-white"
         >
           <div className="h-full flex flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center gap-8">
@@ -62,20 +67,21 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="menu-fullscreen-item text-4xl lg:text-5xl font-heading text-black font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out"
+                  className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400"
                 >
                   {item.label}
                   <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
                 </button>
               ))}
               {/* Blog button */}
-              <a
+              <Link
                 href="/blog"
-                className="menu-fullscreen-item text-4xl lg:text-5xl font-heading text-black font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out"
+                onClick={onToggle}
+                className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400"
               >
                 {t('nav.blog')}
                 <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

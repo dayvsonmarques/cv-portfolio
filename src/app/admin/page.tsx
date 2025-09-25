@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
-import { getUserPermissions } from "@/lib/userService";
 import UsersBarChart from "@/components/UsersBarChart";
 import GroupsPieChart from "@/components/GroupsPieChart";
 import PermissionsLineChart from "@/components/PermissionsLineChart";

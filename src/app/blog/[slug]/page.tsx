@@ -39,7 +39,6 @@ const BlogPostPage = ({ params }: { params: { slug: string } }) => {
   if (!post) return notFound();
 
   const currentIndex = blogPosts.findIndex(p => p.slug === post.slug);
-  const prevPost = blogPosts[currentIndex - 1];
   const nextPost = blogPosts[currentIndex + 1];
 
   return (
