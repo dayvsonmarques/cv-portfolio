@@ -73,9 +73,6 @@ const Footer = () => {
             <p className="text-gray-300 text-lg font-medium">
               {t('hero.title')} © <CurrentYear />
             </p>
-            <p className="text-gray-400 text-base">
-              Desenvolvido com ❤️ usando <span className="text-white font-medium">Next.js</span> e <span className="text-white font-medium">Tailwind CSS</span>
-            </p>
           </div>
         </div>
       </div>
