@@ -1,10 +1,19 @@
 import bcrypt from 'bcryptjs';
+import { NextRequest, NextResponse } from 'next/server';
+import { Prisma, PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+const allowedOrderFields: Array<keyof Prisma.UserOrderByWithRelationInput> = ['name', 'email', 'id'];
+
 export async function POST(req: NextRequest) {
   const { name, email, password, groupId } = await req.json();
+
   if (!name || !email || !password) {
     return NextResponse.json({ error: 'Nome, email e senha são obrigatórios.' }, { status: 400 });
   }
+
   const hashedPassword = await bcrypt.hash(password, 10);
+
   try {
     const user = await prisma.user.create({
       data: {
@@ -16,35 +25,34 @@ export async function POST(req: NextRequest) {
       include: { group: true },
     });
     return NextResponse.json(user);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Erro ao criar usuário.';
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 }
-import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+export async function GET(req: NextRequest) {
+  const { searchParams } = req.nextUrl;
+  const name = searchParams.get('name') ?? '';
+  const email = searchParams.get('email') ?? '';
+  const group = searchParams.get('group') ?? '';
+  const page = Math.max(parseInt(searchParams.get('page') ?? '1', 10), 1);
+  const pageSize = Math.max(parseInt(searchParams.get('pageSize') ?? '5', 10), 1);
+  const order = searchParams.get('order') ?? 'name';
 
-export async function GET() {
-  const { searchParams } = new URL(globalThis.location?.href || "http://localhost");
-  const name = searchParams.get("name") || "";
-  const email = searchParams.get("email") || "";
-  const group = searchParams.get("group") || "";
-  const page = parseInt(searchParams.get("page") || "1", 10);
-  const pageSize = parseInt(searchParams.get("pageSize") || "5", 10);
-  const order = searchParams.get("order") || "name";
+  const where: Prisma.UserWhereInput = {
+    ...(name && { name: { contains: name } }),
+    ...(email && { email: { contains: email } }),
+    ...(group && { group: { is: { name: { contains: group } } } }),
+  };
 
-  const where: any = {};
-  if (name) where.name = { contains: name, mode: "insensitive" };
-  if (email) where.email = { contains: email, mode: "insensitive" };
-  if (group) where.group = { name: { contains: group, mode: "insensitive" } };
+  const isDescending = order.startsWith('-');
+  const requestedOrderField = (isDescending ? order.slice(1) : order) as keyof Prisma.UserOrderByWithRelationInput;
+  const orderField = allowedOrderFields.includes(requestedOrderField) ? requestedOrderField : 'name';
+  const orderBy: Prisma.UserOrderByWithRelationInput = {
+    [orderField]: isDescending ? 'desc' : 'asc',
+  } as Prisma.UserOrderByWithRelationInput;
 
-  let orderBy: any = {};
-  if (order.startsWith("-")) {
-    orderBy[order.slice(1)] = "desc";
-  } else {
-    orderBy[order] = "asc";
-  }
   const [users, total] = await Promise.all([
     prisma.user.findMany({
       where,
@@ -55,26 +63,36 @@ export async function GET() {
     }),
     prisma.user.count({ where }),
   ]);
+
   return NextResponse.json({ users, total });
 }
 
 export async function PATCH(req: NextRequest) {
   const { id, name, email, groupId } = await req.json();
+
   if (!id) {
     return NextResponse.json({ error: 'ID do usuário obrigatório.' }, { status: 400 });
   }
+
   const user = await prisma.user.update({
     where: { id },
-    data: { name, email, groupId }
+    data: {
+      name,
+      email,
+      groupId: typeof groupId === 'number' ? groupId : groupId ? Number(groupId) : undefined,
+    },
   });
+
   return NextResponse.json(user);
 }
 
 export async function DELETE(req: NextRequest) {
   const { id } = await req.json();
+
   if (!id) {
     return NextResponse.json({ error: 'ID do usuário obrigatório.' }, { status: 400 });
   }
+
   await prisma.user.delete({ where: { id } });
   return NextResponse.json({ message: 'Usuário removido.' });
 }

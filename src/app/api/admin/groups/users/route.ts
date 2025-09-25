@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -12,24 +12,22 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Grupo ID ou Usuário ID obrigatório.' }, { status: 400 });
     }
 
-    const userGroups = await prisma.userGroup.findMany({
-      where: {
-        ...(groupId && { groupId: parseInt(groupId) }),
-        ...(userId && { userId: parseInt(userId) })
+    const filters: Prisma.UserWhereInput = {
+      ...(groupId && { groupId: Number(groupId) }),
+      ...(userId && { id: Number(userId) })
+    };
+
+    const users = await prisma.user.findMany({
+      where: filters,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        group: true,
       },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true
-          }
-        },
-        group: true
-      }
     });
 
-    return NextResponse.json(userGroups);
+    return NextResponse.json(users);
   } catch (error) {
     console.error('Erro ao buscar associações usuário-grupo:', error);
     return NextResponse.json(
@@ -47,33 +45,37 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Usuário ID e Grupo ID são obrigatórios.' }, { status: 400 });
     }
 
-    // Verifica se a associação já existe
-    const existingUserGroup = await prisma.userGroup.findFirst({
-      where: { userId, groupId }
+    const userIdNumber = Number(userId);
+    const groupIdNumber = Number(groupId);
+
+    const user = await prisma.user.findUnique({
+      where: { id: userIdNumber },
+      select: { id: true, groupId: true },
     });
 
-    if (existingUserGroup) {
+    if (!user) {
+      return NextResponse.json({ error: 'Usuário não encontrado.' }, { status: 404 });
+    }
+
+    if (user.groupId === groupIdNumber) {
       return NextResponse.json(
         { error: 'Usuário já está associado a este grupo.' },
         { status: 400 }
       );
     }
 
-    const userGroup = await prisma.userGroup.create({
-      data: { userId, groupId },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true
-          }
-        },
-        group: true
-      }
+    const updatedUser = await prisma.user.update({
+      where: { id: userIdNumber },
+      data: { groupId: groupIdNumber },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        group: true,
+      },
     });
 
-    return NextResponse.json(userGroup);
+    return NextResponse.json(updatedUser);
   } catch (error) {
     console.error('Erro ao criar associação usuário-grupo:', error);
     return NextResponse.json(
@@ -91,8 +93,9 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'Usuário ID e Grupo ID são obrigatórios.' }, { status: 400 });
     }
 
-    await prisma.userGroup.deleteMany({
-      where: { userId, groupId }
+    await prisma.user.updateMany({
+      where: { id: Number(userId), groupId: Number(groupId) },
+      data: { groupId: null },
     });
 
     return NextResponse.json({ message: 'Associação removida com sucesso.' });
