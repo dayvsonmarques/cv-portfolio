@@ -28,7 +28,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-gray-800 pt-16 sm:pt-20 relative">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-gray-800 pt-16 sm:pt-20 relative pb-10">
       <ParallaxBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
         <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-black dark:text-white mb-4 sm:mb-6 tracking-tight break-words">
