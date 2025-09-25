@@ -32,7 +32,7 @@ const RecentBlogPosts: React.FC = () => {
           ))}
         </div>
         <div className="text-center mt-8">
-          <Link href="/blog" className="inline-block px-8 py-3 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 transition-colors">Ver todas as postagens</Link>
+          <Link href="/blog" className="inline-block px-8 py-3 bg-gray-800 text-white font-bold rounded hover:bg-yellow-600 transition-colors">Ver todas as postagens</Link>
         </div>
       </div>
     </section>
