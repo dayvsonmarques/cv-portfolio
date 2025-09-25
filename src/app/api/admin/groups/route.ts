@@ -1,48 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // Helper function to parse query parameters
 const parseQueryParams = (searchParams: URLSearchParams) => {
-  const page = parseInt(searchParams.get('page') || '1');
-  const limit = parseInt(searchParams.get('limit') || '10');
+  const page = Math.max(parseInt(searchParams.get('page') || '1', 10), 1);
+  const limit = Math.max(parseInt(searchParams.get('limit') || '10', 10), 1);
   const search = searchParams.get('search') || '';
   return { page, limit, search };
 };
+
+const groupInclude = {
+  permissions: true,
+  users: {
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  },
+} satisfies Prisma.GroupInclude;
 
 export async function GET(req: NextRequest) {
   try {
     const { page, limit, search } = parseQueryParams(req.nextUrl.searchParams);
     const skip = (page - 1) * limit;
+    const where: Prisma.GroupWhereInput = search ? { name: { contains: search } } : {};
 
     const [groups, total] = await Promise.all([
       prisma.group.findMany({
-        where: {
-          name: { contains: search, mode: 'insensitive' }
-        },
-        include: { 
-          permissions: true,
-          users: {
-            include: {
-              user: {
-                select: {
-                  id: true,
-                  name: true,
-                  email: true
-                }
-              }
-            }
-          }
-        },
+        where,
+        include: groupInclude,
         skip,
         take: limit,
         orderBy: { name: 'asc' }
       }),
       prisma.group.count({
-        where: {
-          name: { contains: search, mode: 'insensitive' }
-        }
+        where,
       })
     ]);
 
@@ -67,6 +62,13 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const { name, permissions, userIds } = await req.json();
+
+    const permissionIds = Array.isArray(permissions)
+      ? permissions.map((id: number | string) => Number(id)).filter(Number.isFinite)
+      : [];
+    const usersToAssign = Array.isArray(userIds)
+      ? userIds.map((id: number | string) => Number(id)).filter(Number.isFinite)
+      : [];
     
     if (!name) {
       return NextResponse.json({ error: 'Nome do grupo obrigatório.' }, { status: 400 });
@@ -87,32 +89,28 @@ export async function POST(req: NextRequest) {
     const group = await prisma.group.create({
       data: {
         name,
-        permissions: permissions ? {
-          connect: permissions.map((id: number) => ({ id }))
-        } : undefined,
-        users: userIds ? {
-          create: userIds.map((userId: number) => ({
-            user: { connect: { id: userId } }
-          }))
-        } : undefined
-      },
-      include: {
-        permissions: true,
-        users: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true
-              }
+        permissions: permissionIds.length
+          ? {
+              connect: permissionIds.map((id) => ({ id })),
             }
-          }
-        }
-      }
+          : undefined,
+      },
+      include: groupInclude,
     });
 
-    return NextResponse.json(group);
+    if (usersToAssign.length) {
+      await prisma.user.updateMany({
+        where: { id: { in: usersToAssign } },
+        data: { groupId: group.id },
+      });
+    }
+
+    const groupWithRelations = await prisma.group.findUnique({
+      where: { id: group.id },
+      include: groupInclude,
+    });
+
+    return NextResponse.json(groupWithRelations ?? group);
   } catch (error) {
     console.error('Erro ao criar grupo:', error);
     return NextResponse.json(
@@ -125,6 +123,13 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const { id, name, permissions, userIds } = await req.json();
+
+    const permissionIds = Array.isArray(permissions)
+      ? permissions.map((permissionId: number | string) => Number(permissionId)).filter(Number.isFinite)
+      : null;
+    const usersToAssign = Array.isArray(userIds)
+      ? userIds.map((userId: number | string) => Number(userId)).filter(Number.isFinite)
+      : null;
 
     if (!id) {
       return NextResponse.json({ error: 'ID do grupo obrigatório.' }, { status: 400 });
@@ -150,37 +155,41 @@ export async function PUT(req: NextRequest) {
     }
 
     // Atualiza o grupo
-    const group = await prisma.group.update({
+    await prisma.group.update({
       where: { id },
       data: {
         name,
-        permissions: {
-          set: permissions ? permissions.map((id: number) => ({ id })) : []
-        },
-        users: {
-          deleteMany: {},
-          create: userIds ? userIds.map((userId: number) => ({
-            user: { connect: { id: userId } }
-          })) : []
-        }
+        ...(permissionIds !== null && {
+          permissions: {
+            set: permissionIds.map((permissionId) => ({ id: permissionId })),
+          },
+        }),
       },
-      include: {
-        permissions: true,
-        users: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true
-              }
-            }
-          }
-        }
-      }
     });
 
-    return NextResponse.json(group);
+    if (usersToAssign !== null) {
+      await prisma.user.updateMany({
+        where: {
+          groupId: id,
+          ...(usersToAssign.length ? { id: { notIn: usersToAssign } } : {}),
+        },
+        data: { groupId: null },
+      });
+
+      if (usersToAssign.length) {
+        await prisma.user.updateMany({
+          where: { id: { in: usersToAssign } },
+          data: { groupId: id },
+        });
+      }
+    }
+
+    const groupWithRelations = await prisma.group.findUnique({
+      where: { id },
+      include: groupInclude,
+    });
+
+    return NextResponse.json(groupWithRelations);
   } catch (error) {
     console.error('Erro ao atualizar grupo:', error);
     return NextResponse.json(
@@ -199,10 +208,8 @@ export async function DELETE(req: NextRequest) {
     }
 
     // Remove todas as associações primeiro
-    await prisma.$transaction([
-      prisma.userGroup.deleteMany({ where: { groupId: id } }),
-      prisma.group.delete({ where: { id } })
-    ]);
+    await prisma.user.updateMany({ where: { groupId: id }, data: { groupId: null } });
+    await prisma.group.delete({ where: { id } });
 
     return NextResponse.json({ message: 'Grupo removido com sucesso.' });
   } catch (error) {

@@ -10,34 +10,37 @@ const Skills = () => {
     {
       title: t('skills.frontend'),
       skills: [
-        { name: "React", level: 90 },
-        { name: "Next.js", level: 85 },
-        { name: "TypeScript", level: 80 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "JavaScript", level: 90 },
-        { name: "HTML/CSS", level: 95 }
+        { name: "React | Next.js", level: 45 },
+        { name: "Vue", level: 35 },
+        { name: "JavaScript | TypeScript", level: 70 },
+        { name: "Bootstrap", level: 80 },
+        { name: "Tailwind css", level: 55 },
+        { name: "HTML 5", level: 70 },
+        { name: "CSS | SCSS | SASS", level: 65 }
       ]
     },
     {
       title: t('skills.backend'),
       skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 80 },
-        { name: "PostgreSQL", level: 75 },
-        { name: "MongoDB", level: 70 },
-        { name: "REST APIs", level: 85 },
-        { name: "GraphQL", level: 65 }
+        { name: "Node.js", level: 55 },
+        { name: "PL/SQL", level: 75 },
+        { name: "noSQL", level: 35 },
+        { name: "REST APIs", level: 75 },
+        { name: "GraphQL", level: 35 },
+        { name: "PHP 7/8+", level: 80 },
+        { name: "Wordpress", level: 80 },
+        { name: "Laravel", level: 65 }
       ]
     },
     {
       title: t('skills.tools'),
       skills: [
-        { name: "Git & GitHub", level: 90 },
-        { name: "Docker", level: 70 },
-        { name: "AWS", level: 65 },
-        { name: "Vercel", level: 85 },
-        { name: "VSCode", level: 95 },
-        { name: "Linux", level: 75 }
+        { name: "GitHub", level: 70 },
+        { name: "Docker", level: 50 },
+        { name: "AWS", level: 45 },
+        { name: "Linux", level: 75 },
+        { name: "Php Unit", level: 75 },
+        { name: "Cursor | Copilot IA", level: 75 },
       ]
     }
   ];

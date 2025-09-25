@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // Helper function to parse query parameters
 const parseQueryParams = (searchParams: URLSearchParams) => {
-  const page = parseInt(searchParams.get('page') || '1');
-  const limit = parseInt(searchParams.get('limit') || '10');
+  const page = Math.max(parseInt(searchParams.get('page') || '1', 10), 1);
+  const limit = Math.max(parseInt(searchParams.get('limit') || '10', 10), 1);
   const search = searchParams.get('search') || '';
-  const groupId = searchParams.get('groupId') ? parseInt(searchParams.get('groupId')!) : undefined;
+  const groupId = searchParams.get('groupId') ? parseInt(searchParams.get('groupId')!, 10) : undefined;
   return { page, limit, search, groupId };
 };
 
@@ -17,14 +17,14 @@ export async function GET(req: NextRequest) {
     const { page, limit, search, groupId } = parseQueryParams(req.nextUrl.searchParams);
     const skip = (page - 1) * limit;
 
+    const where: Prisma.PermissionWhereInput = {
+      ...(search ? { name: { contains: search } } : {}),
+      ...(groupId ? { groupId } : {}),
+    };
+
     const [permissions, total] = await Promise.all([
       prisma.permission.findMany({
-        where: {
-          AND: [
-            { name: { contains: search, mode: 'insensitive' } },
-            groupId ? { groupId } : {}
-          ]
-        },
+        where,
         include: {
           group: true
         },
@@ -33,12 +33,7 @@ export async function GET(req: NextRequest) {
         orderBy: { name: 'asc' }
       }),
       prisma.permission.count({
-        where: {
-          AND: [
-            { name: { contains: search, mode: 'insensitive' } },
-            groupId ? { groupId } : {}
-          ]
-        }
+        where,
       })
     ]);
 
@@ -62,7 +57,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, description, groupId } = await req.json();
+    const { name, groupId } = await req.json();
     
     if (!name) {
       return NextResponse.json({ error: 'Nome da permissão obrigatório.' }, { status: 400 });
@@ -83,7 +78,6 @@ export async function POST(req: NextRequest) {
     const permission = await prisma.permission.create({
       data: {
         name,
-        description,
         group: groupId ? { connect: { id: groupId } } : undefined
       },
       include: { group: true }
@@ -101,7 +95,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const { id, name, description, groupId } = await req.json();
+    const { id, name, groupId } = await req.json();
 
     if (!id) {
       return NextResponse.json({ error: 'ID da permissão obrigatório.' }, { status: 400 });
@@ -130,7 +124,6 @@ export async function PUT(req: NextRequest) {
       where: { id },
       data: {
         name,
-        description,
         group: groupId ? { connect: { id: groupId } } : { disconnect: true }
       },
       include: { group: true }
