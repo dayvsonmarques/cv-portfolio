@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { experiences } from '@/data/experiences';
 
@@ -40,12 +40,20 @@ const Experience = () => {
   };
 
   // Atualiza visibilidade das setas ao scrollar
-  const updateScrollButtons = () => {
+  const updateScrollButtons = useCallback(() => {
     const el = scrollContainerRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft + el.offsetWidth < el.scrollWidth - 10);
-  };
+    const maxScrollLeft = el.scrollWidth - el.clientWidth;
+
+    if (maxScrollLeft <= 5) {
+      setCanScrollLeft(false);
+      setCanScrollRight(false);
+      return;
+    }
+
+    setCanScrollLeft(el.scrollLeft > 5);
+    setCanScrollRight(el.scrollLeft < maxScrollLeft - 5);
+  }, []);
 
   React.useEffect(() => {
     updateScrollButtons();
@@ -57,7 +65,12 @@ const Experience = () => {
       el.removeEventListener('scroll', updateScrollButtons);
       window.removeEventListener('resize', updateScrollButtons);
     };
-  }, []);
+  }, [updateScrollButtons]);
+
+  React.useEffect(() => {
+    const id = window.requestAnimationFrame(updateScrollButtons);
+    return () => window.cancelAnimationFrame(id);
+  }, [language, updateScrollButtons]);
 
 
   return (
@@ -69,7 +82,6 @@ const Experience = () => {
           </h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
         </div>
-
         <div className="relative">
           {canScrollLeft && (
             <button
@@ -96,16 +108,18 @@ const Experience = () => {
 
           <div 
             ref={scrollContainerRef}
-            className="overflow-x-auto overflow-y-hidden horizontal-scroll pb-4 cursor-grab active:cursor-grabbing select-none"
+            className="overflow-x-auto overflow-y-hidden horizontal-scroll pb-4 cursor-grab active:cursor-grabbing select-none snap-x snap-mandatory"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
           >
-            <div className="relative flex items-stretch gap-8 px-16 py-8" style={{ width: `${experiences.length * 350}px` }}>
-              
+            <div className="relative flex items-stretch gap-6 px-6 sm:gap-8 sm:px-16 py-8">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative flex-shrink-0 w-80">
+                <div
+                  key={`${exp.company.en}-${exp.period}-${index}`}
+                  className="relative flex-shrink-0 w-full max-w-[22rem] sm:max-w-none sm:w-80 snap-center"
+                >
                   <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 h-full">
                     <div>
                       <h3 className="text-xl font-heading font-bold text-black dark:text-white tracking-tight">{exp.title[language]}</h3>
@@ -116,7 +130,7 @@ const Experience = () => {
                     <div className="flex flex-wrap gap-2 mt-4">
                       {exp.technologies.map((tech, techIndex) => (
                         <span 
-                          key={techIndex}
+                          key={`${tech}-${techIndex}`}
                           className="text-xs bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full"
                         >
                           {tech}
