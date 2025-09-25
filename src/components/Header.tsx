@@ -37,6 +37,8 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const logoColorClass = isScrolled ? 'text-black dark:text-white' : 'text-white dark:text-white';
+
   return (
     <header 
       className={
@@ -47,12 +49,12 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <Link
             href="/"
-            className={`text-3xl md:text-4xl font-bold text-white dark:text-white z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'} focus:outline-none hover:text-yellow-500 hover:opacity-70 hover:transition-colors hover:duration-300 cursor-pointer`}
+            className={`text-3xl md:text-4xl font-bold ${logoColorClass} z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'} focus:outline-none hover:text-yellow-500 hover:opacity-70 hover:transition-colors hover:duration-300 cursor-pointer`}
             aria-label="Ir para a página inicial"
           >
             Dayvson Marques
           </Link>
-          
+
           <div className="flex items-center space-x-3 z-50 relative">
             <div className={`flex items-center space-x-3 transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
               <LanguageSelector />
