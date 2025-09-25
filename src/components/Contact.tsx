@@ -5,11 +5,6 @@ import { useApp } from '@/contexts/AppContext';
 
 const Contact = () => {
   const { t } = useApp();
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Aqui você pode integrar com um serviço de email como EmailJS, Formspree, etc.
-    alert('Mensagem enviada! Entrarei em contato em breve.');
-  };
 
   return (
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">

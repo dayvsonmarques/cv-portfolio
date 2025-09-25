@@ -43,7 +43,7 @@ export default function GroupsPage() {
       } else {
         setMessage(data.error || "Erro ao criar grupo");
       }
-    } catch (error) {
+    } catch {
       setMessage("Erro ao criar grupo. Tente novamente.");
     }
   };
