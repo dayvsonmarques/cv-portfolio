@@ -28,13 +28,13 @@ const Hero = () => {
   };
 
   return (
-  <section className="min-h-screen flex items-center justify-center bg-neutral-900 dark:bg-black pt-16 sm:pt-20 relative pb-10 overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-gray-800 pt-16 sm:pt-20 relative pb-10 overflow-hidden">
       <CodePenBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-  <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-white mb-4 sm:mb-6 tracking-tight break-words">
+        <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-4 sm:mb-6 tracking-tight break-words">
           {t('hero.subtitle')}
         </h1>
-  <h2 className="text-xll sm:text-xll font-bold text-gray-200 mb-8 sm:mb-12 tracking-tight break-words">
+        <h2 className="text-xll sm:text-xll font-bold text-gray-100 dark:text-white mb-8 sm:mb-12 tracking-tight break-words">
           {t('hero.greeting')}
         </h2>
         <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-8">
@@ -48,7 +48,7 @@ const Hero = () => {
           className="bg-transparent border-none p-2 flex items-center justify-center group focus:outline-none"
           aria-label="Avançar para a próxima seção"
         >
-          <svg className="w-16 h-16 text-white group-hover:text-yellow-500 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-16 h-16 text-black dark:text-white group-hover:text-yellow-500 transition-colors duração-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v8m0 0l-5-5m5 5l5-5" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 13v6m0 0l-5-5m5 5l5-5" />
           </svg>
