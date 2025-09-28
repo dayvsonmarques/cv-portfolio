@@ -7,9 +7,10 @@ import { useApp } from '@/contexts/AppContext';
 interface MenuProps {
   isOpen: boolean;
   onToggle: () => void;
+  isScrolled?: boolean;
 }
 
-const Menu = ({ isOpen, onToggle }: MenuProps) => {
+const Menu = ({ isOpen, onToggle, isScrolled = false }: MenuProps) => {
   const { t } = useApp();
 
   // Impedir rolagem quando o menu estiver aberto
@@ -31,8 +32,10 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
   };
 
   const buttonIconClasses = isOpen
-    ? 'text-black dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400'
-    : 'text-white dark:text-gray-300 hover:text-yellow-400 dark:hover:text-white';
+    ? 'text-white hover:text-yellow-400 dark:text-white dark:hover:text-yellow-400'
+    : isScrolled
+      ? 'text-black dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400'
+      : 'text-white dark:text-gray-300 hover:text-yellow-400 dark:hover:text-white';
 
   return (
     <>
@@ -58,16 +61,16 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
 
       {/* Fullscreen Menu */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 z-40 transition-all duration-300 ease-in-out bg-white text-black dark:bg-black dark:text-white"
+        <div
+          className="fixed inset-0 z-40 transition-opacity duration-300 ease-out bg-gradient-to-br from-neutral-900/95 via-black/90 to-neutral-900/95 text-white backdrop-blur-xl"
         >
-          <div className="h-full flex flex-col items-center justify-center">
-            <div className="flex flex-col items-center justify-center gap-8">
+          <div className="h-full flex flex-col items-center justify-center px-6">
+            <div className="flex flex-col items-center justify-center gap-8 text-center">
               {[{id:'about',label:t('nav.about')},{id:'skills',label:t('nav.skills')},{id:'experience',label:t('nav.experience')},{id:'projects',label:t('nav.projects')},{id:'contact',label:t('nav.contact')}].map(item => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400"
+                  className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-white hover:text-yellow-400"
                 >
                   {item.label}
                   <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
@@ -77,7 +80,7 @@ const Menu = ({ isOpen, onToggle }: MenuProps) => {
               <Link
                 href="/blog"
                 onClick={onToggle}
-                className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400"
+                className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-white hover:text-yellow-400"
               >
                 {t('nav.blog')}
                 <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-0 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
