@@ -10,8 +10,13 @@ import Breadcrumb from '@/components/Breadcrumb';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = blogPosts.find(p => p.slug === params.slug);
+type BlogPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts.find(p => p.slug === slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -34,9 +39,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-const BlogPostPage = ({ params }: { params: { slug: string } }) => {
-  const post = blogPosts.find(p => p.slug === params.slug);
-  if (!post) return notFound();
+const BlogPostPage = async ({ params }: BlogPageProps) => {
+  const { slug } = await params;
+  const post = blogPosts.find(p => p.slug === slug);
+  if (!post) notFound();
 
   const currentIndex = blogPosts.findIndex(p => p.slug === post.slug);
   const nextPost = blogPosts[currentIndex + 1];
