@@ -289,13 +289,25 @@ export default function BlogPosts() {
               />
             </div>
             <div className="p-6">
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+              <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-2">
                 <PostDate date={post.date} className="text-sm text-gray-500 dark:text-gray-400" />
                 {post.author && (
-                  <>
-                    <span className="mx-2">•</span>
+                  <span className="inline-flex items-center gap-2">
+                    <svg
+                      className="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M7 9a4 4 0 1 0 10 0 4 4 0 0 0-10 0" />
+                      <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+                    </svg>
                     <span>{post.author}</span>
-                  </>
+                  </span>
                 )}
               </div>
               <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
