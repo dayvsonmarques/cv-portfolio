@@ -1,11 +1,32 @@
 'use client';
 
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { experiences } from '@/data/experiences';
 
 const Experience = () => {
   const { t, language } = useApp();
+  const locale = language === 'pt' ? 'pt-BR' : language === 'en' ? 'en-US' : 'es-ES';
+  const dateFormatter = useMemo(
+    () => new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }),
+    [locale]
+  );
+
+  const formatPeriod = useCallback(
+    (startDate: string, endDate?: string | null, isCurrent?: boolean) => {
+      const formatDate = (value?: string | null) => {
+        if (!value) return '';
+        const parsed = new Date(value);
+        return Number.isNaN(parsed.getTime()) ? value : dateFormatter.format(parsed);
+      };
+
+      const formattedStart = formatDate(startDate);
+      const formattedEnd = isCurrent || !endDate ? t('experience.present') : formatDate(endDate);
+
+      return formattedEnd ? `${formattedStart} - ${formattedEnd}` : formattedStart;
+    },
+    [dateFormatter, t]
+  );
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -115,31 +136,34 @@ const Experience = () => {
             onMouseLeave={handleMouseUp}
           >
             <div className="relative flex items-stretch gap-6 px-6 sm:gap-8 sm:px-16 py-8">
-              {experiences.map((exp, index) => (
-                <div
-                  key={`${exp.company.en}-${exp.period}-${index}`}
-                  className="relative flex-shrink-0 w-full max-w-[22rem] sm:max-w-none sm:w-80 snap-center"
-                >
-                  <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 h-full">
-                    <div>
-                      <h3 className="text-xl font-heading font-bold text-black dark:text-white tracking-tight">{exp.title[language]}</h3>
-                      <h4 className="text-lg font-body font-medium text-gray-800 dark:text-gray-200">{exp.company[language]}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 font-medium">({exp.period})</p>
-                      <p className="text-gray-700 dark:text-gray-300 mb-2 text-md text-justify font-body leading-relaxed">{exp.description[language]}</p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <span 
-                          key={`${tech}-${techIndex}`}
-                          className="text-xs bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+              {experiences.map((exp, index) => {
+                const periodLabel = formatPeriod(exp.startDate, exp.endDate, exp.isCurrent);
+                return (
+                  <div
+                    key={`${exp.company.en}-${exp.startDate}-${exp.endDate ?? 'present'}-${index}`}
+                    className="relative flex-shrink-0 w-full max-w-[22rem] sm:max-w-none sm:w-80 snap-center"
+                  >
+                    <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 h-full">
+                      <div>
+                        <h3 className="text-xl font-heading font-bold text-black dark:text-white tracking-tight">{exp.title[language]}</h3>
+                        <h4 className="text-lg font-body font-medium text-gray-800 dark:text-gray-200">{exp.company[language]}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 font-medium">({periodLabel})</p>
+                        <p className="text-gray-700 dark:text-gray-300 mb-2 text-md text-justify font-body leading-relaxed">{exp.description[language]}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {exp.technologies.map((tech, techIndex) => (
+                          <span 
+                            key={`${tech}-${techIndex}`}
+                            className="text-xs bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

@@ -1,32 +1,47 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
+import clsx from "clsx";
 import { useApp } from "@/contexts/AppContext";
 
 interface PostDateProps {
   date: string;
+  className?: string;
 }
 
-const PostDate: React.FC<PostDateProps> = ({ date }) => {
+const localeMap = {
+  pt: "pt-BR",
+  en: "en-US",
+  es: "es-ES"
+} as const;
+
+const PostDate: React.FC<PostDateProps> = ({ date, className }) => {
   const { language } = useApp();
-  const [formattedDate, setFormattedDate] = useState<string>('');
+  const locale = localeMap[language] ?? localeMap.pt;
 
-  useEffect(() => {
-    const formatted = new Date(date).toLocaleDateString(
-      language === "pt" ? "pt-BR" : language === "en" ? "en-US" : "es-ES",
-      { year: "numeric", month: "long", day: "numeric" }
-    );
-    setFormattedDate(formatted);
-  }, [date, language]);
+  const { formattedDate, isoDate } = useMemo(() => {
+    const parsedDate = new Date(date);
+    if (Number.isNaN(parsedDate.getTime())) {
+      return { formattedDate: date, isoDate: undefined };
+    }
 
-  // Durante a hidratação, mostra uma versão simplificada
-  if (!formattedDate) {
-    return <p className="text-sm text-gray-800">{date}</p>;
-  }
+    const formatter = new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    });
+
+    return {
+      formattedDate: formatter.format(parsedDate),
+      isoDate: parsedDate.toISOString()
+    };
+  }, [date, locale]);
+
+  const composedClassName = clsx('text-sm text-gray-800 dark:text-gray-200', className);
 
   return (
-    <p className="text-sm text-gray-800">
+    <time className={composedClassName} dateTime={isoDate}>
       {formattedDate}
-    </p>
+    </time>
   );
 };
 

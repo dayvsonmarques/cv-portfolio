@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import PostDate from '@/components/PostDate';
 
 export type BlogPost = {
   id: number;
@@ -289,7 +290,7 @@ export default function BlogPosts() {
             </div>
             <div className="p-6">
               <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-                <span>{post.date}</span>
+                <PostDate date={post.date} className="text-sm text-gray-500 dark:text-gray-400" />
                 {post.author && (
                   <>
                     <span className="mx-2">•</span>

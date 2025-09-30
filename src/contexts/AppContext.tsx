@@ -53,7 +53,8 @@ const translations = {
     },
     experience: {
       title: 'Experiência',
-      subtitle: 'Jornada profissional no desenvolvimento web'
+      subtitle: 'Jornada profissional no desenvolvimento web',
+      present: 'Presente'
     },
     projects: {
       title: 'Projetos',
@@ -165,7 +166,8 @@ const translations = {
     },
     experience: {
       title: 'Experience',
-      subtitle: 'Professional journey in web development'
+      subtitle: 'Professional journey in web development',
+      present: 'Present'
     },
     projects: {
       title: 'Projects',
@@ -277,7 +279,8 @@ const translations = {
     },
     experience: {
       title: 'Experiencia',
-      subtitle: 'Trayectoria profesional en desarrollo web'
+      subtitle: 'Trayectoria profesional en desarrollo web',
+      present: 'Presente'
     },
     projects: {
       title: 'Proyectos',

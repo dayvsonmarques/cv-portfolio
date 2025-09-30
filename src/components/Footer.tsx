@@ -9,15 +9,20 @@ const Footer = () => {
   const { t } = useApp();
 
   return (
-    <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-10 sm:py-16">
-      <div className="max-w-7xl mx-auto px-4">
+    <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white pt-10 pb-5">
+      <div className="max-w-7xl mx-auto px-4 mt-10">
+        <div className="text-center pb-10 mb-5 m-auto">
+          <h3 className="text-display font-heading font-bold text-white mb-6 font-heading">
+            Contato
+          </h3>
+          <div className="w-32 h-1 bg-white mx-auto mb-4 rounded-full"></div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-12">
-          
+
           {/* Contact Info Section */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-6 font-heading">
-              Contato
-            </h3>
+
+          <div className="space-y-6 pb-10">
             <div className="space-y-4">
               <div className="flex items-center group">
                 <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
@@ -68,9 +73,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-300 text-lg font-medium">
+        <div className="pt-8 pb-2gi">
+          <div className="space-y-4 md:space-y-0">
+            <p className="text-gray-300 text-lg font-medium text-center">
               {t('hero.title')} © <CurrentYear />
             </p>
           </div>

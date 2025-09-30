@@ -48,7 +48,7 @@ const Hero = () => {
           className="bg-transparent border-none p-2 flex items-center justify-center group focus:outline-none"
           aria-label="Avançar para a próxima seção"
         >
-          <svg className="w-16 h-16 text-black dark:text-white group-hover:text-yellow-500 transition-colors duração-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-16 h-16 text-white dark:text-white group-hover:text-yellow-500 transition-colors duração-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v8m0 0l-5-5m5 5l5-5" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 13v6m0 0l-5-5m5 5l5-5" />
           </svg>

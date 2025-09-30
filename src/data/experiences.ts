@@ -12,7 +12,8 @@ export const experiences: ExperienceType[] = [
       en: "Corptech",
       es: "Corptech"
     },
-    period: "04/2011 - 04/2013",
+  startDate: "2011-04-01",
+  endDate: "2013-04-01",
     description: {
       pt: "Desenvolvimento e manutenção de aplicação web ERP integrada com SAP, geração de gráficos e relatórios customizados.",
       en: "Development and maintenance of ERP web application integrated with SAP, generation of custom charts and reports.",
@@ -31,7 +32,8 @@ export const experiences: ExperienceType[] = [
       en: "Freelancer",
       es: "Freelancer"
     },
-    period: "06/2013 - 01/2015",
+  startDate: "2013-06-01",
+  endDate: "2015-01-01",
     description: {
       pt: "Análise e manutenção de sites e lojas online, correção de bugs e implementação de melhorias.",
       en: "Analysis and maintenance of websites and online stores, bug fixing and improvements implementation.",
@@ -50,7 +52,8 @@ export const experiences: ExperienceType[] = [
       en: "Advertising Agencies",
       es: "Agencias de Publicidad"
     },
-    period: "02/2015 - 11/2015",
+  startDate: "2015-02-01",
+  endDate: "2015-11-01",
     description: {
       pt: "Desenvolvimento e manutenção de lojas online, plugins e templates para diversos clientes do setor publicitário.",
       en: "Development and maintenance of online stores, plugins and templates for various advertising clients.",
@@ -69,7 +72,8 @@ export const experiences: ExperienceType[] = [
       en: "Bold Comunicação",
       es: "Bold Comunicação"
     },
-    period: "12/2015 - 02/2017",
+  startDate: "2015-12-01",
+  endDate: "2017-02-01",
     description: {
       pt: "Desenvolvimento de protótipo de ecommerce B2B integrado com ERPs, focando em usabilidade e performance.",
       en: "Development of B2B ecommerce prototype integrated with ERPs, focusing on usability and performance.",
@@ -88,7 +92,8 @@ export const experiences: ExperienceType[] = [
       en: "Freelancer",
       es: "Freelancer"
     },
-    period: "03/2017 - 03/2018",
+  startDate: "2017-03-01",
+  endDate: "2018-03-01",
     description: {
       pt: "Desenvolvimento de lojas online, plugins e templates customizados para diversos clientes.",
       en: "Development of online stores, plugins and custom templates for various clients.",
@@ -107,7 +112,8 @@ export const experiences: ExperienceType[] = [
       en: "Idealizza",
       es: "Idealizza"
     },
-    period: "03/2018 - 01/2019",
+  startDate: "2018-03-01",
+  endDate: "2019-01-01",
     description: {
       pt: "Desenvolvimento de lojas online, plugins e templates customizados para diversos clientes.",
       en: "Development of online stores, plugins and custom templates for various clients.",
@@ -126,7 +132,8 @@ export const experiences: ExperienceType[] = [
       en: "Agile Ecommerce",
       es: "Agile Ecommerce"
     },
-    period: "01/2019 - 07/2019",
+  startDate: "2019-01-01",
+  endDate: "2019-07-01",
     description: {
       pt: "Desenvolvimento de protótipo de ecommerce B2B integrado com ERPs, focando em usabilidade e performance.",
       en: "Development of B2B ecommerce prototype integrated with ERPs, focusing on usability and performance.",
@@ -145,7 +152,8 @@ export const experiences: ExperienceType[] = [
       en: "Accenture",
       es: "Accenture"
     },
-    period: "08/2019 - 12/2023",
+  startDate: "2019-08-01",
+  endDate: "2023-12-01",
     description: {
       pt: "Desenvolvimento e manutenção de aplicações front-end com foco em performance e acessibilidade.",
       en: "Development and maintenance of front-end applications focused on performance and accessibility.",
@@ -164,7 +172,8 @@ export const experiences: ExperienceType[] = [
       en: "Agile Ecommerce",
       es: "Agile Ecommerce"
     },
-    period: "01/2024 - 07/2024",
+  startDate: "2024-01-01",
+  endDate: "2024-07-01",
     description: {
       pt: "Desenvolvimento e manutenção de ecommerce web (B2B), implementação de funcionalidades complexas e integração com sistemas.",
       en: "Development and maintenance of B2B web ecommerce, implementation of complex features and system integration.",
@@ -183,7 +192,8 @@ export const experiences: ExperienceType[] = [
       en: "Freelancer",
       es: "Freelancer"
     },
-    period: "08/2023 - Presente",
+  startDate: "2023-08-01",
+  isCurrent: true,
     description: {
       pt: "Desenvolvimento de soluções web personalizadas, incluindo sites, sistemas e integrações.",
       en: "Development of custom web solutions, including websites, systems and integrations.",
