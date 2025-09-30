@@ -41,7 +41,7 @@ const Header = () => {
     ? 'text-black'
     : isScrolled
       ? 'text-black dark:text-white'
-      : 'text-black dark:text-white';
+      : 'text-white dark:text-white';
 
   const headerBackgroundClass = isMobileMenuOpen
     ? 'fixed bg-transparent dark:bg-transparent'
