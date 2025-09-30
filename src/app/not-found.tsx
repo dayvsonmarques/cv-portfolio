@@ -9,7 +9,7 @@ const NotFoundPage = () => {
       <Header />
       <main className="flex-1 flex items-center justify-center px-6 py-24 mt-10 pt-10">
         <div className="max-w-2xl text-center">
-          <p className="text-8xl font-bold uppercase tracking-[0.3em] text-black mt-10 pt-10">404</p>
+          <p className="text-8xl font-bold uppercase tracking-[0.3em] text-black mt-10 pt-10 dark:text-white">404</p>
           <h1 className="mt-6 text-3xl sm:text-6xl font-heading font-extrabold text-gray-900 dark:text-white">
             Página não encontrada
           </h1>
