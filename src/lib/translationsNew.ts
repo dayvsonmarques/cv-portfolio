@@ -46,6 +46,12 @@ export const translations = {
       phone: 'Telefone',
       location: 'Localização'
     },
+    notFound: {
+      title: 'Página não encontrada',
+      description: 'O endereço digitado pode ter sido removido, estar temporariamente indisponível ou nunca ter existido.',
+      prompt: 'Vamos te levar de volta para a página inicial?',
+      cta: 'Voltar para o início'
+    },
     footer: {
       description: 'Criando experiências digitais excepcionais com tecnologias modernas. Especializado em React, Next.js, Node.js e muito mais.',
       quickLinks: 'Links Rápidos',
@@ -101,6 +107,12 @@ export const translations = {
       phone: 'Phone',
       location: 'Location'
     },
+    notFound: {
+      title: 'Page not found',
+      description: 'The address you entered might have been removed, is temporarily unavailable, or never existed.',
+      prompt: 'Want to head back to the homepage?',
+      cta: 'Back to home'
+    },
     footer: {
       description: 'Creating exceptional digital experiences with modern technologies. Specialized in React, Next.js, Node.js and much more.',
       quickLinks: 'Quick Links',
@@ -155,6 +167,12 @@ export const translations = {
       info: 'Información de Contacto',
       phone: 'Teléfono',
       location: 'Ubicación'
+    },
+    notFound: {
+      title: 'Página no encontrada',
+      description: 'La dirección ingresada puede haber sido eliminada, estar temporalmente no disponible o nunca haber existido.',
+      prompt: '¿Te llevamos de vuelta a la página principal?',
+      cta: 'Volver al inicio'
     },
     footer: {
       description: 'Creando experiencias digitales excepcionales con tecnologías modernas. Especializado en React, Next.js, Node.js y mucho más.',
