@@ -11,7 +11,6 @@ const languageToLocale: Record<Language, string> = {
   es: 'es-ES',
 };
 
-// Traduções
 const translations = {
   pt: {
     nav: {
@@ -380,7 +379,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     setMounted(true);
 
-    // Carregar tema do localStorage ou usar preferência do sistema
     let initialTheme: Theme = 'light';
     try {
       const savedTheme = localStorage.getItem('theme') as Theme;
@@ -395,13 +393,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
     setTheme(initialTheme);
 
-    // Carregar idioma do localStorage ou detectar idioma do navegador
     try {
       const savedLanguage = localStorage.getItem('language') as Language;
       if (savedLanguage === 'pt' || savedLanguage === 'en' || savedLanguage === 'es') {
         setLanguage(savedLanguage);
       } else {
-        // Detecta idioma do navegador
         const browserLang = (navigator.language || navigator.languages?.[0] || '').toLowerCase();
         if (browserLang.startsWith('pt')) {
           setLanguage('pt');
@@ -410,7 +406,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         } else if (browserLang.startsWith('es')) {
           setLanguage('es');
         } else {
-          setLanguage('pt'); // padrão
+          setLanguage('pt');
         }
       }
     } catch (error) {
@@ -422,12 +418,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     if (!mounted) return;
     
-    // Aplicar tema ao documento
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
     
-    // Also apply to body for extra compatibility
     document.body.classList.remove('light', 'dark');
     document.body.classList.add(theme);
     
@@ -466,7 +460,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return typeof value === 'string' ? value : key;
   };
 
-  // Prevent hydration mismatch by showing loading state until mounted
   const value = {
     theme: mounted ? theme : 'light',
     language: mounted ? language : 'pt',

@@ -60,7 +60,6 @@ const Experience = () => {
     }
   };
 
-  // Atualiza visibilidade das setas ao scrollar
   const updateScrollButtons = useCallback(() => {
     const el = scrollContainerRef.current;
     if (!el) return;

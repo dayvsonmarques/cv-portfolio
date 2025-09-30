@@ -19,9 +19,6 @@ const Footer = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-12">
-
-          {/* Contact Info Section */}
-
           <div className="space-y-6 pb-10">
             <div className="space-y-4">
               <div className="flex items-center group">
@@ -62,8 +59,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
-          {/* Social Links Section */}
           <div className="space-y-6">
             <div className="flex flex-col items-start justify-center h-full">
               <SocialIcons variant="hero" showTooltips={true} />
@@ -71,8 +66,6 @@ const Footer = () => {
           </div>
 
         </div>
-
-        {/* Bottom Section */}
         <div className="pt-8 pb-2gi">
           <div className="space-y-4 md:space-y-0">
             <p className="text-gray-300 text-lg font-medium text-center">

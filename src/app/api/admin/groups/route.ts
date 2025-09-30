@@ -3,7 +3,6 @@ import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// Helper function to parse query parameters
 const parseQueryParams = (searchParams: URLSearchParams) => {
   const page = Math.max(parseInt(searchParams.get('page') || '1', 10), 1);
   const limit = Math.max(parseInt(searchParams.get('limit') || '10', 10), 1);
@@ -74,7 +73,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Nome do grupo obrigatório.' }, { status: 400 });
     }
 
-    // Verifica se já existe um grupo com esse nome
     const existingGroup = await prisma.group.findUnique({
       where: { name }
     });
@@ -139,7 +137,6 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Nome do grupo obrigatório.' }, { status: 400 });
     }
 
-    // Verifica se já existe outro grupo com esse nome
     const existingGroup = await prisma.group.findFirst({
       where: {
         name,
@@ -154,7 +151,6 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // Atualiza o grupo
     await prisma.group.update({
       where: { id },
       data: {
@@ -207,7 +203,6 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'ID do grupo obrigatório.' }, { status: 400 });
     }
 
-    // Remove todas as associações primeiro
     await prisma.user.updateMany({ where: { groupId: id }, data: { groupId: null } });
     await prisma.group.delete({ where: { id } });
 

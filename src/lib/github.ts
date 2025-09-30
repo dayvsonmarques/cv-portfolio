@@ -1,6 +1,5 @@
 export const fetchGithubRepos = async (username: string) => {
   try {
-    // First, fetch user's pinned repositories using the GraphQL API
     const query = `
       query {
         user(login: "${username}") {
@@ -66,7 +65,6 @@ export const fetchGithubRepos = async (username: string) => {
       updatedAt: string;
     }
     
-    // Transform the data to match our interface
     return data.data.user.pinnedItems.nodes.map((repo: GithubRepo) => ({
       id: repo.id,
       name: repo.name,

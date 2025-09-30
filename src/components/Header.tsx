@@ -20,7 +20,6 @@ const Header = () => {
       if (heroSection) {
         heroHeight = heroSection.offsetHeight;
       }
-      // Margem para o conteúdo da próxima sessão
       const threshold = window.innerWidth < 640 ? 40 : 100;
       const scrolled = window.scrollY > (heroHeight ? heroHeight - threshold : threshold);
       setIsScrolled(scrolled);

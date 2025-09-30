@@ -3,7 +3,6 @@ import React from "react";
 
 
 export default function AdminContentPage() {
-  // CRUD State & Logic
   interface Content {
     id?: number;
     section?: string;

@@ -15,6 +15,5 @@ export async function POST(req: NextRequest) {
   }
   const token = crypto.randomBytes(32).toString('hex');
   await prisma.user.update({ where: { email }, data: { resetToken: token } });
-  // Aqui você pode enviar o token por email ao usuário
   return NextResponse.json({ message: 'Token de recuperação gerado.', token });
 }

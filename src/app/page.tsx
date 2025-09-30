@@ -18,9 +18,8 @@ export default function Home() {
       <About />
       <Skills />
       <Experience />
-      <Projects />
-  {/* Últimas postagens do blog */}
-  <RecentBlogPosts />
+    <Projects />
+    <RecentBlogPosts />
       <Footer />
     </div>
   );

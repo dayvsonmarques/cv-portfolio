@@ -12,7 +12,6 @@ const Hero = () => {
   if (!mounted) return null;
 
   const handleScrollDown = () => {
-    // Encontra a próxima seção após o Hero
     const heroSection = document.querySelector('section');
     let nextSection = null;
     if (heroSection) {
@@ -44,7 +43,6 @@ const Hero = () => {
           <SocialIcons variant="hero" showTooltips={true} />
         </div>
       </div>
-      {/* Botão para avançar para a próxima seção */}
       <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
         <button
           onClick={handleScrollDown}
