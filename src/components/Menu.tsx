@@ -8,9 +8,10 @@ interface MenuProps {
   isOpen: boolean;
   onToggle: () => void;
   isScrolled?: boolean;
+  hasLightBackground?: boolean;
 }
 
-const Menu = ({ isOpen, onToggle, isScrolled = false }: MenuProps) => {
+const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false }: MenuProps) => {
   const { t } = useApp();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const Menu = ({ isOpen, onToggle, isScrolled = false }: MenuProps) => {
 
   const buttonIconClasses = isOpen
     ? 'text-white hover:text-yellow-400 dark:text-white dark:hover:text-yellow-400'
-    : isScrolled
+    : isScrolled || hasLightBackground
       ? 'text-black dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400'
       : 'text-white dark:text-gray-300 hover:text-yellow-400 dark:hover:text-white';
 

@@ -5,10 +5,13 @@ import ThemeToggle from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,15 +40,21 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const logoColorClass = isMobileMenuOpen
-    ? 'text-black'
-    : isScrolled
-      ? 'text-black dark:text-white'
-      : 'text-white dark:text-white';
+  const logoColorClass = (() => {
+    if (isMobileMenuOpen) {
+      return 'text-black dark:text-white';
+    }
+    if (!isHome) {
+      return 'text-black dark:text-white';
+    }
+    return isScrolled ? 'text-black dark:text-white' : 'text-white dark:text-white';
+  })();
+
+  const hasLightBackground = !isMobileMenuOpen && (isScrolled || !isHome);
 
   const headerBackgroundClass = isMobileMenuOpen
     ? 'fixed bg-transparent dark:bg-transparent'
-    : isScrolled
+    : hasLightBackground
       ? 'fixed bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-800'
       : 'absolute bg-transparent';
 
@@ -69,7 +78,12 @@ const Header = () => {
               <ThemeToggle />
             </div>
             <div className="z-50 relative">
-              <Menu isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} isScrolled={isScrolled} />
+              <Menu
+                isOpen={isMobileMenuOpen}
+                onToggle={toggleMobileMenu}
+                isScrolled={isScrolled}
+                hasLightBackground={hasLightBackground}
+              />
             </div>
           </div>
         </div>
