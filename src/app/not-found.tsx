@@ -7,10 +7,10 @@ const NotFoundPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-black dark:via-slate-950 dark:to-slate-900 flex flex-col">
       <Header />
-      <main className="flex-1 flex items-center justify-center px-6 py-24">
+      <main className="flex-1 flex items-center justify-center px-6 py-24 mt-10 pt-10">
         <div className="max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-500">Erro 404</p>
-          <h1 className="mt-6 text-5xl sm:text-6xl font-heading font-extrabold text-gray-900 dark:text-white">
+          <p className="text-8xl font-bold uppercase tracking-[0.3em] text-black mt-10 pt-10">404</p>
+          <h1 className="mt-6 text-3xl sm:text-6xl font-heading font-extrabold text-gray-900 dark:text-white">
             Página não encontrada
           </h1>
           <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">

@@ -38,10 +38,10 @@ const Header = () => {
   };
 
   const logoColorClass = isMobileMenuOpen
-    ? 'text-white'
+    ? 'text-black'
     : isScrolled
       ? 'text-black dark:text-white'
-      : 'text-white dark:text-white';
+      : 'text-black dark:text-white';
 
   const headerBackgroundClass = isMobileMenuOpen
     ? 'fixed bg-transparent dark:bg-transparent'
