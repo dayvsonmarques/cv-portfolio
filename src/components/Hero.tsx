@@ -32,9 +32,12 @@ const Hero = () => {
       <CodePenBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
         <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-4 sm:mb-6 tracking-tight break-words">
-          {t('hero.subtitle')}
+          {t('hero.title')} — {t('hero.name')}
         </h1>
-        <h2 className="text-xll sm:text-xll font-bold text-gray-100 dark:text-white mb-8 sm:mb-12 tracking-tight break-words">
+        <p className="text-xl sm:text-2xl font-medium text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed">
+          {t('hero.description')}
+        </p>
+        <h2 className="text-lg sm:text-xl font-semibold uppercase tracking-[0.3em] text-gray-200 dark:text-gray-100 mb-8 sm:mb-12">
           {t('hero.greeting')}
         </h2>
         <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-8">

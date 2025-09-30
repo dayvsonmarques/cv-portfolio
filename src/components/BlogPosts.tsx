@@ -278,6 +278,7 @@ export default function BlogPosts() {
         {blogPosts.map((post) => (
           <article
             key={post.id}
+            id={`post-${post.id}`}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <div className="relative h-48">

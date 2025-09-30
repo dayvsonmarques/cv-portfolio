@@ -22,7 +22,9 @@ const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps
       ),
       label: 'LinkedIn',
       hoverColor: 'hover:text-blue-600',
-      ariaLabel: 'LinkedIn Profile'
+      ariaLabel: 'LinkedIn Profile',
+      target: '_blank',
+      rel: 'me noopener noreferrer'
     },
     {
       href: 'https://github.com/dayvsonmarques',
@@ -33,7 +35,9 @@ const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps
       ),
       label: 'GitHub',
       hoverColor: 'hover:text-gray-900',
-      ariaLabel: 'GitHub Profile'
+      ariaLabel: 'GitHub Profile',
+      target: '_blank',
+      rel: 'me noopener noreferrer'
     },
     {
       href: 'mailto:dayvson.marques@gmail.com',
@@ -44,7 +48,8 @@ const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps
       ),
       label: 'Email',
       hoverColor: 'hover:text-red-600',
-      ariaLabel: 'Send Email'
+      ariaLabel: 'Send Email',
+      rel: 'noopener noreferrer'
     },
     {
       href: 'https://wa.me/5581999623374?text=Oi%2C%20tudo%20bem%3F%20Gostaria%20de%20entrar%20em%20contato.%20Aguardo%20retorno',

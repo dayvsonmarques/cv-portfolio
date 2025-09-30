@@ -5,6 +5,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 type Language = 'pt' | 'en' | 'es';
 type Theme = 'light' | 'dark';
 
+const languageToLocale: Record<Language, string> = {
+  pt: 'pt-BR',
+  en: 'en-US',
+  es: 'es-ES',
+};
+
 // Traduções
 const translations = {
   pt: {
@@ -433,6 +439,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     if (!mounted) return;
     localStorage.setItem('language', language);
+    const locale = languageToLocale[language] ?? languageToLocale.pt;
+    document.documentElement.setAttribute('lang', locale);
   }, [language, mounted]);
 
   const toggleTheme = () => {
