@@ -1,8 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { NextRequest, NextResponse } from 'next/server';
-import { Prisma, PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { Prisma } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 const allowedOrderFields: Array<keyof Prisma.UserOrderByWithRelationInput> = ['name', 'email', 'id'];
 
 export async function POST(req: NextRequest) {

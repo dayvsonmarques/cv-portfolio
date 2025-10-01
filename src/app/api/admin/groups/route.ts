@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Prisma, PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { Prisma } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
 const parseQueryParams = (searchParams: URLSearchParams) => {
   const page = Math.max(parseInt(searchParams.get('page') || '1', 10), 1);

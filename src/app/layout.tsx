@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono, Lovers_Quarrel, Roboto } from "ne
 import "./globals.css";
 import Providers from "@/components/Providers";
 import { siteConfig } from "@/lib/siteConfig";
+import { cookies, headers } from "next/headers";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -72,13 +73,48 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const requestHeaders = await headers();
+
+  type LanguageKey = "pt" | "en" | "es";
+  type ThemeMode = "light" | "dark";
+
+  const languageToLocale: Record<LanguageKey, string> = {
+    pt: "pt-BR",
+    en: "en-US",
+    es: "es-ES",
+  };
+
+  const cookieLanguage = cookieStore.get("language")?.value as LanguageKey | undefined;
+  const cookieTheme = cookieStore.get("theme")?.value as ThemeMode | undefined;
+
+  const detectLanguageFromHeader = (): LanguageKey => {
+    const acceptLanguage = requestHeaders.get("accept-language") ?? "";
+    const languageCandidates = acceptLanguage
+      .split(",")
+      .map((part: string) => part.trim().split(";")[0]?.toLowerCase())
+      .filter(Boolean) as string[];
+
+    for (const candidate of languageCandidates) {
+      if (candidate.startsWith("pt")) return "pt";
+      if (candidate.startsWith("en")) return "en";
+      if (candidate.startsWith("es")) return "es";
+    }
+
+    return "pt";
+  };
+
+  const initialLanguage: LanguageKey = cookieLanguage ?? detectLanguageFromHeader();
+  const initialTheme: ThemeMode = cookieTheme === "dark" ? "dark" : "light";
+  const htmlLang = languageToLocale[initialLanguage] ?? languageToLocale.pt;
+
   return (
-    <html lang="pt-BR">
+    <html lang={htmlLang} className={initialTheme === "dark" ? "dark" : undefined}>
       <head>
         <script
           type="application/ld+json"
@@ -109,8 +145,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const theme = localStorage.getItem('theme');
-                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                const cookieThemeMatch = document.cookie.match(/(?:^|; )theme=(dark|light)(?:;|$)/);
+                const storedTheme = cookieThemeMatch?.[1] || localStorage.getItem('theme');
+                if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.documentElement.classList.add('dark');
                 } else {
                   document.documentElement.classList.remove('dark');
@@ -123,7 +160,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${loversQuarrel.variable} ${roboto.variable} font-sans antialiased`}
       >
-        <Providers>
+        <Providers initialTheme={initialTheme} initialLanguage={initialLanguage}>
           {children}
         </Providers>
       </body>

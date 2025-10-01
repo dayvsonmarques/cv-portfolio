@@ -371,70 +371,96 @@ export const useApp = () => {
   return context;
 };
 
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('light');
-  const [language, setLanguage] = useState<Language>('pt');
+interface AppProviderProps {
+  children: React.ReactNode;
+  initialTheme?: Theme;
+  initialLanguage?: Language;
+}
+
+const ONE_YEAR_IN_SECONDS = 60 * 60 * 24 * 365;
+
+export const AppProvider: React.FC<AppProviderProps> = ({
+  children,
+  initialTheme = 'light',
+  initialLanguage = 'pt',
+}) => {
+  const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    let preferredTheme = initialTheme;
+    let preferredLanguage = initialLanguage;
 
-    let initialTheme: Theme = 'light';
     try {
-      const savedTheme = localStorage.getItem('theme') as Theme;
+      const savedTheme = localStorage.getItem('theme') as Theme | null;
       if (savedTheme === 'dark' || savedTheme === 'light') {
-        initialTheme = savedTheme;
-      } else {
-        initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        preferredTheme = savedTheme;
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        preferredTheme = 'dark';
       }
     } catch (error) {
-      console.log('Error loading theme:', error);
-      initialTheme = 'light';
+      console.warn('Failed to load theme preference:', error);
     }
-    setTheme(initialTheme);
 
     try {
-      const savedLanguage = localStorage.getItem('language') as Language;
+      const savedLanguage = localStorage.getItem('language') as Language | null;
       if (savedLanguage === 'pt' || savedLanguage === 'en' || savedLanguage === 'es') {
-        setLanguage(savedLanguage);
+        preferredLanguage = savedLanguage;
       } else {
         const browserLang = (navigator.language || navigator.languages?.[0] || '').toLowerCase();
         if (browserLang.startsWith('pt')) {
-          setLanguage('pt');
+          preferredLanguage = 'pt';
         } else if (browserLang.startsWith('en')) {
-          setLanguage('en');
+          preferredLanguage = 'en';
         } else if (browserLang.startsWith('es')) {
-          setLanguage('es');
-        } else {
-          setLanguage('pt');
+          preferredLanguage = 'es';
         }
       }
     } catch (error) {
-      console.log('Error loading language:', error);
-      setLanguage('pt');
+      console.warn('Failed to load language preference:', error);
     }
-  }, []);
+
+    setTheme(preferredTheme);
+    setLanguage(preferredLanguage);
+    setMounted(true);
+  }, [initialTheme, initialLanguage]);
 
   useEffect(() => {
     if (!mounted) return;
-    
+
     const root = document.documentElement;
+    const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
+
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    
+
     document.body.classList.remove('light', 'dark');
     document.body.classList.add(theme);
-    
-    localStorage.setItem('theme', theme);
-    
-    console.log('Theme applied:', theme, 'Classes on html:', root.classList.toString());
+
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (error) {
+      console.warn('Failed to persist theme preference:', error);
+    }
+
+    document.cookie = `theme=${theme}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; sameSite=Lax${secureFlag}`;
   }, [theme, mounted]);
 
   useEffect(() => {
     if (!mounted) return;
-    localStorage.setItem('language', language);
+
     const locale = languageToLocale[language] ?? languageToLocale.pt;
+    const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
+
+    try {
+      localStorage.setItem('language', language);
+    } catch (error) {
+      console.warn('Failed to persist language preference:', error);
+    }
+
     document.documentElement.setAttribute('lang', locale);
+    document.cookie = `language=${language}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; sameSite=Lax${secureFlag}`;
   }, [language, mounted]);
 
   const toggleTheme = () => {
@@ -461,8 +487,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const value = {
-    theme: mounted ? theme : 'light',
-    language: mounted ? language : 'pt',
+    theme,
+    language,
     toggleTheme,
     setLanguage: handleSetLanguage,
     t
