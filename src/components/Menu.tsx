@@ -70,13 +70,15 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
       <div
         aria-hidden={!isOpen}
         className={`fixed inset-0 z-40 transition-opacity duration-300 ease-out bg-gradient-to-br from-neutral-900/95 via-black/90 to-neutral-900/95 text-white backdrop-blur-xl ${
-          isOpen ? 'opacity-100 pointer-events-auto visible' : 'opacity-0 pointer-events-none invisible'
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
+        style={{ willChange: 'opacity' }}
       >
         <div
-          className={`h-full flex flex-col items-center justify-center px-6 transition-all duration-500 ease-out ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+          className={`h-full flex flex-col items-center justify-center px-6 transition-all duration-400 ease-out ${
+            isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-105'
           }`}
+          style={{ willChange: 'transform, opacity' }}
         >
           <div className="flex flex-col items-center justify-center gap-8 text-center">
             {menuItems.map(item => (

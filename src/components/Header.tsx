@@ -59,7 +59,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${headerBackgroundClass} top-0 left-0 right-0 transition-all duration-300 z-50`}
+      className={`${headerBackgroundClass} top-0 left-0 right-0 ${isMobileMenuOpen ? 'transition-none' : 'transition-all duration-300'} z-50`}
     >
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
