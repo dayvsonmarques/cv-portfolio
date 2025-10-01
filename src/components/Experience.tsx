@@ -88,7 +88,15 @@ const Experience = () => {
   }, [updateScrollButtons]);
 
   React.useEffect(() => {
-    const id = window.requestAnimationFrame(updateScrollButtons);
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    const id = window.requestAnimationFrame(() => {
+      const maxScrollLeft = Math.max(el.scrollWidth - el.clientWidth, 0);
+      el.scrollTo({ left: maxScrollLeft, behavior: 'auto' });
+      updateScrollButtons();
+    });
+
     return () => window.cancelAnimationFrame(id);
   }, [language, updateScrollButtons]);
 
@@ -139,7 +147,7 @@ const Experience = () => {
                 const periodLabel = formatPeriod(exp.startDate, exp.endDate, exp.isCurrent);
                 return (
                   <div
-                    key={`${exp.company.en}-${exp.startDate}-${exp.endDate ?? 'present'}-${index}`}
+                    key={`${exp.company.en}-${exp.startDate ?? 'unknown'}-${exp.endDate ?? 'present'}-${index}`}
                     className="relative flex-shrink-0 w-full max-w-[22rem] sm:max-w-none sm:w-80 snap-center"
                   >
                     <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 h-full">
