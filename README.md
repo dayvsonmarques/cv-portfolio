@@ -46,3 +46,4 @@ Executar `npm run build` e publicar na Vercel (recomendado) ou outro provedor co
 ---
 
 Feito com ❤️ por Dayvson Marques usando Next.js e Tailwind CSS.
+# indicativa
