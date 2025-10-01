@@ -73,7 +73,9 @@ const translations = {
         viewMore: 'Ver mais no GitHub',
         noDescription: 'Sem descrição disponível',
         viewCode: 'Ver Código',
-        liveDemo: 'Ver Demo'
+        liveDemo: 'Ver Demo',
+        loading: 'Carregando repositórios do GitHub...',
+        error: 'Não foi possível carregar os repositórios do GitHub agora.'
       },
       featuredProjects: 'Projetos em Destaque',
       otherProjects: 'Outros Projetos',
@@ -186,7 +188,9 @@ const translations = {
         viewMore: 'View more on GitHub',
         noDescription: 'No description available',
         viewCode: 'View Code',
-        liveDemo: 'Live Demo'
+        liveDemo: 'Live Demo',
+        loading: 'Loading GitHub repositories...',
+        error: 'Unable to load GitHub repositories right now.'
       },
       featuredProjects: 'Featured Projects',
       otherProjects: 'Other Projects',
@@ -299,7 +303,9 @@ const translations = {
         viewMore: 'Ver más en GitHub',
         noDescription: 'Sin descripción disponible',
         viewCode: 'Ver Código',
-        liveDemo: 'Ver Demo'
+        liveDemo: 'Ver Demo',
+        loading: 'Cargando repositorios de GitHub...',
+        error: 'No fue posible cargar los repositorios de GitHub en este momento.'
       },
       featuredProjects: 'Proyectos Destacados',
       otherProjects: 'Otros Proyectos',
