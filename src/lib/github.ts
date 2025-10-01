@@ -11,17 +11,17 @@ const normalizeGraphqlRepo = (repo: GraphqlRepo) => ({
   updated_at: repo.updatedAt,
 });
 
-const normalizeRestRepo = (repo: RestRepo) => ({
-  id: repo.id.toString(),
-  name: repo.name,
-  description: repo.description,
-  html_url: repo.html_url,
-  homepage: repo.homepage,
-  language: repo.language,
-  stargazers_count: repo.stargazers_count,
-  forks_count: repo.forks_count,
+const normalizeCommunityPinnedRepo = (repo: CommunityPinnedRepo) => ({
+  id: `${repo.owner}/${repo.repo}`,
+  name: repo.repo,
+  description: repo.description ?? null,
+  html_url: repo.link,
+  homepage: repo.website ?? null,
+  language: repo.language ?? null,
+  stargazers_count: repo.stars ?? 0,
+  forks_count: repo.forks ?? 0,
   topics: repo.topics ?? [],
-  updated_at: repo.updated_at,
+  updated_at: repo.updatedAt ?? new Date().toISOString(),
 });
 
 const GRAPHQL_ENDPOINT = 'https://api.github.com/graphql';
@@ -45,19 +45,17 @@ interface GraphqlRepo {
   updatedAt: string;
 }
 
-interface RestRepo {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  homepage: string | null;
-  language: string | null;
-  stargazers_count: number;
-  forks_count: number;
+interface CommunityPinnedRepo {
+  repo: string;
+  owner: string;
+  link: string;
+  description?: string | null;
+  website?: string | null;
+  language?: string | null;
+  stars?: number;
+  forks?: number;
   topics?: string[];
-  updated_at: string;
-  fork?: boolean;
-  archived?: boolean;
+  updatedAt?: string;
 }
 
 const fetchPinnedViaGraphql = async (username: string, token: string) => {
@@ -107,28 +105,27 @@ const fetchPinnedViaGraphql = async (username: string, token: string) => {
   return result.data.user.pinnedItems.nodes.map(normalizeGraphqlRepo);
 };
 
-const fetchRecentViaRest = async (username: string, token?: string) => {
-  const response = await fetch(
-    `https://api.github.com/users/${username}/repos?sort=updated&direction=desc&per_page=12`,
-    {
-      headers: {
-        Accept: 'application/vnd.github+json',
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        'User-Agent': 'cv-portfolio-app',
-      },
-      cache: 'no-store',
+const COMMUNITY_PINNED_ENDPOINT = 'https://gh-pinned-repos.egoist.dev/';
+
+const fetchPinnedViaCommunityApi = async (username: string) => {
+  const response = await fetch(`${COMMUNITY_PINNED_ENDPOINT}?username=${encodeURIComponent(username)}`, {
+    headers: {
+      'User-Agent': 'cv-portfolio-app',
+      Accept: 'application/json',
     },
-  );
+    cache: 'no-store',
+  });
 
   if (!response.ok) {
-    throw new Error(`GitHub REST error: ${response.status}`);
+    throw new Error(`Community pinned repos error: ${response.status}`);
   }
 
-  const repos = (await response.json()) as RestRepo[];
-  return repos
-    .filter(repo => !repo.fork && !repo.archived)
-    .slice(0, 8)
-    .map(normalizeRestRepo);
+  const data = (await response.json()) as CommunityPinnedRepo[];
+  if (!Array.isArray(data) || data.length === 0) {
+    return [];
+  }
+
+  return data.slice(0, 6).map(normalizeCommunityPinnedRepo);
 };
 
 export const fetchGithubRepos = async (username: string) => {
@@ -146,9 +143,9 @@ export const fetchGithubRepos = async (username: string) => {
   }
 
   try {
-    return await fetchRecentViaRest(username, token);
+    return await fetchPinnedViaCommunityApi(username);
   } catch (error) {
-    console.error('Error fetching GitHub repos via REST:', error);
+    console.error('Error fetching GitHub pinned repos via community API:', error);
     return [];
   }
 };

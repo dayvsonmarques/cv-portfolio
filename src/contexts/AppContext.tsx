@@ -75,7 +75,8 @@ const translations = {
         viewCode: 'Ver Código',
         liveDemo: 'Ver Demo',
         loading: 'Carregando repositórios do GitHub...',
-        error: 'Não foi possível carregar os repositórios do GitHub agora.'
+        error: 'Não foi possível carregar os repositórios do GitHub agora.',
+        noPinned: 'Nenhum repositório fixado encontrado. Configure seus projetos pinados no GitHub para exibí-los aqui.'
       },
       featuredProjects: 'Projetos em Destaque',
       otherProjects: 'Outros Projetos',
@@ -190,7 +191,8 @@ const translations = {
         viewCode: 'View Code',
         liveDemo: 'Live Demo',
         loading: 'Loading GitHub repositories...',
-        error: 'Unable to load GitHub repositories right now.'
+        error: 'Unable to load GitHub repositories right now.',
+        noPinned: 'No pinned repositories found. Pin your favorite projects on GitHub to show them here.'
       },
       featuredProjects: 'Featured Projects',
       otherProjects: 'Other Projects',
@@ -305,7 +307,8 @@ const translations = {
         viewCode: 'Ver Código',
         liveDemo: 'Ver Demo',
         loading: 'Cargando repositorios de GitHub...',
-        error: 'No fue posible cargar los repositorios de GitHub en este momento.'
+        error: 'No fue posible cargar los repositorios de GitHub en este momento.',
+        noPinned: 'No se encontraron repositorios fijados. Fija tus proyectos favoritos en GitHub para mostrarlos aquí.'
       },
       featuredProjects: 'Proyectos Destacados',
       otherProjects: 'Otros Proyectos',
