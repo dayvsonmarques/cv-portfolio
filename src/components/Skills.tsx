@@ -38,9 +38,9 @@ const Skills = () => {
         { name: "GitHub", level: 70 },
         { name: "Docker", level: 50 },
         { name: "AWS", level: 45 },
-        { name: "Linux", level: 75 },
-        { name: "Php Unit", level: 75 },
-        { name: "Cursor | Copilot IA", level: 75 },
+        { name: "Linux", level: 65 },
+        { name: "Php Unit", level: 55 },
+        { name: "Cursor | Copilot IA", level: 35 },
       ]
     }
   ];

@@ -30,13 +30,13 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-gray-800 pt-16 sm:pt-20 relative pb-10 overflow-hidden">
       <CodePenBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-        <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-4 sm:mb-6 tracking-tight break-words">
-          {t('hero.title')} — {t('hero.name')}
+        <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-8 pb-4 sm:mb-6 tracking-tight break-words" style={{ whiteSpace: 'pre-line'}}>
+          {t('hero.name')}
         </h1>
-        <p className="text-xl sm:text-2xl font-medium text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed">
+        <p className="xs:text-1xl lg:text-5xl font-medium text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed hidden">
           {t('hero.description')}
         </p>
-        <h2 className="text-lg sm:text-xl font-semibold uppercase tracking-[0.3em] text-gray-200 dark:text-gray-100 mb-8 sm:mb-12">
+        <h2 className="text-lg sm:text-2xl lg:text-4xl font-semibold uppercase tracking-[0.3em] text-gray-200 dark:text-gray-100 mb-8 sm:mb-12">
           {t('hero.greeting')}
         </h2>
         <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-8">
