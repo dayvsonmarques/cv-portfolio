@@ -1,16 +1,22 @@
+'use client';
+
 import React from 'react';
 import { blogPosts } from './BlogPosts';
 import Link from 'next/link';
 import Image from 'next/image';
 import PostDate from '@/components/PostDate';
+import { useApp } from '@/contexts/AppContext';
 
 const RecentBlogPosts: React.FC = () => {
+  const { t } = useApp();
   const recent = blogPosts.slice(0, 3);
   return (
-    <section className="my-16">
+    <section id="blog" className="my-16">
       <div className="container mx-auto max-w-5xl px-4">
-        <div className="text-center pb-5 mb-10">
-          <h2 className="text-display font-heading font-bold mb-8 text-black dark:text-white text-center">Posts Recentes</h2>
+        <div className="text-center pb-5 mb-10  pt-10">
+          <h2 className="text-display font-heading font-bold mb-4 text-black dark:text-white text-center pt-10 mt-10">
+            {t('blogSection.title')}
+          </h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
@@ -36,7 +42,9 @@ const RecentBlogPosts: React.FC = () => {
           ))}
         </div>
         <div className="text-center mt-8">
-          <Link href="/blog" className="inline-block px-8 py-3 bg-gray-800 text-white font-bold rounded hover:bg-yellow-600 transition-colors">Ver todas as postagens</Link>
+          <Link href="/blog" className="inline-block px-8 py-3 bg-gray-800 text-white font-bold rounded hover:bg-yellow-600 transition-colors">
+            {t('blogSection.viewAll')}
+          </Link>
         </div>
       </div>
     </section>

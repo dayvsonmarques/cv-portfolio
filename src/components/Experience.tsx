@@ -103,7 +103,7 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-20 bg-white dark:bg-gray-900">
-      <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
+      <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)] pt-10">
         <div className="text-center mb-16">
           <h2 className="text-display font-heading font-bold text-black dark:text-white mb-4 tracking-tight">
             {t('experience.title')}

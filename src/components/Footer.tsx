@@ -9,7 +9,7 @@ const Footer = () => {
   const { t } = useApp();
 
   return (
-    <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white pt-10 pb-5">
+    <footer id="footer" className="bg-gradient-to-r from-black via-gray-900 to-black text-white pt-10 pb-5">
       <div className="max-w-7xl mx-auto px-4 mt-10">
         <div className="text-center pb-10 mb-5 m-auto">
           <h3 className="text-display font-heading font-bold text-white mb-6 font-heading">

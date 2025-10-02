@@ -90,6 +90,11 @@ const translations = {
       socialMedia: 'Painel de análise de mídia social com métricas em tempo real, gráficos interativos e relatórios automatizados.',
       chat: 'Aplicativo de chat em tempo real com salas privadas, compartilhamento de arquivos e suporte a emojis personalizados.'
     },
+    blogSection: {
+      title: 'Blog',
+      subtitle: 'Posts Recentes',
+      viewAll: 'Ver todas as postagens'
+    },
     contact: {
       title: 'Contato',
       subtitle: 'Vamos trabalhar juntos',
@@ -206,6 +211,11 @@ const translations = {
       socialMedia: 'Social media analytics dashboard with real-time metrics, interactive charts and automated reports.',
       chat: 'Real-time chat app with private rooms, file sharing and custom emoji support.'
     },
+    blogSection: {
+      title: 'Blog',
+      subtitle: 'Latest posts',
+      viewAll: 'View all posts'
+    },
     contact: {
       title: 'Contact',
       subtitle: 'Let’s work together',
@@ -321,6 +331,11 @@ const translations = {
       weather: 'Panel meteorológico con pronósticos detallados, mapas interactivos y alertas personalizadas para varias ciudades.',
       socialMedia: 'Panel de análisis de redes sociales con métricas en tiempo real, gráficos interactivos e informes automatizados.',
       chat: 'Aplicación de chat en tiempo real con salas privadas, compartición de archivos y soporte para emojis personalizados.'
+    },
+    blogSection: {
+      title: 'Blog',
+      subtitle: 'Publicaciones recientes',
+      viewAll: 'Ver todas las publicaciones'
     },
     contact: {
       title: 'Contacto',

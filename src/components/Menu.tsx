@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import { useApp } from '@/contexts/AppContext';
 
 interface MenuProps {
@@ -43,7 +42,8 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
     { id: 'skills', label: t('nav.skills') },
     { id: 'experience', label: t('nav.experience') },
     { id: 'projects', label: t('nav.projects') },
-    { id: 'contact', label: t('nav.contact') },
+    { id: 'blog', label: t('nav.blog') },
+    { id: 'footer', label: t('nav.contact') },
   ];
 
   return (
@@ -91,15 +91,7 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
                 <span className="pointer-events-none absolute left-1/2 top-1/2 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
               </button>
             ))}
-
-            <Link
-              href="/blog"
-              onClick={onToggle}
-              className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-white hover:text-yellow-400"
-            >
-              {t('nav.blog')}
-              <span className="pointer-events-none absolute left-1/2 top-1/2 w-2/3 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full menu-fullscreen-underline"></span>
-            </Link>
+         
           </div>
         </div>
       </div>
