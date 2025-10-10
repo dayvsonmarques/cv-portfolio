@@ -16,7 +16,11 @@ const Experience = () => {
     (startDate: string, endDate?: string | null, isCurrent?: boolean) => {
       const formatDate = (value?: string | null) => {
         if (!value) return '';
-        const parsed = new Date(value);
+        // Parse ISO date string (YYYY-MM-DD) to avoid timezone issues
+        const [year, month, day] = value.split('-').map(Number);
+        if (!year || !month) return value;
+        // Create date in local timezone by specifying year, month (0-indexed), day
+        const parsed = new Date(year, month - 1, day || 1);
         return Number.isNaN(parsed.getTime()) ? value : dateFormatter.format(parsed);
       };
 

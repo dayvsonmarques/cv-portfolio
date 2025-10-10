@@ -192,13 +192,13 @@ export const experiences: ExperienceType[] = [
       en: "Freelancer",
       es: "Freelancer"
     },
-  startDate: "2023-08-01",
+  startDate: "2024-07-01",
   isCurrent: true,
     description: {
       pt: "Desenvolvimento de soluções web personalizadas, incluindo sites, sistemas e integrações.",
       en: "Development of custom web solutions, including websites, systems and integrations.",
       es: "Desarrollo de soluciones web personalizadas, incluindo sitios, sistemas e integraciones."
     },
-    technologies: ["Next.js", "React", "Node.js", "TypeScript", "Tailwind CSS", "PostgreSQL"]
+    technologies: ["Next.js", "React", "Node.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Wordpress", "WooCommerce"]
   }
 ];
