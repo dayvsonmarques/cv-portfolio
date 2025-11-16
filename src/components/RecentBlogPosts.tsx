@@ -38,7 +38,27 @@ const RecentBlogPosts: React.FC = () => {
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-bold text-black dark:text-white mb-2 text-center">{post.title}</h3>
-                <PostDate date={post.date} className="text-sm text-gray-500 mb-3 text-center block" />
+                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  <PostDate date={post.date} className="text-sm text-gray-500" />
+                  {post.author && (
+                    <span className="inline-flex items-center gap-1">
+                      <svg
+                        className="h-3 w-3"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M7 9a4 4 0 1 0 10 0 4 4 0 0 0-10 0" />
+                        <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+                      </svg>
+                      <span>{post.author}</span>
+                    </span>
+                  )}
+                </div>
                 <div className="flex flex-wrap gap-2 mb-3 justify-center">
                   {post.categories.map((category, idx) => (
                     <span 
