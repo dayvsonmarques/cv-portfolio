@@ -33,7 +33,7 @@ const translations = {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Recife/PE * 35 anos * Web Deb',
+      subtitle: 'Recife/PE * 36 anos * Web Deb',
       description: 'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas.',
       text1: 'Sou Dayvson Marques, desenvolvedor web com mais de 15 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
       text2: 'Trabalho com tecnologias como React, Next.js, Node.js e tenho expertise em otimização de performance e desenvolvimento responsivo. Sempre em busca de entregar soluções que combinem funcionalidade e design moderno.',
@@ -154,7 +154,7 @@ const translations = {
     },
     about: {
       title: 'About',
-      subtitle: 'Web developer * Recife/PE * 35 years old',
+      subtitle: 'Web developer * Recife/PE * 36 years old',
       description: 'Graduated in Information Systems from UniNabuco (2008 - 2012). Web developer for over 15 years, specialist in creating websites, online stores and web applications (front-end & back-end) using modern technologies.',
       text1: "I'm Dayvson Marques, a web developer with over 15 years of experience based in Recife-PE. Specialized in full-stack development and creating custom digital solutions. My passion is turning ideas into exceptional web experiences.",
       text2: "I work with technologies like React, Next.js, Node.js and have expertise in performance optimization and responsive development. Always striving to deliver solutions that combine functionality and modern design.",
@@ -275,7 +275,7 @@ const translations = {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Desarrollador web * Recife/PE * 35 años',
+      subtitle: 'Desarrollador web * Recife/PE * 36 años',
       description: 'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especialista en la creación de sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas.',
       text1: 'Soy Dayvson Marques, desarrollador web con más de 15 años de experiencia radicado en Recife-PE. Especializado en desarrollo full-stack y creación de soluciones digitales personalizadas. Mi pasión es transformar ideas en experiencias web excepcionales.',
       text2: 'Trabajo con tecnologías como React, Next.js, Node.js y tengo experiencia en optimización de rendimiento y desarrollo responsivo. Siempre buscando entregar soluciones que combinen funcionalidad y diseño moderno.',
