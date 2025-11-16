@@ -8,9 +8,9 @@ interface SocialIconsProps {
 }
 
 const SocialIcons = ({ variant = 'hero', showTooltips = true }: SocialIconsProps) => {
-  const iconSize = variant === 'hero' ? 'w-16 h-16 sm:w-20 sm:h-20' : variant === 'footer-large' ? 'w-16 h-16' : 'w-12 h-12';
-  const svgSize = variant === 'hero' ? 'w-8 h-8 sm:w-10 sm:h-10' : variant === 'footer-large' ? 'w-8 h-8' : 'w-6 h-6';
-  const containerSpacing = variant === 'hero' ? 'flex-wrap gap-4 sm:gap-8 justify-center' : variant === 'footer-large' ? 'space-x-6' : 'space-x-4';
+  const iconSize = variant === 'hero' ? 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20' : variant === 'footer-large' ? 'w-16 h-16' : 'w-12 h-12';
+  const svgSize = variant === 'hero' ? 'w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10' : variant === 'footer-large' ? 'w-8 h-8' : 'w-6 h-6';
+  const containerSpacing = variant === 'hero' ? 'flex-nowrap gap-2 sm:gap-4 md:gap-8 justify-center' : variant === 'footer-large' ? 'space-x-6' : 'space-x-4';
 
   const socialLinks = [
     {

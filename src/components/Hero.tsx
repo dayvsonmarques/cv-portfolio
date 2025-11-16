@@ -43,7 +43,7 @@ const Hero = () => {
           <SocialIcons variant="hero" showTooltips={true} />
         </div>
       </div>
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <button
           onClick={handleScrollDown}
           className="bg-transparent border-none p-2 flex items-center justify-center group focus:outline-none"
