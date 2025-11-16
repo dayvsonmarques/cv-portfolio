@@ -38,9 +38,9 @@ const Skills = () => {
         { name: "GitHub", level: 70 },
         { name: "Docker", level: 50 },
         { name: "AWS", level: 45 },
-        { name: "Linux", level: 75 },
-        { name: "Php Unit", level: 75 },
-        { name: "Cursor | Copilot IA", level: 75 },
+        { name: "Linux", level: 65 },
+        { name: "Php Unit", level: 55 },
+        { name: "Cursor | Copilot IA", level: 35 },
       ]
     }
   ];
@@ -48,7 +48,7 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-white dark:bg-black">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 pt-10 mt-2">
           <h2 className="text-display font-heading font-bold text-black dark:text-white mb-4 tracking-tight">{t('skills.title')}</h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
         </div>

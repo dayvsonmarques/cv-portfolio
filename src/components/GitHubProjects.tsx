@@ -8,16 +8,20 @@ const GitHubProjects = () => {
   const { t } = useApp();
   const [repos, setRepos] = useState<GithubRepo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<'fetch' | 'empty' | ''>('');
 
   useEffect(() => {
     const loadRepos = async () => {
       try {
         setIsLoading(true);
+        setError('');
         const data = await fetchGithubRepos('dayvsonmarques');
         setRepos(data);
+        if (!data.length) {
+          setError('empty');
+        }
       } catch (err) {
-        setError('Failed to load repositories');
+        setError('fetch');
         console.error(err);
       } finally {
         setIsLoading(false);
@@ -29,7 +33,7 @@ const GitHubProjects = () => {
 
   if (isLoading) {
     return (
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
           <div className="text-center">
             <div className="animate-pulse flex flex-col items-center">
@@ -43,9 +47,9 @@ const GitHubProjects = () => {
     );
   }
 
-  if (error) {
+  if (error === 'fetch') {
     return (
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
           <div className="text-center text-red-600 dark:text-red-400">
             {t('projects.github.error')}
@@ -55,10 +59,22 @@ const GitHubProjects = () => {
     );
   }
 
+  if (error === 'empty') {
+    return (
+      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
+          <div className="text-center text-gray-600 dark:text-gray-300">
+            {t('projects.github.noPinned')}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4  pt-10">
           <div className="text-center mb-16">
             <h2 className="text-display font-bold text-gray-800 dark:text-white mb-4">{t('projects.title')}</h2>
             <div className="w-24 h-1 bg-gray-700 dark:bg-gray-300 mx-auto mb-4"></div>

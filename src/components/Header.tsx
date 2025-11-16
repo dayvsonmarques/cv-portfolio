@@ -5,10 +5,13 @@ import ThemeToggle from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +20,6 @@ const Header = () => {
       if (heroSection) {
         heroHeight = heroSection.offsetHeight;
       }
-      // Margem para o conteúdo da próxima sessão
       const threshold = window.innerWidth < 640 ? 40 : 100;
       const scrolled = window.scrollY > (heroHeight ? heroHeight - threshold : threshold);
       setIsScrolled(scrolled);
@@ -37,13 +39,27 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const logoColorClass = isScrolled ? 'text-black dark:text-white' : 'text-white dark:text-white';
+  const logoColorClass = (() => {
+    if (isMobileMenuOpen) {
+      return 'text-black dark:text-white';
+    }
+    if (!isHome) {
+      return 'text-black dark:text-white';
+    }
+    return isScrolled ? 'text-black dark:text-white' : 'text-white dark:text-white';
+  })();
+
+  const hasLightBackground = !isMobileMenuOpen && (isScrolled || !isHome);
+
+  const headerBackgroundClass = isMobileMenuOpen
+    ? 'fixed bg-transparent dark:bg-transparent'
+    : hasLightBackground
+      ? 'fixed bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-800'
+      : 'absolute bg-transparent';
 
   return (
-    <header 
-      className={
-        `${isScrolled ? 'fixed bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-800' : 'absolute bg-transparent'} top-0 left-0 right-0 transition-all duration-300 z-50`
-      }
+    <header
+      className={`${headerBackgroundClass} top-0 left-0 right-0 ${isMobileMenuOpen ? 'transition-none' : 'transition-all duration-300'} z-50`}
     >
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
@@ -61,7 +77,12 @@ const Header = () => {
               <ThemeToggle />
             </div>
             <div className="z-50 relative">
-              <Menu isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} />
+              <Menu
+                isOpen={isMobileMenuOpen}
+                onToggle={toggleMobileMenu}
+                isScrolled={isScrolled}
+                hasLightBackground={hasLightBackground}
+              />
             </div>
           </div>
         </div>

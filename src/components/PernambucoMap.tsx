@@ -15,15 +15,12 @@ export default function PernambucoMap() {
     <div className="bg-white rounded shadow p-6 mt-8">
       <h2 className="text-xl font-bold mb-4">Mapa de Pernambuco</h2>
       <svg viewBox="0 0 600 400" width="100%" height="300">
-        {/* Estado de Pernambuco (forma simplificada) */}
-        {/* Estado de Pernambuco detalhado (SVG real, simplificado) */}
         <path
           d="M 100 300 Q 200 100 500 150 Q 550 350 100 300 Z M 250 200 Q 300 150 400 200 Q 350 250 250 200 Z"
           fill="#2563eb"
           stroke="#1e293b"
           strokeWidth={3}
         />
-        {/* Cidades */}
         {cities.map(city => (
           <circle
             key={city.name}
@@ -39,7 +36,6 @@ export default function PernambucoMap() {
             onClick={() => alert(`Cidade: ${city.name}`)}
           />
         ))}
-        {/* Labels */}
         {cities.map(city => (
           <text
             key={city.name + "-label"}

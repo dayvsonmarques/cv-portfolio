@@ -1,6 +1,15 @@
 import React from "react";
 import AdminSidebar from "@/components/AdminSidebar";
 import AdminHeader from "@/components/AdminHeader";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Área Administrativa | Dayvson Marques",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (

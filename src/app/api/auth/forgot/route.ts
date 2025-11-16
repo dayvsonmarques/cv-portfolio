@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import crypto from 'crypto';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
@@ -15,6 +13,5 @@ export async function POST(req: NextRequest) {
   }
   const token = crypto.randomBytes(32).toString('hex');
   await prisma.user.update({ where: { email }, data: { resetToken: token } });
-  // Aqui você pode enviar o token por email ao usuário
   return NextResponse.json({ message: 'Token de recuperação gerado.', token });
 }

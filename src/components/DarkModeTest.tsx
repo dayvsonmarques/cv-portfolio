@@ -15,19 +15,16 @@ const DarkModeTest = () => {
   
   return (
     <div className="fixed top-4 right-4 z-50 space-y-2 w-64">
-      {/* Estado atual */}
       <div className="text-xs font-mono p-2 bg-white border border-gray-300 rounded">
         <div>Theme: {theme}</div>
         <div>HTML class: {document.documentElement.className}</div>
         <div>Body class: {document.body.className}</div>
       </div>
       
-      {/* Teste simples */}
       <div className="p-3 text-white rounded transition-colors duration-300 bg-red-500 dark:bg-green-500">
         Should be: {theme === 'dark' ? 'GREEN' : 'RED'}
       </div>
       
-      {/* Teste com estilo condicional */}
       <div 
         className="p-3 text-white rounded transition-colors duration-300"
         style={{

@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import PostDate from '@/components/PostDate';
 
 export type BlogPost = {
   id: number;
@@ -14,7 +15,6 @@ export type BlogPost = {
   author?: string;
 };
 
-// Imagens fixas do Unsplash para garantir funcionamento
 const images = [
   'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
   'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
@@ -277,6 +277,7 @@ export default function BlogPosts() {
         {blogPosts.map((post) => (
           <article
             key={post.id}
+            id={`post-${post.id}`}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <div className="relative h-48">
@@ -288,13 +289,25 @@ export default function BlogPosts() {
               />
             </div>
             <div className="p-6">
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-                <span>{post.date}</span>
+              <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-2">
+                <PostDate date={post.date} className="text-sm text-gray-500 dark:text-gray-400" />
                 {post.author && (
-                  <>
-                    <span className="mx-2">•</span>
+                  <span className="inline-flex items-center gap-2">
+                    <svg
+                      className="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M7 9a4 4 0 1 0 10 0 4 4 0 0 0-10 0" />
+                      <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+                    </svg>
                     <span>{post.author}</span>
-                  </>
+                  </span>
                 )}
               </div>
               <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">

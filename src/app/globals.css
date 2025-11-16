@@ -22,7 +22,6 @@
     }
   }
 
-  /* Modern Typography Scale */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-space-grotesk), system-ui, sans-serif;
     font-weight: 700;
@@ -70,7 +69,6 @@
     line-height: 1.4; 
   }
 
-  /* Body Text */
   p, li {
     font-family: var(--font-inter), system-ui, sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.125rem);
@@ -79,35 +77,30 @@
     color: inherit;
   }
 
-  /* Large Text */
   .text-large {
     font-size: clamp(1.125rem, 2vw, 1.25rem);
     line-height: 1.6;
     font-weight: 500;
   }
 
-  /* Small Text */
   .text-small {
     font-size: clamp(0.875rem, 1.25vw, 1rem);
     line-height: 1.5;
     font-weight: 400;
   }
 
-  /* Code and Monospace */
   code, pre {
     font-family: var(--font-jetbrains), monospace;
     font-size: clamp(0.875rem, 1.25vw, 1rem);
     line-height: 1.6;
   }
 
-  /* Logo Font */
   .font-logo {
     font-family: var(--font-lovers-quarrel), cursive;
     font-weight: 400;
     letter-spacing: 0.05em;
   }
 
-  /* Heading Font Classes */
   .font-heading {
     font-family: var(--font-space-grotesk), system-ui, sans-serif;
   }
@@ -116,7 +109,6 @@
     font-family: var(--font-inter), system-ui, sans-serif;
   }
 
-  /* Weight Utilities */
   .font-light { font-weight: 300; }
   .font-normal { font-weight: 400; }
   .font-medium { font-weight: 500; }
@@ -125,14 +117,12 @@
   .font-extrabold { font-weight: 800; }
   .font-black { font-weight: 900; }
 
-  /* Letter Spacing */
   .tracking-tight { letter-spacing: -0.025em; }
   .tracking-normal { letter-spacing: 0; }
   .tracking-wide { letter-spacing: 0.025em; }
   .tracking-wider { letter-spacing: 0.05em; }
   .tracking-widest { letter-spacing: 0.1em; }
 
-  /* Custom Text Sizes */
   .text-hero {
     font-size: clamp(3rem, 8vw, 6rem);
     line-height: 1;
@@ -154,7 +144,6 @@
     letter-spacing: -0.01em;
   }
 
-  /* Disable native tooltips for custom tooltip elements */
   .social-icon[title=""] {
     pointer-events: auto;
   }
@@ -208,17 +197,14 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Scroll suave */
 html {
   scroll-behavior: smooth;
 }
 
-/* Remover scroll horizontal global */
 html, body {
   overflow-x: hidden;
 }
 
-/* Estilizar scrollbar vertical */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -237,7 +223,6 @@ html, body {
   background: #a1a1a1;
 }
 
-/* Scroll horizontal customizado para Experience */
 .horizontal-scroll {
   scrollbar-width: thin;
   scrollbar-color: #c1c1c1 #f1f1f1;
@@ -262,7 +247,6 @@ html, body {
   background: #a1a1a1;
 }
 
-/* Dark mode scrollbar */
 .dark .horizontal-scroll {
   scrollbar-color: #4a5568 #2d3748;
 }
@@ -279,7 +263,6 @@ html, body {
   background: #718096;
 }
 
-/* Dark mode scrollbar */
 .dark ::-webkit-scrollbar-track {
   background: #374151;
 }
@@ -292,17 +275,15 @@ html, body {
   background: #9CA3AF;
 }
 
-/* Scrollbar horizontal para timeline */
 .horizontal-scroll {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .horizontal-scroll::-webkit-scrollbar {
-  display: none; /* WebKit */
+  display: none;
 }
 
-/* Melhor cursor para drag */
 .experience-container {
   cursor: grab;
   user-select: none;
@@ -312,12 +293,10 @@ html, body {
   cursor: grabbing;
 }
 
-/* Smooth scroll para toda a aplicação */
 * {
   scroll-behavior: smooth;
 }
 
-/* Prevenir seleção de texto durante drag */
 .no-select {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -325,7 +304,6 @@ html, body {
   user-select: none;
 }
 
-/* Hover effects melhorados */
 .experience-card {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -335,7 +313,6 @@ html, body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* Timeline dot animation */
 .timeline-dot {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -345,7 +322,6 @@ html, body {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
 
-/* Fullscreen Menu Item Hover Effect */
 .menu-fullscreen-item {
   position: relative;
   overflow: visible;
@@ -356,11 +332,11 @@ html, body {
 }
 .menu-fullscreen-underline {
   opacity: 0;
-  transition: opacity 0.5s, background 0.5s;
-  height: 4px;
+  transition: opacity 0.5s, background 0.5s, transform 0.5s;
+  height: 3px;
   left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background: linear-gradient(90deg, #FFD700 0%, #FFEA70 50%, #FFD700 100%);
   box-shadow: 0 0 8px 2px #FFD70044;
 }

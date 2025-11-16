@@ -5,7 +5,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 type Language = 'pt' | 'en' | 'es';
 type Theme = 'light' | 'dark';
 
-// Traduções
+const languageToLocale: Record<Language, string> = {
+  pt: 'pt-BR',
+  en: 'en-US',
+  es: 'es-ES',
+};
+
 const translations = {
   pt: {
     nav: {
@@ -19,8 +24,8 @@ const translations = {
     hero: {
       title: 'Dayvson Marques',
       subtitle: 'Desenvolvedor Web',
-      greeting: 'sites * ecommerces * aplicações web',
-      name: 'Desenvolvedor Web Full Stack',
+      greeting: 'sites * lojas Online * aplicações web',
+      name: 'Desenvolvedor Web',
       description: 'desenvolvimento web moderno, criação de sites responsivos, lojas online e aplicações web. Mais de 15 anos de experiência transformando ideias em soluções digitais.',
       cta: 'Ver Projetos',
       contact: 'Entre em Contato',
@@ -28,7 +33,7 @@ const translations = {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Recife/PE * 35 anos * Web Deb',
+      subtitle: 'Recife/PE * 36 anos * Web Deb',
       description: 'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas.',
       text1: 'Sou Dayvson Marques, desenvolvedor web com mais de 15 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
       text2: 'Trabalho com tecnologias como React, Next.js, Node.js e tenho expertise em otimização de performance e desenvolvimento responsivo. Sempre em busca de entregar soluções que combinem funcionalidade e design moderno.',
@@ -53,7 +58,8 @@ const translations = {
     },
     experience: {
       title: 'Experiência',
-      subtitle: 'Jornada profissional no desenvolvimento web'
+      subtitle: 'Jornada profissional no desenvolvimento web',
+      present: 'Presente'
     },
     projects: {
       title: 'Projetos',
@@ -67,7 +73,10 @@ const translations = {
         viewMore: 'Ver mais no GitHub',
         noDescription: 'Sem descrição disponível',
         viewCode: 'Ver Código',
-        liveDemo: 'Ver Demo'
+        liveDemo: 'Ver Demo',
+        loading: 'Carregando repositórios do GitHub...',
+        error: 'Não foi possível carregar os repositórios do GitHub agora.',
+        noPinned: 'Nenhum repositório fixado encontrado. Configure seus projetos pinados no GitHub para exibí-los aqui.'
       },
       featuredProjects: 'Projetos em Destaque',
       otherProjects: 'Outros Projetos',
@@ -80,6 +89,11 @@ const translations = {
       weather: 'Painel meteorológico com previsões detalhadas, mapas interativos e alertas personalizados para várias cidades.',
       socialMedia: 'Painel de análise de mídia social com métricas em tempo real, gráficos interativos e relatórios automatizados.',
       chat: 'Aplicativo de chat em tempo real com salas privadas, compartilhamento de arquivos e suporte a emojis personalizados.'
+    },
+    blogSection: {
+      title: 'Blog',
+      subtitle: 'Posts Recentes',
+      viewAll: 'Ver todas as postagens'
     },
     contact: {
       title: 'Contato',
@@ -100,6 +114,12 @@ const translations = {
       messageSubject: 'Assunto da mensagem',
       yourMessage: 'Sua mensagem...',
       sendMessageButton: 'Enviar Mensagem'
+    },
+    notFound: {
+      title: 'Página não encontrada',
+      description: 'O endereço digitado pode ter sido removido, estar temporariamente indisponível ou nunca ter existido.',
+      prompt: 'Vamos te levar de volta para a página inicial?',
+      cta: 'Voltar para o início'
     },
     footer: {
       description: 'Criando experiências digitais excepcionais com tecnologias modernas. Especializado em React, Next.js, Node.js e muito mais.',
@@ -126,7 +146,7 @@ const translations = {
       title: 'Dayvson Marques',
       subtitle: 'Web Developer',
       greeting: 'websites * ecommerces * web applications',
-      name: 'Full Stack Web Developer',
+      name: 'Full Stack \n Web Developer',
       description: 'Modern web development, creating responsive websites, online stores and web applications. Over 15 years of experience turning ideas into digital solutions.',
       cta: 'View Projects',
       contact: 'Contact Me',
@@ -134,7 +154,7 @@ const translations = {
     },
     about: {
       title: 'About',
-      subtitle: 'Web developer * Recife/PE * 35 years old',
+      subtitle: 'Web developer * Recife/PE * 36 years old',
       description: 'Graduated in Information Systems from UniNabuco (2008 - 2012). Web developer for over 15 years, specialist in creating websites, online stores and web applications (front-end & back-end) using modern technologies.',
       text1: "I'm Dayvson Marques, a web developer with over 15 years of experience based in Recife-PE. Specialized in full-stack development and creating custom digital solutions. My passion is turning ideas into exceptional web experiences.",
       text2: "I work with technologies like React, Next.js, Node.js and have expertise in performance optimization and responsive development. Always striving to deliver solutions that combine functionality and modern design.",
@@ -159,7 +179,8 @@ const translations = {
     },
     experience: {
       title: 'Experience',
-      subtitle: 'Professional journey in web development'
+      subtitle: 'Professional journey in web development',
+      present: 'Present'
     },
     projects: {
       title: 'Projects',
@@ -173,7 +194,10 @@ const translations = {
         viewMore: 'View more on GitHub',
         noDescription: 'No description available',
         viewCode: 'View Code',
-        liveDemo: 'Live Demo'
+        liveDemo: 'Live Demo',
+        loading: 'Loading GitHub repositories...',
+        error: 'Unable to load GitHub repositories right now.',
+        noPinned: 'No pinned repositories found. Pin your favorite projects on GitHub to show them here.'
       },
       featuredProjects: 'Featured Projects',
       otherProjects: 'Other Projects',
@@ -186,6 +210,11 @@ const translations = {
       weather: 'Weather dashboard with detailed forecasts, interactive maps and personalized alerts for various cities.',
       socialMedia: 'Social media analytics dashboard with real-time metrics, interactive charts and automated reports.',
       chat: 'Real-time chat app with private rooms, file sharing and custom emoji support.'
+    },
+    blogSection: {
+      title: 'Blog',
+      subtitle: 'Latest posts',
+      viewAll: 'View all posts'
     },
     contact: {
       title: 'Contact',
@@ -206,6 +235,12 @@ const translations = {
       messageSubject: 'Message subject',
       yourMessage: 'Your message...',
       sendMessageButton: 'Send Message'
+    },
+    notFound: {
+      title: 'Page not found',
+      description: 'The address you entered might have been removed, is temporarily unavailable, or never existed.',
+      prompt: 'Shall we take you back to the homepage?',
+      cta: 'Back to home'
     },
     footer: {
       description: 'Creating exceptional digital experiences with modern technologies. Specialized in React, Next.js, Node.js and much more.',
@@ -232,7 +267,7 @@ const translations = {
       title: 'Dayvson Marques',
       subtitle: 'Desarrollador Web',
       greeting: 'sitios * ecommerces * aplicaciones web',
-      name: 'Desarrollador Web Full Stack',
+      name: 'Desarrollador Web \n Full Stack',
       description: 'Desarrollo web moderno, creación de sitios responsivos, tiendas online y aplicaciones web. Más de 15 años de experiencia transformando ideas en soluciones digitales.',
       cta: 'Ver Proyectos',
       contact: 'Contáctame',
@@ -240,7 +275,7 @@ const translations = {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Desarrollador web * Recife/PE * 35 años',
+      subtitle: 'Desarrollador web * Recife/PE * 36 años',
       description: 'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especialista en la creación de sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas.',
       text1: 'Soy Dayvson Marques, desarrollador web con más de 15 años de experiencia radicado en Recife-PE. Especializado en desarrollo full-stack y creación de soluciones digitales personalizadas. Mi pasión es transformar ideas en experiencias web excepcionales.',
       text2: 'Trabajo con tecnologías como React, Next.js, Node.js y tengo experiencia en optimización de rendimiento y desarrollo responsivo. Siempre buscando entregar soluciones que combinen funcionalidad y diseño moderno.',
@@ -265,7 +300,8 @@ const translations = {
     },
     experience: {
       title: 'Experiencia',
-      subtitle: 'Trayectoria profesional en desarrollo web'
+      subtitle: 'Trayectoria profesional en desarrollo web',
+      present: 'Presente'
     },
     projects: {
       title: 'Proyectos',
@@ -279,7 +315,10 @@ const translations = {
         viewMore: 'Ver más en GitHub',
         noDescription: 'Sin descripción disponible',
         viewCode: 'Ver Código',
-        liveDemo: 'Ver Demo'
+        liveDemo: 'Ver Demo',
+        loading: 'Cargando repositorios de GitHub...',
+        error: 'No fue posible cargar los repositorios de GitHub en este momento.',
+        noPinned: 'No se encontraron repositorios fijados. Fija tus proyectos favoritos en GitHub para mostrarlos aquí.'
       },
       featuredProjects: 'Proyectos Destacados',
       otherProjects: 'Otros Proyectos',
@@ -292,6 +331,11 @@ const translations = {
       weather: 'Panel meteorológico con pronósticos detallados, mapas interactivos y alertas personalizadas para varias ciudades.',
       socialMedia: 'Panel de análisis de redes sociales con métricas en tiempo real, gráficos interactivos e informes automatizados.',
       chat: 'Aplicación de chat en tiempo real con salas privadas, compartición de archivos y soporte para emojis personalizados.'
+    },
+    blogSection: {
+      title: 'Blog',
+      subtitle: 'Publicaciones recientes',
+      viewAll: 'Ver todas las publicaciones'
     },
     contact: {
       title: 'Contacto',
@@ -312,6 +356,12 @@ const translations = {
       messageSubject: 'Asunto del mensaje',
       yourMessage: 'Tu mensaje...',
       sendMessageButton: 'Enviar Mensaje'
+    },
+    notFound: {
+      title: 'Página no encontrada',
+      description: 'La dirección ingresada puede haber sido eliminada, estar temporalmente no disponible o nunca haber existido.',
+      prompt: '¿Te llevamos de vuelta a la página principal?',
+      cta: 'Volver al inicio'
     },
     footer: {
       description: 'Creando experiencias digitales excepcionales con tecnologías modernas. Especializado en React, Next.js, Node.js y mucho más.',
@@ -345,73 +395,96 @@ export const useApp = () => {
   return context;
 };
 
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('light');
-  const [language, setLanguage] = useState<Language>('pt');
+interface AppProviderProps {
+  children: React.ReactNode;
+  initialTheme?: Theme;
+  initialLanguage?: Language;
+}
+
+const ONE_YEAR_IN_SECONDS = 60 * 60 * 24 * 365;
+
+export const AppProvider: React.FC<AppProviderProps> = ({
+  children,
+  initialTheme = 'light',
+  initialLanguage = 'pt',
+}) => {
+  const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    let preferredTheme = initialTheme;
+    let preferredLanguage = initialLanguage;
 
-    // Carregar tema do localStorage ou usar preferência do sistema
-    let initialTheme: Theme = 'light';
     try {
-      const savedTheme = localStorage.getItem('theme') as Theme;
+      const savedTheme = localStorage.getItem('theme') as Theme | null;
       if (savedTheme === 'dark' || savedTheme === 'light') {
-        initialTheme = savedTheme;
-      } else {
-        initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        preferredTheme = savedTheme;
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        preferredTheme = 'dark';
       }
     } catch (error) {
-      console.log('Error loading theme:', error);
-      initialTheme = 'light';
+      console.warn('Failed to load theme preference:', error);
     }
-    setTheme(initialTheme);
 
-    // Carregar idioma do localStorage ou detectar idioma do navegador
     try {
-      const savedLanguage = localStorage.getItem('language') as Language;
+      const savedLanguage = localStorage.getItem('language') as Language | null;
       if (savedLanguage === 'pt' || savedLanguage === 'en' || savedLanguage === 'es') {
-        setLanguage(savedLanguage);
+        preferredLanguage = savedLanguage;
       } else {
-        // Detecta idioma do navegador
         const browserLang = (navigator.language || navigator.languages?.[0] || '').toLowerCase();
         if (browserLang.startsWith('pt')) {
-          setLanguage('pt');
+          preferredLanguage = 'pt';
         } else if (browserLang.startsWith('en')) {
-          setLanguage('en');
+          preferredLanguage = 'en';
         } else if (browserLang.startsWith('es')) {
-          setLanguage('es');
-        } else {
-          setLanguage('pt'); // padrão
+          preferredLanguage = 'es';
         }
       }
     } catch (error) {
-      console.log('Error loading language:', error);
-      setLanguage('pt');
+      console.warn('Failed to load language preference:', error);
     }
-  }, []);
+
+    setTheme(preferredTheme);
+    setLanguage(preferredLanguage);
+    setMounted(true);
+  }, [initialTheme, initialLanguage]);
 
   useEffect(() => {
     if (!mounted) return;
-    
-    // Aplicar tema ao documento
+
     const root = document.documentElement;
+    const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
+
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    
-    // Also apply to body for extra compatibility
+
     document.body.classList.remove('light', 'dark');
     document.body.classList.add(theme);
-    
-    localStorage.setItem('theme', theme);
-    
-    console.log('Theme applied:', theme, 'Classes on html:', root.classList.toString());
+
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (error) {
+      console.warn('Failed to persist theme preference:', error);
+    }
+
+    document.cookie = `theme=${theme}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; sameSite=Lax${secureFlag}`;
   }, [theme, mounted]);
 
   useEffect(() => {
     if (!mounted) return;
-    localStorage.setItem('language', language);
+
+    const locale = languageToLocale[language] ?? languageToLocale.pt;
+    const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
+
+    try {
+      localStorage.setItem('language', language);
+    } catch (error) {
+      console.warn('Failed to persist language preference:', error);
+    }
+
+    document.documentElement.setAttribute('lang', locale);
+    document.cookie = `language=${language}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; sameSite=Lax${secureFlag}`;
   }, [language, mounted]);
 
   const toggleTheme = () => {
@@ -437,10 +510,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return typeof value === 'string' ? value : key;
   };
 
-  // Prevent hydration mismatch by showing loading state until mounted
   const value = {
-    theme: mounted ? theme : 'light',
-    language: mounted ? language : 'pt',
+    theme,
+    language,
     toggleTheme,
     setLanguage: handleSetLanguage,
     t

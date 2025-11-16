@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
-
-// Helper function to parse query parameters
 const parseQueryParams = (searchParams: URLSearchParams) => {
   const page = Math.max(parseInt(searchParams.get('page') || '1', 10), 1);
   const limit = Math.max(parseInt(searchParams.get('limit') || '10', 10), 1);
@@ -63,7 +61,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Nome da permissão obrigatório.' }, { status: 400 });
     }
 
-    // Verifica se já existe uma permissão com esse nome
     const existingPermission = await prisma.permission.findFirst({
       where: { name }
     });
@@ -105,7 +102,6 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Nome da permissão obrigatório.' }, { status: 400 });
     }
 
-    // Verifica se já existe outra permissão com esse nome
     const existingPermission = await prisma.permission.findFirst({
       where: {
         name,
@@ -147,7 +143,6 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'ID da permissão obrigatório.' }, { status: 400 });
     }
 
-    // Remove a permissão e suas associações
     await prisma.$transaction([
       prisma.permission.delete({ where: { id } })
     ]);

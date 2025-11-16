@@ -1,10 +1,24 @@
 import React from 'react';
 import { Metadata } from 'next';
+import { siteConfig } from '@/lib/siteConfig';
+
 export const metadata: Metadata = {
   title: 'Blog | Dayvson Marques',
-  description: 'Postagens sobre desenvolvimento web, Next.js, Tailwind e IA.',
+  description: 'Postagens sobre desenvolvimento web, Next.js, Tailwind CSS, IA e produtividade.',
   alternates: {
-    canonical: '/blog',
+    canonical: new URL('/blog', siteConfig.siteUrl).toString(),
+  },
+  openGraph: {
+    title: 'Blog | Dayvson Marques',
+    description: 'Artigos sobre desenvolvimento web moderno, desempenho e automação.',
+    url: new URL('/blog', siteConfig.siteUrl).toString(),
+    siteName: 'Dayvson Marques',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Dayvson Marques',
+    description: 'Artigos sobre desenvolvimento web moderno, desempenho e automação.',
   },
 };
 import Header from '@/components/Header';

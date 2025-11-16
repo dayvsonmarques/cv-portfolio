@@ -14,7 +14,6 @@ const ThemeToggle = () => {
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >
         <div className="relative w-6 h-6">
-          {/* Sun Icon */}
           <svg
             className={`absolute inset-0 w-6 h-6 text-gray-800 dark:text-gray-200 transition-all duration-300 ${
               theme === 'dark' ? 'rotate-90 scale-0' : 'rotate-0 scale-100'
@@ -29,7 +28,6 @@ const ThemeToggle = () => {
             />
           </svg>
 
-          {/* Moon Icon */}
           <svg
             className={`absolute inset-0 w-6 h-6 text-gray-800 dark:text-gray-200 transition-all duration-300 ${
               theme === 'light' ? '-rotate-90 scale-0' : 'rotate-0 scale-100'
