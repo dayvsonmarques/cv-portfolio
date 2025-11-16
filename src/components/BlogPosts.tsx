@@ -371,6 +371,7 @@ A integração com ferramentas de CI/CD foi otimizada com scripts inteligentes s
 Por fim, o aprendizado contínuo com a IA permitiu evoluir o projeto rapidamente, sempre com foco em qualidade e experiência do usuário. Cada interação com o Copilot trouxe novos insights sobre melhores práticas e padrões de desenvolvimento, acelerando significativamente a curva de aprendizado e a evolução técnica do projeto.`,
     tags: ['Refatoração', 'Erros', 'Copilot'],
     author: 'Dayvson Marques',
+    categories: ['React', 'Refatoração', 'Copilot']
   },
   {
     id: 3,
@@ -404,6 +405,7 @@ A acessibilidade visual foi priorizada em todo o processo de design, garantindo 
 Por fim, a padronização visual elevou a experiência do usuário, tornando o portfólio mais profissional e atrativo. A combinação de Tailwind CSS com as sugestões inteligentes do Copilot resultou em um produto final que supera as expectativas em termos de qualidade visual e experiência do usuário.`,
     tags: ['Tailwind', 'CSS', 'Design'],
     author: 'Dayvson Marques',
+    categories: ['Tailwind CSS', 'Design', 'UX/UI']
   },
   {
     id: 4,
@@ -437,6 +439,7 @@ A manutenção e atualização do conteúdo foram simplificadas pela organizaç�
 Por fim, o blog se tornou uma fonte de aprendizado contínuo, sempre atualizado com novidades e dicas técnicas. A colaboração entre inteligência artificial e expertise humana resultou em um recurso valioso para a comunidade de desenvolvimento, demonstrando o potencial transformador da IA na criação de conteúdo técnico de qualidade.`,
     tags: ['Conteúdo', 'Automação', 'IA'],
     author: 'Dayvson Marques',
+    categories: ['IA', 'Conteúdo', 'Automação']
   },
   {
     id: 5,
@@ -470,6 +473,7 @@ A integração contínua e os testes automatizados garantiram estabilidade e qua
 Por fim, o projeto se tornou referência em boas práticas de integração entre ferramentas modernas, demonstrando como a combinação inteligente de tecnologias pode resultar em aplicações web excepcionais. A experiência adquirida neste projeto serve como base sólida para futuros desenvolvimentos e pode ser aplicada em projetos de qualquer escala ou complexidade.`,
     tags: ['Next.js', 'Tailwind', 'Integração'],
     author: 'Dayvson Marques',
+    categories: ['Next.js', 'Tailwind CSS', 'Integração']
   },
   {
     id: 6,
@@ -505,6 +509,7 @@ A cultura de qualidade foi estabelecida através da implementação de práticas
 Por fim, o aprendizado contínuo com a IA permitiu evoluir o projeto rapidamente, sempre com foco em qualidade e experiência do usuário. Cada interação com o Copilot resultou em novos insights e técnicas que foram aplicados para melhorar não apenas este projeto, mas também futuros desenvolvimentos. A combinação de experiência humana e inteligência artificial criou um ambiente de desenvolvimento excepcionalmente produtivo.`,
     tags: ['Problemas', 'Patches', 'Aprendizado'],
     author: 'Dayvson Marques',
+    categories: ['Debugging', 'Patches', 'Aprendizado']
   },
   {
     id: 7,
@@ -540,6 +545,7 @@ A documentação detalhada ajudou a esclarecer dúvidas sobre rotas e navegaçã
 Por fim, o projeto se tornou referência em navegação dinâmica e boas práticas de UX, demonstrando como a combinação de Next.js, Tailwind CSS e design centrado no usuário pode criar experiências de navegação excepcionais. As técnicas implementadas podem ser aplicadas em projetos de qualquer escala, sempre priorizando usabilidade e performance.`,
     tags: ['Navegação', 'Rotas', 'Next.js'],
     author: 'Dayvson Marques',
+    categories: ['Next.js', 'UX/UI', 'Navegação']
   }
 ];
 
