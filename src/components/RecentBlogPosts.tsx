@@ -9,11 +9,15 @@ import { useApp } from '@/contexts/AppContext';
 
 const RecentBlogPosts: React.FC = () => {
   const { t } = useApp();
-  const recent = blogPosts.slice(0, 3);
+  
+  const recent = [...blogPosts]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+    
   return (
-    <section id="blog" className="my-16">
-      <div className="container mx-auto max-w-5xl px-4">
-        <div className="text-center pb-5 mb-10  pt-10">
+    <section id="blog" className="my-4">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center pb-5 mb-10 pt-10">
           <h2 className="text-display font-heading font-bold mb-4 text-black dark:text-white text-center pt-10 mt-10">
             {t('blogSection.title')}
           </h2>
@@ -21,7 +25,7 @@ const RecentBlogPosts: React.FC = () => {
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {recent.map(post => (
-            <Link href={`/blog#post-${post.id}`} key={post.id} className="block bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:scale-105 transition-transform">
+            <Link href={`/blog/${post.slug}`} key={post.id} className="block bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:scale-105 transition-transform">
               <div className="w-full h-40 relative">
                 <Image
                   src={post.image}
@@ -30,13 +34,22 @@ const RecentBlogPosts: React.FC = () => {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover rounded-t-lg"
                   priority={true}
-                  unoptimized
                 />
               </div>
               <div className="p-5">
-                <h3 className="text-lg font-bold text-black dark:text-white mb-2">{post.title}</h3>
-                <PostDate date={post.date} className="text-sm text-gray-500 mb-2" />
-                <p className="text-gray-700 dark:text-gray-300 line-clamp-2">{post.excerpt}</p>
+                <h3 className="text-lg font-bold text-black dark:text-white mb-2 text-center">{post.title}</h3>
+                <PostDate date={post.date} className="text-sm text-gray-500 mb-3 text-center block" />
+                <div className="flex flex-wrap gap-2 mb-3 justify-center">
+                  {post.categories.map((category, idx) => (
+                    <span 
+                      key={idx}
+                      className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-semibold px-3 py-1 rounded-full"
+                    >
+                      {category}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 line-clamp-4 text-justify">{post.excerpt} [...]</p>
               </div>
             </Link>
           ))}
