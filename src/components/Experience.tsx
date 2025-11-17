@@ -107,8 +107,8 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-20 bg-white dark:bg-gray-900">
-      <div className="w-full px-4 mx-auto max-w-[calc(100%-60px)] pt-10">
-        <div className="text-center mb-16">
+      <div className="w-full mx-auto max-w-full sm:max-w-[calc(100%-60px)] sm:px-4 pt-10">
+        <div className="text-center mb-16 px-4">
           <h2 className="text-display font-heading font-bold text-black dark:text-white mb-4 tracking-tight">
             {t('experience.title')}
           </h2>
@@ -146,7 +146,7 @@ const Experience = () => {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
           >
-            <div className="relative flex items-stretch gap-6 px-6 sm:gap-8 sm:px-16 py-8">
+            <div className="relative flex items-stretch gap-6 px-4 sm:gap-8 sm:px-16 py-8">
               {experiences.map((exp, index) => {
                 const periodLabel = formatPeriod(exp.startDate, exp.endDate, exp.isCurrent);
                 return (

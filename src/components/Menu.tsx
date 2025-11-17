@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface MenuProps {
   isOpen: boolean;
@@ -12,6 +13,9 @@ interface MenuProps {
 
 const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false }: MenuProps) => {
   const { t } = useApp();
+  const router = useRouter();
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     if (isOpen) {
@@ -25,10 +29,24 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
     };
   }, [isOpen]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    onToggle();
+  const handleMenuClick = (sectionId: string) => {
+    if (sectionId === 'blog') {
+      if (isHomePage) {
+        // Na home, faz scroll para a seção de posts recentes
+        const element = document.getElementById('blog');
+        element?.scrollIntoView({ behavior: 'smooth' });
+        onToggle();
+      } else {
+        // Em outras páginas, navega para /blog
+        router.push('/blog');
+        onToggle();
+      }
+    } else {
+      // Para outras seções, sempre faz scroll
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: 'smooth' });
+      onToggle();
+    }
   };
 
   const buttonIconClasses = isOpen
@@ -84,7 +102,7 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
             {menuItems.map(item => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleMenuClick(item.id)}
                 className="menu-fullscreen-item group text-4xl lg:text-5xl font-heading font-bold uppercase tracking-wider relative px-2 py-2 transition-all duration-500 ease-in-out text-white hover:text-yellow-400"
               >
                 {item.label}
