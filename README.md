@@ -24,6 +24,20 @@ npm run dev
 ```
 Acesse http://localhost:3000.
 
+## Configuração
+
+### Variáveis de Ambiente
+Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+
+```env
+# GitHub Token (para API de projetos)
+GITHUB_TOKEN=seu_token_aqui
+```
+
+### Analytics (GoatCounter)
+O rastreamento é feito via GoatCounter e já está configurado no `src/app/layout.tsx` usando o script:
+`data-goatcounter="https://dayvsonmarques.goatcounter.com/count"`.
+
 ## Scripts úteis
 - `npm run dev` – ambiente de desenvolvimento
 - `npm run build` – build de produção

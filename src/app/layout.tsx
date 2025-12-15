@@ -156,6 +156,12 @@ export default async function RootLayout({
             `,
           }}
         />
+
+        <script
+          data-goatcounter="https://dayvsonmarques.goatcounter.com/count"
+          async
+          src="//gc.zgo.at/count.js"
+        ></script>
       </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${loversQuarrel.variable} ${roboto.variable} font-sans antialiased`}
