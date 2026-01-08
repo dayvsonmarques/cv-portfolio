@@ -3,10 +3,17 @@
 import React from 'react';
 import { useApp } from '@/contexts/AppContext';
 
-const Skills = () => {
+type SkillCategory = { title: string; skills: { name: string }[] };
+
+type SkillsProps = {
+  title?: string;
+  categories?: SkillCategory[];
+};
+
+const Skills = ({ title, categories }: SkillsProps) => {
   const { t } = useApp();
   
-  const skillCategories = [
+  const skillCategories: SkillCategory[] = categories ?? [
     {
       title: t('skills.frontend'),
       skills: [
@@ -105,7 +112,7 @@ const Skills = () => {
       <div className="w-full px-[30px]">
         <div className="text-center mb-16">
           <h2 className="text-display font-bold text-gray-800 dark:text-white mb-4">
-            {t('nav.skills')}
+            {title ?? t('nav.skills')}
           </h2>
           <div className="w-24 h-1 bg-black dark:bg-white mx-auto rounded-full"></div>
         </div>

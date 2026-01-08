@@ -7,7 +7,12 @@ import Image from 'next/image';
 import PostDate from '@/components/PostDate';
 import { useApp } from '@/contexts/AppContext';
 
-const RecentBlogPosts: React.FC = () => {
+type RecentBlogPostsProps = {
+  title?: string;
+  viewAll?: string;
+};
+
+const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => {
   const { t } = useApp();
   
   const recent = [...blogPosts]
@@ -19,7 +24,7 @@ const RecentBlogPosts: React.FC = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center pb-5 mb-10 pt-10">
           <h2 className="text-display font-heading font-bold mb-4 text-black dark:text-white text-center pt-10 mt-10">
-            {t('blogSection.title')}
+            {title ?? t('blogSection.title')}
           </h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
         </div>
@@ -76,7 +81,7 @@ const RecentBlogPosts: React.FC = () => {
         </div>
         <div className="text-center mt-8">
           <Link href="/blog" className="inline-block px-8 py-3 bg-gray-800 text-white font-bold rounded hover:bg-yellow-600 transition-colors">
-            {t('blogSection.viewAll')}
+            {viewAll ?? t('blogSection.viewAll')}
           </Link>
         </div>
       </div>

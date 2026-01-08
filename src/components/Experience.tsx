@@ -3,8 +3,14 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { experiences } from '@/data/experiences';
+import type { ExperienceType } from '@/types/experience';
 
-const Experience = () => {
+type ExperienceProps = {
+  title?: string;
+  items?: ExperienceType[];
+};
+
+const Experience = ({ title, items }: ExperienceProps) => {
   const { t, language } = useApp();
   const locale = language === 'pt' ? 'pt-BR' : language === 'en' ? 'en-US' : 'es-ES';
   const dateFormatter = useMemo(
@@ -110,7 +116,7 @@ const Experience = () => {
       <div className="w-full mx-auto max-w-full sm:max-w-[calc(100%-60px)] sm:px-4 pt-10">
         <div className="text-center mb-16 px-4">
           <h2 className="text-display font-heading font-bold text-black dark:text-white mb-4 tracking-tight">
-            {t('experience.title')}
+            {title ?? t('experience.title')}
           </h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
         </div>
@@ -147,11 +153,11 @@ const Experience = () => {
             onMouseLeave={handleMouseUp}
           >
             <div className="relative flex items-stretch gap-6 px-4 sm:gap-8 sm:px-16 py-8">
-              {experiences.map((exp, index) => {
+              {(items ?? experiences).map((exp, index) => {
                 const periodLabel = formatPeriod(exp.startDate, exp.endDate, exp.isCurrent);
                 return (
                   <div
-                    key={`${exp.company.en}-${exp.startDate ?? 'unknown'}-${exp.endDate ?? 'present'}-${index}`}
+                    key={`${(exp.company as any)?.en ?? (exp.company as any)?.pt ?? 'company'}-${exp.startDate ?? 'unknown'}-${exp.endDate ?? 'present'}-${index}`}
                     className="relative flex-shrink-0 w-full max-w-[22rem] sm:max-w-none sm:w-80 snap-center"
                   >
                     <div className="bg-gray-50 dark:bg-black rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 h-full">

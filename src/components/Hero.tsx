@@ -5,7 +5,13 @@ import { useApp } from '@/contexts/AppContext';
 import SocialIcons from './SocialIcons';
 import CodePenBackground from './CodePenBackground';
 
-const Hero = () => {
+type HeroProps = {
+  name?: string;
+  greeting?: string;
+  description?: string;
+};
+
+const Hero = ({ name, greeting, description }: HeroProps) => {
   const { t } = useApp();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
@@ -31,13 +37,13 @@ const Hero = () => {
       <CodePenBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
         <h1 className="text-4xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-4 lg:pb-4 sm:mb-6 tracking-tight break-words" style={{ whiteSpace: 'pre-line'}}>
-          {t('hero.name')}
+          {name ?? t('hero.name')}
         </h1>
         <p className="xs:text-3xl lg:text-5xl font-medium text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed hidden">
-          {t('hero.description')}
+          {description ?? t('hero.description')}
         </p>
         <h2 className="text-lg sm:text-2xl lg:text-4xl font-semibold uppercase tracking-[0.3em] text-gray-200 dark:text-gray-100 mb-8 sm:mb-12">
-          {t('hero.greeting')}
+          {greeting ?? t('hero.greeting')}
         </h2>
         <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-8">
           <SocialIcons variant="hero" showTooltips={true} />

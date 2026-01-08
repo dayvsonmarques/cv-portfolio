@@ -17,12 +17,15 @@ export default function AdminContentPage() {
   const [loading, setLoading] = React.useState(false);
   const [editing, setEditing] = React.useState<Content | null>(null);
   const [form, setForm] = React.useState<Partial<Content>>({});
+  const [dataJson, setDataJson] = React.useState<string>("");
+  const [dataJsonError, setDataJsonError] = React.useState<string | null>(null);
 
   const sections = [
     { key: "hero", label: "Hero" },
     { key: "about", label: "Sobre" },
     { key: "skills", label: "Skills" },
     { key: "experience", label: "Experiência" },
+    { key: "blogSection", label: "Blog (Home)" },
     { key: "projects", label: "Projetos" },
     { key: "contact", label: "Contato" },
     { key: "footer", label: "Footer" },
@@ -45,6 +48,8 @@ export default function AdminContentPage() {
   const handleEdit = (content: Content) => {
     setEditing(content);
     setForm(content);
+    setDataJson(content.data ? JSON.stringify(content.data, null, 2) : "");
+    setDataJsonError(null);
   };
   const handleDelete = async (id: number) => {
     if (!confirm("Deseja realmente excluir este conteúdo?")) return;
@@ -57,22 +62,42 @@ export default function AdminContentPage() {
     setEditing(null);
   };
   const handleSave = async () => {
+    let parsedData: Record<string, unknown> | undefined = undefined;
+    if (dataJson.trim()) {
+      try {
+        const parsed = JSON.parse(dataJson);
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+          parsedData = parsed as Record<string, unknown>;
+        } else {
+          setDataJsonError("O campo data precisa ser um JSON de objeto (ex: { \"key\": \"value\" }).");
+          return;
+        }
+      } catch {
+        setDataJsonError("JSON inválido no campo data.");
+        return;
+      }
+    }
+    setDataJsonError(null);
+
+    const payload = { ...form, data: parsedData };
+
     if (editing) {
       await fetch("/api/admin/content", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, id: editing.id }),
+        body: JSON.stringify({ ...payload, id: editing.id }),
       });
     } else {
       await fetch("/api/admin/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
     }
     fetchContents();
     setEditing(null);
     setForm({});
+    setDataJson("");
   };
 
   return (
@@ -119,6 +144,14 @@ export default function AdminContentPage() {
           value={form.description || ""}
           onChange={e => setForm((f: Partial<Content>) => ({ ...f, description: e.target.value }))}
         />
+
+        <textarea
+          className="border rounded px-3 py-2 mb-2 w-full font-mono text-xs min-h-[180px]"
+          placeholder='Data (JSON). Ex: { "categories": [...] }'
+          value={dataJson}
+          onChange={e => setDataJson(e.target.value)}
+        />
+        {dataJsonError && <div className="text-red-600 text-sm mb-2">{dataJsonError}</div>}
         <button
           className="bg-blue-700 text-white px-6 py-2 rounded font-semibold mt-2"
           onClick={handleSave}
@@ -128,7 +161,12 @@ export default function AdminContentPage() {
         {editing && (
           <button
             className="ml-4 px-6 py-2 rounded border border-gray-400 text-gray-700"
-            onClick={() => { setEditing(null); setForm({}); }}
+            onClick={() => {
+              setEditing(null);
+              setForm({});
+              setDataJson("");
+              setDataJsonError(null);
+            }}
           >
             Cancelar
           </button>
