@@ -112,12 +112,29 @@ export type HomeContent = {
 const HOME_SECTIONS = ["hero", "about", "skills", "experience", "blogSection"] as const;
 
 export async function getHomeContent(language: string): Promise<HomeContent> {
-  const rows = await prisma.content.findMany({
-    where: {
-      language,
-      section: { in: [...HOME_SECTIONS] },
-    },
-  });
+  let rows: Array<{ section: string; title: string | null; subtitle: string | null; description: string | null; data: Prisma.JsonValue | null }> = [];
+
+  try {
+    rows = await prisma.content.findMany({
+      where: {
+        language,
+        section: { in: [...HOME_SECTIONS] },
+      },
+      select: {
+        section: true,
+        title: true,
+        subtitle: true,
+        description: true,
+        data: true,
+      },
+    });
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[getHomeContent] Prisma unavailable; falling back to translations.", error);
+    }
+
+    return {};
+  }
 
   const bySection = new Map(rows.map((row) => [row.section, row]));
 
