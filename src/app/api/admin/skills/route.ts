@@ -57,7 +57,7 @@ export async function GET(request: Request) {
   return NextResponse.json({
     id: content?.id ?? null,
     language,
-    title: content?.title ?? "",
+    title: "",
     categories,
   });
 }
@@ -65,7 +65,6 @@ export async function GET(request: Request) {
 export async function PUT(request: Request) {
   const body = await request.json();
   const language = typeof body?.language === "string" && body.language.trim() ? body.language.trim() : "pt";
-  const title = typeof body?.title === "string" ? body.title : "";
   const categories = normalizeSkillCategories(body?.categories);
 
   const existing = await prisma.content.findFirst({
@@ -74,6 +73,7 @@ export async function PUT(request: Request) {
   });
 
   const data = { categories };
+  const title = "";
 
   const saved = existing
     ? await prisma.content.update({
@@ -87,7 +87,7 @@ export async function PUT(request: Request) {
   return NextResponse.json({
     id: saved.id,
     language,
-    title: saved.title ?? "",
+    title: "",
     categories,
   });
 }
