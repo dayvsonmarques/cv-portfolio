@@ -22,10 +22,24 @@ export default function GroupPermissionsPage() {
   useEffect(() => {
     fetch("/api/admin/groups")
       .then(res => res.json())
-      .then(setGroups);
+      .then((data) => {
+        const nextGroups = Array.isArray(data)
+          ? data
+          : Array.isArray(data?.groups)
+            ? data.groups
+            : [];
+        setGroups(nextGroups);
+      });
     fetch("/api/admin/permissions")
       .then(res => res.json())
-      .then(setPermissions);
+      .then((data) => {
+        const nextPermissions = Array.isArray(data)
+          ? data
+          : Array.isArray(data?.permissions)
+            ? data.permissions
+            : [];
+        setPermissions(nextPermissions);
+      });
   }, []);
 
   useEffect(() => {

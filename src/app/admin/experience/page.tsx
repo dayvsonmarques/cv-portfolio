@@ -50,14 +50,14 @@ export default function AdminExperiencePage() {
       const res = await fetch("/api/admin/experience");
       if (!res.ok) throw new Error("Falha ao carregar experiências");
       const data: ApiResponse = await res.json();
-      setTitlesByLang(data.titlesByLang ?? titlesByLang);
+      setTitlesByLang((prev) => data.titlesByLang ?? prev);
       setItems(Array.isArray(data.items) ? data.items : []);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Erro desconhecido");
     } finally {
       setLoading(false);
     }
-  }, [titlesByLang]);
+  }, []);
 
   React.useEffect(() => {
     fetchData();
