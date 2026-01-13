@@ -8,14 +8,9 @@ interface Permission {
   groupId?: number;
   group?: { id: number; name: string };
 }
-interface Group {
-  id: number;
-  name: string;
-}
 
 export default function PermissionsPage() {
   const [permissions, setPermissions] = useState<Permission[]>([]);
-  const [groups, setGroups] = useState<Group[]>([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -28,16 +23,6 @@ export default function PermissionsPage() {
             ? data.permissions
             : [];
         setPermissions(nextPermissions);
-      });
-    fetch("/api/admin/groups")
-      .then((res) => res.json())
-      .then((data) => {
-        const nextGroups = Array.isArray(data)
-          ? data
-          : Array.isArray(data?.groups)
-            ? data.groups
-            : [];
-        setGroups(nextGroups);
       });
   }, []);
 
