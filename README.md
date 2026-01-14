@@ -27,12 +27,22 @@ Acesse http://localhost:3000.
 ## Configuração
 
 ### Variáveis de Ambiente
-Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
 ```env
+# Banco de dados (Postgres)
+# Necessário no deploy (Vercel) e para rodar admin/conteúdo dinâmico.
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DB?sslmode=require
+
+# NextAuth (se usar rotas de auth/admin)
+NEXTAUTH_SECRET=sua_secret_aqui
+NEXTAUTH_URL=http://localhost:3000
+
 # GitHub Token (para API de projetos)
 GITHUB_TOKEN=seu_token_aqui
 ```
+
+Para referência, veja também o arquivo `.env.example`.
 
 ### Analytics (GoatCounter)
 O rastreamento é feito via GoatCounter e já está configurado no `src/app/layout.tsx` usando o script:
@@ -43,6 +53,8 @@ O rastreamento é feito via GoatCounter e já está configurado no `src/app/layo
 - `npm run build` – build de produção
 - `npm run start` – servidor após build
 - `npm run lint` – checagem de lint
+- `npm run db:push` – aplica o schema no banco (Prisma db push)
+- `npm run seed` – popula dados iniciais
 
 ## Estrutura rápida
 ```

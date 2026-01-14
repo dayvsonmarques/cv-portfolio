@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "prisma migrate deploy && next dev --turbopack",
-    "build": "prisma generate && next build --turbopack",
-    "start": "prisma migrate deploy && next start",
+    "dev": "prisma generate && prisma db push && next dev --turbopack",
+    "build": "prisma generate && prisma db push && next build --turbopack",
+    "start": "prisma generate && prisma db push && next start",
     "lint": "eslint",
     "seed": "prisma db seed",
-    "vercel-build": "prisma generate && next build",
-    "db:migrate": "prisma migrate deploy"
+    "vercel-build": "prisma generate && prisma db push && next build",
+    "db:push": "prisma db push"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
@@ -21,8 +24,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-parallax": "^3.5.2",
-    "recharts": "^3.1.2",
-    "sqlite3": "^5.1.7"
+    "recharts": "^3.1.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
