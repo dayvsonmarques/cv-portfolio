@@ -32,7 +32,11 @@ Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 ```env
 # Banco de dados (Postgres)
 # Necessário no deploy (Vercel) e para rodar admin/conteúdo dinâmico.
+# No Vercel Postgres, recomendo:
+# - DATABASE_URL = POSTGRES_PRISMA_URL
+# - DIRECT_URL = POSTGRES_URL_NON_POOLING
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DB?sslmode=require
+DIRECT_URL=postgresql://USER:PASSWORD@HOST:5432/DB?sslmode=require
 
 # NextAuth (se usar rotas de auth/admin)
 NEXTAUTH_SECRET=sua_secret_aqui
