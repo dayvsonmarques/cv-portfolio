@@ -25,7 +25,7 @@ const HOME_TRANSLATIONS: Record<LanguageKey, {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Recife/PE * 36 anos * Web Deb',
+      subtitle: 'Recife/PE * 36 anos * Web Dev',
       description:
         'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas.',
     },
