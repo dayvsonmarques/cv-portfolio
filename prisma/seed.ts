@@ -37,8 +37,8 @@ const HOME_TRANSLATIONS: Record<LanguageKey, {
     nav: { skills: 'Skills' },
     hero: {
       title: 'Dayvson Marques',
-      name: 'Full Stack \n Web Developer',
-      greeting: 'websites * ecommerces * web applications',
+      name: 'Full‑Stack Web Developer',
+      greeting: 'websites * online stores * web applications',
       description:
         'Modern web development, creating responsive websites, online stores and web applications. Over 15 years of experience turning ideas into digital solutions.',
     },
@@ -57,13 +57,13 @@ const HOME_TRANSLATIONS: Record<LanguageKey, {
     hero: {
       title: 'Dayvson Marques',
       name: 'Desarrollador Web',
-      greeting: 'sitios * tiendas online * aplicaciones web',
+      greeting: 'sitios * tiendas en línea * aplicaciones web',
       description:
         'Desarrollo web moderno, creación de sitios responsivos, tiendas online y aplicaciones web. Más de 15 años de experiencia transformando ideas en soluciones digitales.',
     },
     about: {
-      title: 'Sobre',
-      subtitle: 'Recife/PE * 36 años * Web Dev',
+      title: 'Sobre mí',
+      subtitle: 'Recife/PE * 36 años * Desarrollador web',
       description:
         'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especializado en crear sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas.',
     },
