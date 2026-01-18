@@ -71,6 +71,3 @@ src/
 ```
 
 ---
-
-Feito com ❤️ por Dayvson Marques usando Next.js e Tailwind CSS.
-# indicativa
