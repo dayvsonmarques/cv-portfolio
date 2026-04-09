@@ -7,22 +7,24 @@ const projects = [
   {
     name: 'Manuela Rios',
     description: {
-      pt: 'Site institucional e portfólio de arquitetura e design de interiores.',
-      en: 'Institutional website and architecture and interior design portfolio.',
-      es: 'Sitio institucional y portafolio de arquitectura y diseño de interiores.',
+      pt: 'Site institucional e portfólio | Palestrante de saúde e bem-estar | Mentora de mudança de estilo de vida | Escritora | Podcast \'Saúde em 1º Lugar\'',
+      en: 'Institutional website and portfolio | Health and wellness speaker | Lifestyle change mentor | Writer | Podcast \'Health First\'',
+      es: 'Sitio institucional y portafolio | Oradora de salud y bienestar | Mentora de cambio de estilo de vida | Escritora | Podcast \'Salud en 1er Lugar\'',
     },
     url: 'https://manuelarios.com.br/',
-    preview: `https://api.microlink.io/?url=https://manuelarios.com.br/&screenshot=true&meta=false&embed=screenshot.url`,
+    preview: 'https://manuelarios.com.br/wp-content/uploads/2025/11/cropped-logo-manurios-new-removebg-preview.png',
+    previewType: 'logo',
   },
   {
     name: 'DGASP',
     description: {
-      pt: 'Diretoria Geral de Administração e Serviços Públicos — Prefeitura do Recife.',
-      en: 'General Directorate of Administration and Public Services — Recife City Hall.',
-      es: 'Dirección General de Administración y Servicios Públicos — Ayuntamiento de Recife.',
+      pt: 'Site do III Seminário Estadual de Atenção à Saúde Prisional de Pernambuco e à III Mostra Estadual de Experiências na Saúde Prisional.',
+      en: 'Website of the III State Seminar on Prison Health Care in Pernambuco and the III State Exhibition of Experiences in Prison Health.',
+      es: 'Sitio del III Seminario Estatal de Atención a la Salud Penitenciaria de Pernambuco y la III Muestra Estatal de Experiencias en Salud Penitenciaria.',
     },
     url: 'https://dgasp.webdev.recife.br/',
     preview: `https://api.microlink.io/?url=https://dgasp.webdev.recife.br/&screenshot=true&meta=false&embed=screenshot.url`,
+    previewType: 'screenshot',
   },
 ];
 
@@ -54,11 +56,13 @@ const PortfolioProjects = () => {
               rel="noopener noreferrer"
               className="group bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative h-56 bg-gray-100 dark:bg-gray-700 overflow-hidden">
+              <div className={`relative h-56 overflow-hidden ${project.previewType === 'logo' ? 'bg-white dark:bg-gray-100 flex items-center justify-center p-8' : 'bg-gray-100 dark:bg-gray-700'}`}>
                 <img
                   src={project.preview}
                   alt={project.name}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className={project.previewType === 'logo'
+                    ? 'max-h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-500'
+                    : 'w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500'}
                   loading="lazy"
                 />
               </div>
