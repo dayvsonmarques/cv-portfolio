@@ -1,12 +1,10 @@
 'use client';
 
 import React from 'react';
-import GitHubProjects from './GitHubProjects';
+import PortfolioProjects from './PortfolioProjects';
 
 const Projects = () => {
-  return (
-    <GitHubProjects />
-  );
+  return <PortfolioProjects />;
 };
 
 export default Projects;
