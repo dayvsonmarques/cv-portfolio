@@ -20,7 +20,14 @@ const AUTO_INTERVAL = 4000;
 const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => {
   const { t } = useApp();
   const trackRef = useRef<HTMLDivElement>(null);
+
+  // currentRef is the source of truth — avoids stale closures in callbacks
+  const currentRef = useRef(0);
   const [current, setCurrent] = useState(0);
+
+  // Flag to ignore scroll events fired during programmatic scrollTo
+  const isProgrammaticScroll = useRef(false);
+
   const [hovered, setHovered] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -33,28 +40,40 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
   const goTo = useCallback(
     (index: number) => {
       const next = ((index % total) + total) % total;
+      currentRef.current = next;
       setCurrent(next);
+
+      isProgrammaticScroll.current = true;
       trackRef.current?.scrollTo({ left: next * STEP, behavior: 'smooth' });
+
+      // Release the lock after smooth scroll animation (~500ms)
+      setTimeout(() => {
+        isProgrammaticScroll.current = false;
+      }, 600);
     },
     [total]
   );
 
-  const goNext = useCallback(() => goTo(current + 1), [current, goTo]);
-  const goPrev = useCallback(() => goTo(current - 1), [current, goTo]);
+  // Always read from ref so these callbacks never go stale
+  const goNext = useCallback(() => goTo(currentRef.current + 1), [goTo]);
+  const goPrev = useCallback(() => goTo(currentRef.current - 1), [goTo]);
 
-  // Auto-advance
+  // Auto-advance — depends on `current` state to reset the timer each step
   useEffect(() => {
     if (hovered) return;
     timerRef.current = setTimeout(goNext, AUTO_INTERVAL);
     return () => clearTimeout(timerRef.current);
   }, [current, hovered, goNext]);
 
-  // Sync dot on manual drag/touch scroll
+  // Sync dot only on real user drag/touch scroll
   const handleScroll = useCallback(() => {
+    if (isProgrammaticScroll.current) return;
     const track = trackRef.current;
     if (!track) return;
     const idx = Math.round(track.scrollLeft / STEP) % total;
-    setCurrent(idx < 0 ? 0 : idx);
+    const safe = idx < 0 ? 0 : idx;
+    currentRef.current = safe;
+    setCurrent(safe);
   }, [total]);
 
   return (
@@ -73,16 +92,15 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {/* Fade left */}
+        {/* Fade edges */}
         <div className="pointer-events-none absolute left-0 top-0 h-full w-20 z-10 bg-gradient-to-r from-white dark:from-black to-transparent" />
-        {/* Fade right */}
         <div className="pointer-events-none absolute right-0 top-0 h-full w-20 z-10 bg-gradient-to-l from-white dark:from-black to-transparent" />
 
         {/* Arrow prev */}
         <button
           onClick={goPrev}
           aria-label="Post anterior"
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-yellow-500 dark:hover:bg-yellow-500 transition-colors"
         >
           <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -93,7 +111,7 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
         <button
           onClick={goNext}
           aria-label="Próximo post"
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-yellow-500 dark:hover:bg-yellow-500 transition-colors"
         >
           <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
