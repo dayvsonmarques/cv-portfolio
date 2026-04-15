@@ -14,73 +14,81 @@ type RecentBlogPostsProps = {
 
 const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => {
   const { t } = useApp();
-  
+
   const recent = [...blogPosts]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
-    
+    .slice(0, 10);
+
+  // Duplicate for seamless infinite loop
+  const slides = [...recent, ...recent];
+
   return (
     <section id="blog" className="my-4">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-screen-2xl mx-auto px-6">
         <div className="text-center pb-5 mb-10 pt-10">
           <h2 className="text-display font-heading font-bold mb-4 text-black dark:text-white text-center pt-10 mt-10">
             {title ?? t('blogSection.title')}
           </h2>
           <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
         </div>
-        <div className="grid gap-8 md:grid-cols-3">
-          {recent.map(post => (
-            <Link href={`/blog/${post.slug}`} key={post.id} className="block bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:scale-105 transition-transform">
-              <div className="w-full h-40 relative">
+      </div>
+
+      {/* Infinite horizontal slider — full width */}
+      <div className="relative overflow-hidden">
+        {/* Left fade */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10 bg-gradient-to-r from-white dark:from-black to-transparent" />
+        {/* Right fade */}
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10 bg-gradient-to-l from-white dark:from-black to-transparent" />
+
+        <div className="flex gap-6 w-max animate-scroll hover:[animation-play-state:paused] pb-4">
+          {slides.map((post, idx) => (
+            <Link
+              href={`/blog/${post.slug}`}
+              key={`${post.id}-${idx}`}
+              className="block w-72 flex-shrink-0 bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-105 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="w-full h-44 relative">
                 <Image
                   src={post.image}
                   alt={post.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover rounded-t-lg"
-                  priority={true}
+                  sizes="288px"
+                  className="object-cover"
+                  priority={idx < 4}
                 />
               </div>
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-black dark:text-white mb-2 text-center">{post.title}</h3>
-                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  <PostDate date={post.date} className="text-sm text-gray-500" />
-                  {post.author && (
-                    <span className="inline-flex items-center gap-1">
-                      <svg
-                        className="h-3 w-3"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
-                        <path d="M7 9a4 4 0 1 0 10 0 4 4 0 0 0-10 0" />
-                        <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
-                      </svg>
-                      <span>{post.author}</span>
-                    </span>
-                  )}
+              <div className="p-4">
+                <h3 className="text-sm font-bold text-black dark:text-white mb-2 text-center line-clamp-2 leading-snug">
+                  {post.title}
+                </h3>
+                <div className="flex items-center justify-center mb-2">
+                  <PostDate date={post.date} className="text-xs text-gray-500 dark:text-gray-400" />
                 </div>
-                <div className="flex flex-wrap gap-2 mb-3 justify-center">
-                  {post.categories.map((category, idx) => (
-                    <span 
-                      key={idx}
-                      className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-semibold px-3 py-1 rounded-full"
+                <div className="flex flex-wrap gap-1 mb-3 justify-center">
+                  {post.categories.slice(0, 2).map((category, cidx) => (
+                    <span
+                      key={cidx}
+                      className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium px-2 py-0.5 rounded-full"
                     >
                       {category}
                     </span>
                   ))}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 line-clamp-4 text-justify">{post.excerpt} [...]</p>
+                <p className="text-gray-600 dark:text-gray-400 line-clamp-3 text-xs leading-relaxed">
+                  {post.excerpt}
+                </p>
               </div>
             </Link>
           ))}
         </div>
+      </div>
+
+      <div className="max-w-screen-2xl mx-auto px-6">
         <div className="text-center mt-8">
-          <Link href="/blog" className="inline-block px-8 py-3 bg-gray-800 text-white font-bold rounded hover:bg-yellow-600 transition-colors">
+          <Link
+            href="/blog"
+            className="inline-block px-8 py-3 bg-gray-800 text-white font-bold rounded hover:bg-yellow-600 transition-colors"
+          >
             {viewAll ?? t('blogSection.viewAll')}
           </Link>
         </div>

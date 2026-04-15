@@ -29,8 +29,15 @@ const config: Config = {
           '50%': {
             'background-position': '100% 50%'
           }
-        }
-      }
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        scroll: 'scroll 40s linear infinite',
+      },
     },
   },
   plugins: [],
