@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { blogPosts } from './BlogPosts';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,15 +12,50 @@ type RecentBlogPostsProps = {
   viewAll?: string;
 };
 
+const CARD_WIDTH = 288; // w-72 = 288px
+const GAP = 24;         // gap-6 = 24px
+const STEP = CARD_WIDTH + GAP;
+const AUTO_INTERVAL = 4000;
+
 const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => {
   const { t } = useApp();
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const recent = [...blogPosts]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 10);
 
-  // Duplicate for seamless infinite loop
-  const slides = [...recent, ...recent];
+  const total = recent.length;
+
+  const goTo = useCallback(
+    (index: number) => {
+      const next = ((index % total) + total) % total;
+      setCurrent(next);
+      trackRef.current?.scrollTo({ left: next * STEP, behavior: 'smooth' });
+    },
+    [total]
+  );
+
+  const goNext = useCallback(() => goTo(current + 1), [current, goTo]);
+  const goPrev = useCallback(() => goTo(current - 1), [current, goTo]);
+
+  // Auto-advance
+  useEffect(() => {
+    if (hovered) return;
+    timerRef.current = setTimeout(goNext, AUTO_INTERVAL);
+    return () => clearTimeout(timerRef.current);
+  }, [current, hovered, goNext]);
+
+  // Sync dot on manual drag/touch scroll
+  const handleScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const idx = Math.round(track.scrollLeft / STEP) % total;
+    setCurrent(idx < 0 ? 0 : idx);
+  }, [total]);
 
   return (
     <section id="blog" className="my-4">
@@ -29,23 +64,59 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
           <h2 className="text-display font-heading font-bold mb-4 text-black dark:text-white text-center pt-10 mt-10">
             {title ?? t('blogSection.title')}
           </h2>
-          <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full"></div>
+          <div className="w-32 h-1 bg-black dark:bg-white mx-auto mb-4 rounded-full" />
         </div>
       </div>
 
-      {/* Infinite horizontal slider — full width */}
-      <div className="relative overflow-hidden">
-        {/* Left fade */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10 bg-gradient-to-r from-white dark:from-black to-transparent" />
-        {/* Right fade */}
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10 bg-gradient-to-l from-white dark:from-black to-transparent" />
+      <div
+        className="relative"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Fade left */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-20 z-10 bg-gradient-to-r from-white dark:from-black to-transparent" />
+        {/* Fade right */}
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-20 z-10 bg-gradient-to-l from-white dark:from-black to-transparent" />
 
-        <div className="flex gap-6 w-max animate-scroll hover:[animation-play-state:paused] pb-4">
-          {slides.map((post, idx) => (
+        {/* Arrow prev */}
+        <button
+          onClick={goPrev}
+          aria-label="Post anterior"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white transition-colors"
+        >
+          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Arrow next */}
+        <button
+          onClick={goNext}
+          aria-label="Próximo post"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white transition-colors"
+        >
+          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Slider track */}
+        <div
+          ref={trackRef}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto pb-4 px-14 [&::-webkit-scrollbar]:hidden"
+          style={{
+            scrollSnapType: 'x mandatory',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {recent.map((post) => (
             <Link
+              key={post.id}
               href={`/blog/${post.slug}`}
-              key={`${post.id}-${idx}`}
-              className="block w-72 flex-shrink-0 bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-105 hover:shadow-xl transition-all duration-300"
+              className="flex-shrink-0 w-72 bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-105 hover:shadow-xl transition-all duration-300"
+              style={{ scrollSnapAlign: 'start' }}
             >
               <div className="w-full h-44 relative">
                 <Image
@@ -54,7 +125,6 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
                   fill
                   sizes="288px"
                   className="object-cover"
-                  priority={idx < 4}
                 />
               </div>
               <div className="p-4">
@@ -81,6 +151,22 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
             </Link>
           ))}
         </div>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center items-center gap-2 mt-5">
+        {recent.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goTo(idx)}
+            aria-label={`Ir para post ${idx + 1}`}
+            className={`rounded-full transition-all duration-300 ${
+              idx === current
+                ? 'w-6 h-2 bg-black dark:bg-white'
+                : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-500 dark:hover:bg-gray-400'
+            }`}
+          />
+        ))}
       </div>
 
       <div className="max-w-screen-2xl mx-auto px-6">
