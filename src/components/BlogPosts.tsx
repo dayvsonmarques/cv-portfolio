@@ -24,6 +24,12 @@ const images = [
   'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
   'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
   'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=800&q=80',
 ];
 
 export const blogPosts: BlogPost[] = [
@@ -338,6 +344,174 @@ Por fim, a combinação destas técnicas resultou em scores consistentemente alt
     tags: ['Next.js', 'Performance', 'Otimização'],
     author: 'Dayvson Marques',
     categories: ['Next.js', 'GitHub', 'Otimização']
+  },
+  {
+    id: 10,
+    slug: 'desenvolver-site-com-wordpress-vantagens',
+    title: 'Desenvolver site com WordPress vale a pena em 2026?',
+    image: images[7],
+    date: '2025-12-10',
+    excerpt: 'Com mais de 43% de todos os sites da internet rodando nessa plataforma, o WordPress deixou de ser apenas um blog e se tornou um verdadeiro ecossistema de desenvolvimento web.',
+    content: `Desenvolver site com WordPress é a primeira opção que muitos profissionais e empresas consideram — e não é por acaso. Com mais de 43% de todos os sites da internet rodando nessa plataforma, o WordPress deixou de ser apenas um blog e se tornou um verdadeiro ecossistema de desenvolvimento web. Mas será que ele ainda faz sentido em 2026, com tantas alternativas modernas surgindo?
+
+Criado em 2003, o WordPress evoluiu de uma simples plataforma de blogs para um CMS (Content Management System) completo, capaz de suportar desde sites institucionais simples até grandes portais de conteúdo e e-commerces robustos. Hoje conta com mais de 60.000 plugins disponíveis no repositório oficial e mais de 10.000 temas gratuitos e premium.
+
+Uma das maiores vantagens do WordPress é que, após a entrega do site, o cliente consegue gerenciar o próprio conteúdo sem depender do desenvolvedor para tudo. Publicar um post, trocar uma imagem ou atualizar um texto é intuitivo mesmo para quem nunca teve contato com programação. Isso reduz o custo total de manutenção e aumenta a autonomia do cliente.
+
+O ecossistema de plugins do WordPress é simplesmente imbatível. Precisa de um formulário de contato? Existe um plugin. SEO avançado? Existe um plugin. Cache e performance? Existem dezenas de opções. Integração com Google Analytics, CRMs, redes sociais e ferramentas de e-mail marketing? Tudo isso está a poucos cliques de distância, sem escrever uma linha de código.
+
+Do ponto de vista financeiro, desenvolver site com WordPress é, em geral, mais barato do que construir uma solução do zero. Isso porque boa parte da infraestrutura já está pronta: autenticação de usuários, editor de conteúdo, gerenciamento de mídia, sistema de páginas e posts. O desenvolvedor pode focar no que realmente agrega valor ao projeto: design, UX e funcionalidades específicas do negócio.
+
+O WordPress foi construído pensando em SEO. URLs amigáveis, suporte a sitemaps, controle de meta tags, estrutura semântica de HTML — tudo isso já vem embutido ou pode ser configurado com facilidade usando plugins como Yoast SEO ou Rank Math. Para negócios que dependem de tráfego orgânico, essa é uma vantagem competitiva real.
+
+Um equívoco comum é achar que WordPress serve apenas para sites pequenos. Na prática, empresas como jornais e portais de grande escala já utilizaram WordPress como base. Com a arquitetura correta — CDN, cache de objeto, banco de dados otimizado e hospedagem gerenciada — um site WordPress pode escalar para milhões de acessos mensais.
+
+É importante ser honesto: o WordPress não é a solução ideal para todos os projetos. Aplicações altamente customizadas com lógica de negócio complexa podem se beneficiar mais de um framework como Laravel ou Next.js. Aplicações em tempo real e projetos que exigem máxima performance sem overhead também podem ter alternativas melhores. A chave está em entender o contexto antes de escolher a tecnologia.
+
+Em resumo, desenvolver site com WordPress em 2026 continua sendo uma das decisões mais inteligentes para a maioria dos projetos web. A combinação de facilidade de gestão, ecossistema rico, custo acessível e SEO sólido faz do WordPress uma escolha difícil de superar para sites institucionais, blogs, portfólios e e-commerces de pequeno a médio porte. O segredo está em usar a ferramenta certa para o problema certo — e para a maioria dos negócios digitais, o WordPress ainda é a resposta.`,
+    tags: ['WordPress', 'CMS', 'SEO', 'Desenvolvimento Web'],
+    author: 'Dayvson Marques',
+    categories: ['WordPress', 'Desenvolvimento Web', 'CMS']
+  },
+  {
+    id: 11,
+    slug: 'criar-loja-virtual-woocommerce',
+    title: 'Criar loja virtual com WooCommerce: guia completo 2026',
+    image: images[8],
+    date: '2026-01-15',
+    excerpt: 'Com mais de 6 milhões de lojas ativas no mundo, o WooCommerce se consolidou como o plugin de e-commerce mais usado do planeta. Aprenda a criar sua loja do zero.',
+    content: `Criar loja virtual com WooCommerce é hoje uma das formas mais acessíveis e poderosas de entrar no e-commerce. Com mais de 6 milhões de lojas ativas no mundo, o WooCommerce se consolidou como o plugin de e-commerce mais usado do planeta, rodando sobre a base sólida do WordPress. Se você quer montar uma loja profissional sem gastar fortunas com plataformas proprietárias ou precisar de um time de desenvolvedores dedicado, este guia foi feito para você.
+
+WooCommerce é um plugin gratuito e open-source que transforma qualquer site WordPress em uma loja virtual completa. Desenvolvido pela Automattic, ele foi lançado em 2011 e hoje é responsável por cerca de 23% de todas as lojas online do mundo. O plugin base é 100% gratuito, suporta desde produtos físicos até digitais, assinaturas e bookings, e conta com mais de 800 extensões oficiais.
+
+Antes de instalar o WooCommerce, você precisa de um domínio registrado, uma hospedagem compatível com WordPress (PHP 8.0+ e MySQL 8.0+) e um certificado SSL ativo, que é obrigatório para e-commerce. Para o mercado brasileiro, hospedagens como Hostinger, KingHost e WP Engine oferecem ótimos planos com suporte especializado.
+
+Após instalar o WordPress, basta ir em Plugins > Adicionar novo e buscar por "WooCommerce". O assistente de configuração vai guiar você pelos primeiros passos: dados da loja com país e moeda, configuração de pagamentos, configuração de frete e plugins recomendados. O processo leva menos de 30 minutos do zero até a loja pronta para receber os primeiros produtos.
+
+Para pagamentos no mercado brasileiro, as opções mais usadas com WooCommerce são Mercado Pago, PagSeguro, Pagar.me e Gerencianet/Efi. Todos oferecem suporte a PIX, boleto e cartão de crédito. O PIX se tornou fundamental para conversão: taxas menores e aprovação instantânea reduzem o abandono de carrinho de forma significativa.
+
+Para produtos físicos, a integração com os Correios é essencial. O plugin Claudio Sanches WooCommerce Correios calcula o frete em tempo real de acordo com peso e dimensões. Alternativas como Frenet e Melhor Envio agregam múltiplas transportadoras e permitem negociar fretes melhores conforme o volume de envios cresce.
+
+Além da configuração básica, alguns plugins são indispensáveis: Rank Math SEO para otimização dos produtos nos mecanismos de busca, WP Rocket para performance e velocidade, e um plugin de backup automático como UpdraftPlus. Para conversão, CartFlows cria funis de venda otimizados e a lista de desejos do YITH aumenta o retorno de visitantes.
+
+O abandono de carrinho é um dos maiores desafios do e-commerce. Para reduzir, use checkout em uma única página, ofereça compra sem cadastro obrigatório, exiba selos de segurança visíveis e implemente e-mails automáticos de recuperação. Pequenas melhorias no checkout podem aumentar a taxa de conversão em 20 a 30%.
+
+Criar loja virtual com WooCommerce continua sendo em 2026 uma das decisões mais sólidas para quem quer entrar no e-commerce com controle total, custo acessível e escalabilidade real. A combinação de WordPress e WooCommerce entrega uma plataforma robusta, com ecossistema maduro e comunidade gigante. O sucesso da loja depende de configuração correta, boas práticas de experiência do usuário e uma estratégia consistente de marketing digital.`,
+    tags: ['WooCommerce', 'E-commerce', 'WordPress', 'Loja Virtual'],
+    author: 'Dayvson Marques',
+    categories: ['WooCommerce', 'E-commerce', 'WordPress']
+  },
+  {
+    id: 12,
+    slug: 'laravel-horizon-sanctum-aplicacoes-profissionais',
+    title: 'Laravel Horizon e Sanctum: APIs e filas profissionais em 2026',
+    image: images[9],
+    date: '2026-02-05',
+    excerpt: 'Laravel Horizon e Sanctum são dois dos recursos mais poderosos do ecossistema Laravel para construir aplicações profissionais: filas assíncronas monitoradas visualmente e autenticação de API elegante.',
+    content: `Laravel Horizon e Sanctum são dois dos recursos mais poderosos do ecossistema Laravel para quem quer construir aplicações profissionais e escaláveis. O Horizon oferece um painel visual completo para monitorar e gerenciar filas assíncronas, enquanto o Sanctum resolve a autenticação de APIs e SPAs de forma elegante e segura. Juntos, eles cobrem dois dos maiores desafios de aplicações modernas: performance com processamento em background e segurança nas integrações.
+
+Filas permitem que tarefas demoradas — como envio de e-mails, geração de PDFs, processamento de imagens ou chamadas a APIs externas — sejam executadas em background, sem travar a experiência do usuário. Em vez de o servidor processar tudo de forma síncrona e fazer o usuário esperar, o job é enfileirado e processado por um worker em segundo plano, enquanto o usuário já recebe sua resposta imediata.
+
+O Laravel Horizon é um painel de monitoramento para filas Redis no Laravel. Ele fornece dashboard visual em tempo real, monitoramento de throughput e tempo de execução, configuração de workers via código, alertas de falhas e métricas históricas, além de suporte a múltiplas filas com prioridades diferentes. A instalação é simples: composer require laravel/horizon seguido de php artisan horizon:install.
+
+O arquivo config/horizon.php centraliza toda a configuração de workers, incluindo quantos processos rodar em cada ambiente, balanceamento automático de carga e intervalos de cooldown. Em produção, o Supervisor mantém o Horizon rodando continuamente, reiniciando automaticamente em caso de falha. O dashboard fica acessível em /horizon com proteção de autenticação configurável.
+
+O Laravel Sanctum resolve a autenticação de APIs de forma mais simples do que o Passport, que implementa OAuth2 completo. O Sanctum suporta dois casos de uso: API Tokens para apps mobile e integrações entre sistemas, e SPA Authentication baseada em cookies para aplicações Single Page como React, Vue ou Next.js que consomem a API no mesmo domínio.
+
+Para API Tokens, basta adicionar a trait HasApiTokens ao model User, criar um endpoint de login que retorna o token e proteger as rotas com o middleware auth:sanctum. O usuário faz login, recebe um token e usa o cabeçalho Authorization: Bearer token em todas as requisições subsequentes. O token pode ter abilities específicas, permitindo controle granular de permissões por recurso.
+
+Para SPAs no mesmo domínio, o fluxo usa cookies: primeiro obtém o cookie CSRF via GET /sanctum/csrf-cookie, depois faz o login via POST /login e todas as requisições seguintes são automaticamente autenticadas. Essa abordagem elimina a necessidade de gerenciar tokens no frontend, simplificando a implementação e aumentando a segurança.
+
+A combinação de Horizon e Sanctum na prática aparece em projetos como e-commerces, onde o endpoint de criação de pedido autentica o usuário via Sanctum, salva o pedido no banco e imediatamente despacha um job no Horizon para enviar o e-mail de confirmação, notificar o estoque e gerar a nota fiscal. O resultado é resposta em milissegundos para o cliente com processamento pesado em background.
+
+Laravel Horizon e Sanctum são peças fundamentais para quem quer construir aplicações Laravel profissionais em 2026. O Horizon transforma o gerenciamento de filas em algo visual, monitorável e controlável. O Sanctum oferece autenticação robusta sem a complexidade desnecessária do OAuth2 para a maioria dos projetos. Combinados, eles cobrem dois pilares de qualquer API moderna: segurança e performance assíncrona.`,
+    tags: ['Laravel', 'PHP', 'Horizon', 'Sanctum', 'API'],
+    author: 'Dayvson Marques',
+    categories: ['Laravel', 'PHP', 'Back-end']
+  },
+  {
+    id: 13,
+    slug: 'portfolio-desenvolvedor-nextjs',
+    title: 'Portfólio para desenvolvedor com Next.js: do zero ao deploy',
+    image: images[10],
+    date: '2026-02-26',
+    excerpt: 'Ter um portfólio profissional em 2026 não é mais diferencial — é pré-requisito. Aprenda a criar o seu com Next.js, Tailwind CSS e deploy gratuito na Vercel.',
+    content: `Ter um portfólio para desenvolvedor profissional em 2026 não é mais diferencial — é pré-requisito. Recrutadores, clientes e parceiros sempre vão pedir um link para ver seus projetos antes de qualquer conversa séria. A boa notícia é que, com Next.js e Vercel, você consegue criar um portfólio rápido, bonito, otimizado para SEO e com deploy gratuito em menos tempo do que imagina.
+
+Next.js combina o melhor dos mundos: renderização no servidor para SEO, geração de páginas estáticas para performance e a flexibilidade do React para componentes interativos. Para um portfólio de desenvolvedor, isso significa páginas indexadas facilmente pelo Google, pontuação alta no Core Web Vitals, uma stack que demonstra domínio das tecnologias mais demandadas do mercado e deploy gratuito na Vercel para projetos pessoais.
+
+Antes de escrever uma linha de código, defina o que seu portfólio deve comunicar. As seções obrigatórias são: Hero com apresentação direta de quem você é e o que faz, Sobre mim com história e diferenciais, Projetos com provas concretas do seu trabalho, Skills com as tecnologias que você domina, Experiência com histórico profissional resumido e Contato. Um blog é opcional, mas agrega muito em SEO e autoridade técnica de longo prazo.
+
+Para iniciar o projeto: npx create-next-app@latest portfolio --typescript --tailwind --app. A estrutura de pastas recomendada separa componentes, dados estáticos em arquivos TypeScript e as rotas do App Router. Manter os dados de projetos e skills em arquivos separados facilita atualizações sem mexer nos componentes visuais.
+
+O App Router do Next.js torna o SEO extremamente simples com o objeto metadata. Configure title com template para todas as páginas herdarem automaticamente o formato "Página | Seu Nome", defina openGraph com imagem, url e type, e adicione twitter card. Essas configurações aparecem automaticamente quando alguém compartilha seu link nas redes sociais, aumentando a taxa de clique.
+
+O dark mode é um recurso esperado em portfólios modernos. Com Tailwind e next-themes, a implementação é direta: configure darkMode: 'class' no tailwind.config, use um ThemeToggle que chama setTheme e aplique classes dark: em todos os componentes. O tema é persistido automaticamente no localStorage entre visitas.
+
+Para imagens, use sempre o componente Image do Next.js. Ele otimiza automaticamente o formato (WebP), aplica lazy loading, evita layout shift e serve versões redimensionadas conforme o dispositivo. Para um portfólio com muitas capturas de projetos, esse componente pode reduzir o peso total das imagens em mais de 60%.
+
+O deploy na Vercel é o ponto mais simples de todo o processo: crie uma conta, conecte seu repositório GitHub e a Vercel detecta automaticamente o Next.js. Cada push na main gera um deploy automático e cada Pull Request ganha um preview URL. Para domínio customizado, compre um domínio e configure os registros DNS apontando para a Vercel — leva menos de 10 minutos.
+
+O melhor portfólio não é o mais bonito — é o que está publicado. Comece simples, com Hero, Projetos e Contato funcionando. Itere com consistência: adicione o blog quando tiver 2 ou 3 posts prontos, implemente dark mode como segunda melhoria, adicione animações por último. Cada melhoria incremental já pode ser o diferencial que te faz ser lembrado em uma entrevista.`,
+    tags: ['Next.js', 'Portfólio', 'React', 'Vercel', 'TypeScript'],
+    author: 'Dayvson Marques',
+    categories: ['Next.js', 'React', 'Carreira']
+  },
+  {
+    id: 14,
+    slug: 'prisma-postgresql-vercel-guia-completo',
+    title: 'Prisma com PostgreSQL na Vercel: banco de dados moderno em 2026',
+    image: images[11],
+    date: '2026-03-19',
+    excerpt: 'Prisma com PostgreSQL na Vercel é uma das stacks mais poderosas para aplicações Next.js modernas. ORM tipado, banco relacional robusto e deploy simplificado — tudo isso de forma gratuita.',
+    content: `Prisma com PostgreSQL na Vercel é hoje uma das stacks mais poderosas e acessíveis para desenvolvedores que querem construir aplicações full stack modernas sem gerenciar infraestrutura complexa. O Prisma oferece um ORM tipado e seguro, o PostgreSQL é o banco de dados relacional mais respeitado do mercado, e a Vercel fornece deploy e hospedagem simplificados. Juntos, eles formam um trio que permite ir do zero à produção em horas.
+
+O Prisma surgiu para resolver os problemas dos ORMs tradicionais do ecossistema Node.js, que eram poderosos mas verbosos e com tipagem fraca. Com Prisma, você define seus modelos em um arquivo .prisma com sintaxe declarativa, e ele gera automaticamente os tipos TypeScript correspondentes. Isso elimina uma classe inteira de bugs em tempo de compilação e torna o autocomplete do editor incrivelmente preciso.
+
+O schema do Prisma é o coração da aplicação: cada model define uma tabela, cada campo define uma coluna com seu tipo e constraints, e as relações são declaradas de forma explícita e bidirecional. Com prisma migrate dev, o Prisma gera e aplica automaticamente as migrations do banco, mantendo um histórico versionado de todas as alterações de schema que pode ser commitado junto com o código.
+
+Para projetos pessoais e portfólios, você não precisa pagar por banco de dados. O Neon oferece 0.5 GB gratuito com suporte a database branching — funcionalidade única que permite criar branches do banco assim como branches do Git, ideal para testar migrations sem impactar a produção. O Supabase oferece 500 MB gratuito com interface visual e autenticação embutida.
+
+Um ponto que confunde muitos desenvolvedores ao usar Prisma com provedores serverless é a necessidade de duas variáveis de ambiente distintas. A DATABASE_URL deve incluir ?pgbouncer=true para usar connection pooling — essencial em ambientes serverless onde cada invocação pode abrir uma nova conexão de banco. A DIRECT_URL é a conexão direta, necessária apenas para o Prisma Migrate, que não funciona via pgBouncer.
+
+Em projetos Next.js com hot-reload, sem o padrão Singleton você cria dezenas de conexões desnecessárias durante o desenvolvimento. A solução é exportar uma instância única do PrismaClient usando globalThis para preservar a instância entre reloads. Em produção isso não é necessário, mas no desenvolvimento faz diferença significativa na estabilidade.
+
+Com o App Router do Next.js, as Route Handlers são a forma moderna de criar API endpoints. Uma rota GET busca registros com findMany, aplica filtros e ordenação declarativamente e retorna o resultado como JSON. Uma rota POST valida o body, cria o registro com create e retorna 201. O Prisma cuida da SQL gerada, do escaping de parâmetros e da segurança contra SQL injection automaticamente.
+
+Para o deploy na Vercel, configure as duas variáveis de ambiente no painel — DATABASE_URL com pgbouncer e DIRECT_URL sem — e ajuste o script de build para incluir prisma migrate deploy antes do next build. Nunca use prisma migrate dev em produção: o dev é interativo e feito para desenvolvimento, enquanto o deploy é silencioso e seguro para CI/CD.
+
+Prisma com PostgreSQL na Vercel é a combinação perfeita para desenvolvedores que querem produtividade, segurança de tipos e escalabilidade sem gerenciar servidores. A curva de aprendizado é suave, a documentação é excelente e o ecossistema de provedores gratuitos elimina barreiras para quem está começando. Se você está construindo seu portfólio, um SaaS ou uma API em Next.js, essa stack vai economizar seu tempo e evitar surpresas em produção.`,
+    tags: ['Prisma', 'PostgreSQL', 'Vercel', 'Next.js', 'TypeScript'],
+    author: 'Dayvson Marques',
+    categories: ['Banco de Dados', 'Next.js', 'Full Stack']
+  },
+  {
+    id: 15,
+    slug: 'painel-admin-nextjs-crud-autenticacao',
+    title: 'Painel admin com Next.js: autenticação, CRUD e permissões',
+    image: images[12],
+    date: '2026-04-02',
+    excerpt: 'Construir um painel admin com Next.js é um dos projetos mais completos para um desenvolvedor full stack: autenticação real, controle de acesso por grupos e CRUD com Server Actions.',
+    content: `Criar um painel admin com Next.js é um dos projetos mais completos que você pode desenvolver para crescer como desenvolvedor full stack. Em um único sistema, você lida com autenticação segura, operações de banco de dados, controle de acesso por perfis, upload de arquivos e muito mais. E o melhor: com Next.js App Router, Prisma e NextAuth.js, você consegue entregar algo profissional sem depender de frameworks pesados como Django Admin ou Laravel Nova.
+
+Ferramentas como Strapi, Directus e Payload CMS são ótimas, mas quando você precisa de uma solução totalmente integrada ao seu domínio de negócio, construir o painel do zero tem vantagens claras: controle total sobre UX, regras de negócio e performance; mesma stack do frontend público sem overhead; e um projeto de portfólio que cobre praticamente todos os pilares do desenvolvimento full stack moderno.
+
+A estrutura de rotas de um painel admin com App Router separa o layout administrativo em um diretório dedicado com seu próprio layout.tsx, que contém sidebar e header. Dentro dele ficam as rotas de cada entidade: usuários, grupos, permissões, conteúdo, skills, experiência. Cada entidade tipicamente tem uma página de listagem, uma de criação e uma de edição com parâmetro dinâmico.
+
+A autenticação com NextAuth.js usa o CredentialsProvider para login com e-mail e senha. O fluxo valida as credenciais contra o banco via Prisma, compara a senha com bcrypt, carrega as permissões do grupo do usuário e as injeta no token JWT via callback. Na sessão, as permissões ficam disponíveis em session.user.permissions como um array de strings, acessível em qualquer Server Component ou Client Component.
+
+O Middleware do Next.js é a peça que protege todas as rotas administrativas. Com withAuth do NextAuth, qualquer rota sob /admin/* exige um token válido. Para proteção granular por recurso, o middleware verifica se o token contém a permission específica da rota acessada — por exemplo users:manage para o CRUD de usuários — e redireciona para o dashboard com um aviso de acesso negado caso contrário.
+
+O sistema de permissões usa três entidades relacionadas: User, Group e Permission. Um usuário pertence a um grupo, um grupo tem várias permissões, e uma permissão tem um codename único como skills:manage ou content:edit. Essa estrutura permite criar grupos como Administrador, Editor e Visualizador com conjuntos diferentes de permissões, atribuindo o grupo certo a cada usuário conforme seu papel no sistema.
+
+Com Next.js 14+, Server Actions simplificam drasticamente as operações de escrita. Em vez de criar uma API Route separada, você declara uma função async com a diretiva "use server", checa a sessão do usuário, executa a operação no Prisma e chama revalidatePath para atualizar o cache da listagem. A função é chamada diretamente de um formulário HTML via action ou de um botão de exclusão, sem precisar de fetch no cliente.
+
+As páginas de listagem são Server Components que buscam os dados diretamente no banco via Prisma durante o render no servidor. Isso elimina estados de loading, evita waterfalls de requests e simplifica o código em comparação com Client Components que fazem fetch. Para buscas e filtros em tempo real, o padrão é usar query params na URL, que o Server Component lê via searchParams e repassa para a query do Prisma.
+
+Construir um painel admin com Next.js do zero é um dos exercícios mais completos e valiosos que um desenvolvedor full stack pode fazer. Você domina autenticação real, controle de acesso granular, operações de banco tipadas com Prisma e a arquitetura moderna do App Router — tudo em um único projeto. E o resultado é algo que você pode usar em clientes reais, cobrar por manutenção e evoluir conforme a necessidade cresce.`,
+    tags: ['Next.js', 'Admin', 'Autenticação', 'CRUD', 'Full Stack'],
+    author: 'Dayvson Marques',
+    categories: ['Next.js', 'Full Stack', 'Autenticação']
   }
 ];
 
