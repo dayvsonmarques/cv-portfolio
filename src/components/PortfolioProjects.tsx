@@ -23,8 +23,8 @@ const projects = [
       es: 'Sitio del III Seminario Estatal de Atención a la Salud Penitenciaria de Pernambuco y la III Muestra Estatal de Experiencias en Salud Penitenciaria.',
     },
     url: 'https://dgasp.webdev.recife.br/',
-    preview: `https://api.microlink.io/?url=https://dgasp.webdev.recife.br/&screenshot=true&meta=false&embed=screenshot.url`,
-    previewType: 'screenshot',
+    preview: 'https://dgasp.webdev.recife.br/wp-content/themes/congresso-custom/assets/img/logo-header.png',
+    previewType: 'logo',
   },
 ];
 
