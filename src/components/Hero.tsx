@@ -7,11 +7,10 @@ import CodePenBackground from './CodePenBackground';
 
 type HeroProps = {
   name?: string;
-  greeting?: string;
   description?: string;
 };
 
-const Hero = ({ name, greeting, description }: HeroProps) => {
+const Hero = ({ name, description }: HeroProps) => {
   const { t } = useApp();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
@@ -42,9 +41,6 @@ const Hero = ({ name, greeting, description }: HeroProps) => {
         <p className="xs:text-3xl lg:text-5xl font-medium text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed hidden">
           {description ?? t('hero.description')}
         </p>
-        <h2 className="text-lg sm:text-2xl lg:text-4xl font-semibold uppercase tracking-[0.3em] text-gray-200 dark:text-gray-100 mb-8 sm:mb-12">
-          {greeting ?? t('hero.greeting')}
-        </h2>
         <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-8">
           <SocialIcons variant="hero" showTooltips={true} />
         </div>

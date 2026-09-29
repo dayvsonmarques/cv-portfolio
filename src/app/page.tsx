@@ -41,7 +41,6 @@ export default async function Home() {
       <Header />
       <Hero
         name={homeContent.hero?.name}
-        greeting={homeContent.hero?.greeting}
         description={homeContent.hero?.description}
       />
       <About
