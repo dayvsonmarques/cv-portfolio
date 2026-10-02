@@ -4,13 +4,21 @@ import React from 'react';
 import { useApp } from '@/contexts/AppContext';
 import SocialIcons from './SocialIcons';
 import CodePenBackground from './CodePenBackground';
+import RotatingRole from './RotatingRole';
+
+const ROLES = [
+  'Desenvolvedor Web',
+  'Desenvolvedor Front-end',
+  'Desenvolvedor Back-end',
+  'Analista de Sistemas',
+  'Consultoria & Treinamentos',
+];
 
 type HeroProps = {
-  name?: string;
   description?: string;
 };
 
-const Hero = ({ name, description }: HeroProps) => {
+const Hero = ({ description }: HeroProps) => {
   const { t } = useApp();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
@@ -35,8 +43,10 @@ const Hero = ({ name, description }: HeroProps) => {
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-gray-800 pt-16 sm:pt-20 relative pb-10 overflow-hidden">
       <CodePenBackground />
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-        <h1 className="text-4xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-4 lg:pb-4 sm:mb-6 tracking-tight break-words" style={{ whiteSpace: 'pre-line'}}>
-          {name ?? t('hero.name')}
+        <h1 className="text-3xl sm:text-hero font-heading font-extrabold text-white dark:text-white mb-4 lg:pb-4 sm:mb-6 tracking-tight break-words">
+          Dayvson Marques
+          <br />
+          <RotatingRole roles={ROLES} />
         </h1>
         <p className="xs:text-3xl lg:text-5xl font-medium text-gray-100 dark:text-gray-200 mb-6 sm:mb-8 leading-relaxed hidden">
           {description ?? t('hero.description')}

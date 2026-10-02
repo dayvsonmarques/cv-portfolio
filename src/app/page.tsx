@@ -40,7 +40,6 @@ export default async function Home() {
     <div className="min-h-screen">
       <Header />
       <Hero
-        name={homeContent.hero?.name}
         description={homeContent.hero?.description}
       />
       <About

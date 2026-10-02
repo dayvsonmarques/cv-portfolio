@@ -124,7 +124,7 @@
   .tracking-widest { letter-spacing: 0.1em; }
 
   .text-hero {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
     line-height: 1;
     font-weight: 800;
     letter-spacing: -0.05em;
