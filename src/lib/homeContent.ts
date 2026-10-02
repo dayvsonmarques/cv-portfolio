@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import type { ExperienceType } from "@/types/experience";
 import type { Prisma } from "@prisma/client";
@@ -111,11 +112,17 @@ export type HomeContent = {
 
 const HOME_SECTIONS = ["hero", "about", "skills", "experience", "blogSection"] as const;
 
-export async function getHomeContent(language: string): Promise<HomeContent> {
-  let rows: Array<{ section: string; title: string | null; subtitle: string | null; description: string | null; data: Prisma.JsonValue | null }> = [];
+type ContentRow = { section: string; title: string | null; subtitle: string | null; description: string | null; data: Prisma.JsonValue | null };
 
-  try {
-    rows = await prisma.content.findMany({
+export const HOME_CONTENT_CACHE_TAG = "home-content";
+
+// Cached at the Next.js Data Cache layer (persists across serverless invocations on Vercel).
+// Revalidation is stale-while-revalidate: if the DB is unreachable (e.g. Supabase project
+// paused on the free tier), the last successfully fetched rows keep being served instead
+// of failing the request. The cache is also invalidated on-demand from the admin API.
+const getCachedHomeContentRows = unstable_cache(
+  async (language: string): Promise<ContentRow[]> =>
+    prisma.content.findMany({
       where: {
         language,
         section: { in: [...HOME_SECTIONS] },
@@ -127,10 +134,19 @@ export async function getHomeContent(language: string): Promise<HomeContent> {
         description: true,
         data: true,
       },
-    });
+    }),
+  ["home-content"],
+  { revalidate: 3600, tags: [HOME_CONTENT_CACHE_TAG] }
+);
+
+export async function getHomeContent(language: string): Promise<HomeContent> {
+  let rows: ContentRow[] = [];
+
+  try {
+    rows = await getCachedHomeContentRows(language);
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn("[getHomeContent] Prisma unavailable; falling back to translations.", error);
+      console.warn("[getHomeContent] Prisma unavailable and no cached data yet; falling back to translations.", error);
     }
 
     return {};
