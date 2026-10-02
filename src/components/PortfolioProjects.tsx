@@ -5,22 +5,17 @@ import { useApp } from '@/contexts/AppContext';
 
 const projects = [
   {
-    name: 'Manuela Rios',
-    description: {
-      pt: 'Site institucional e portfólio | Palestrante de saúde e bem-estar | Mentora de mudança de estilo de vida | Escritora | Podcast \'Saúde em 1º Lugar\'',
-      en: 'Institutional website and portfolio | Health and wellness speaker | Lifestyle change mentor | Writer | Podcast \'Health First\'',
-      es: 'Sitio institucional y portafolio | Oradora de salud y bienestar | Mentora de cambio de estilo de vida | Escritora | Podcast \'Salud en 1er Lugar\'',
-    },
-    url: 'https://manuelarios.com.br/',
-    preview: 'https://manuelarios.com.br/wp-content/uploads/2025/11/cropped-logo-manurios-new-removebg-preview.png',
-    previewType: 'logo',
-  },
-  {
     name: 'DGASP',
     description: {
       pt: 'Site do III Seminário Estadual de Atenção à Saúde Prisional de Pernambuco e à III Mostra Estadual de Experiências na Saúde Prisional.',
       en: 'Website of the III State Seminar on Prison Health Care in Pernambuco and the III State Exhibition of Experiences in Prison Health.',
       es: 'Sitio del III Seminario Estatal de Atención a la Salud Penitenciaria de Pernambuco y la III Muestra Estatal de Experiencias en Salud Penitenciaria.',
+    },
+    year: 2026,
+    category: {
+      pt: 'Site institucional',
+      en: 'Institutional website',
+      es: 'Sitio institucional',
     },
     url: 'https://dgasp.webdev.recife.br/',
     preview: 'https://dgasp.webdev.recife.br/wp-content/themes/congresso-custom/assets/img/logo-header.png',
@@ -42,7 +37,7 @@ const PortfolioProjects = () => {
             {t('projects.title')}
           </h2>
           <div className="w-24 h-1 bg-gray-700 dark:bg-gray-300 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('projects.subtitle')}
           </p>
         </div>
@@ -70,6 +65,12 @@ const PortfolioProjects = () => {
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
                   {project.name}
                 </h3>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-semibold px-3 py-1 rounded-full">
+                    {project.category[lang]}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{project.year}</span>
+                </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   {project.description[lang]}
                 </p>

@@ -53,33 +53,13 @@ export const experiences: ExperienceType[] = [
       es: "Agencias de Publicidad"
     },
   startDate: "2015-02-01",
-  endDate: "2015-11-01",
-    description: {
-      pt: "Desenvolvimento e manutenção de lojas online, plugins e templates para diversos clientes do setor publicitário.",
-      en: "Development and maintenance of online stores, plugins and templates for various advertising clients.",
-      es: "Desarrollo y mantenimiento de tiendas online, plugins y plantillas para diversos clientes del sector publicitario."
-    },
-    technologies: ["PHP", "WordPress", "WooCommerce", "OpenCart", "MySQL", "HTML", "CSS", "JavaScript"]
-  },
-  {
-    title: {
-      pt: "Desenvolvedor Web",
-      en: "Web Developer",
-      es: "Desarrollador Web"
-    },
-    company: {
-      pt: "Bold Comunicação",
-      en: "Bold Comunicação",
-      es: "Bold Comunicação"
-    },
-  startDate: "2015-12-01",
   endDate: "2017-02-01",
     description: {
-      pt: "Desenvolvimento de protótipo de ecommerce B2B integrado com ERPs, focando em usabilidade e performance.",
-      en: "Development of B2B ecommerce prototype integrated with ERPs, focusing on usability and performance.",
-      es: "Desarrollo de prototipo de ecommerce B2B integrado com ERPs, enfocado em usabilidade e desempenho."
+      pt: "Desenvolvimento e manutenção de lojas online, plugins e templates para diversos clientes do setor publicitário, incluindo um protótipo de ecommerce B2B com consumo de APIs REST para integração com ERPs, priorizando design responsivo, usabilidade e performance.",
+      en: "Development and maintenance of online stores, plugins and templates for various advertising clients, including a B2B ecommerce prototype consuming REST APIs for ERP integration, prioritizing responsive design, usability and performance.",
+      es: "Desarrollo y mantenimiento de tiendas online, plugins y plantillas para diversos clientes del sector publicitario, incluyendo un prototipo de ecommerce B2B con consumo de APIs REST para integración con ERPs, priorizando diseño responsivo, usabilidad y rendimiento."
     },
-    technologies: ["Laravel", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap"]
+    technologies: ["PHP", "WordPress", "WooCommerce", "OpenCart", "MySQL", "HTML5", "CSS3", "JavaScript", "Laravel", "Bootstrap", "REST APIs"]
   },
   {
     title: {
@@ -135,11 +115,11 @@ export const experiences: ExperienceType[] = [
   startDate: "2019-01-01",
   endDate: "2019-07-01",
     description: {
-      pt: "Desenvolvimento de protótipo de ecommerce B2B integrado com ERPs, focando em usabilidade e performance.",
-      en: "Development of B2B ecommerce prototype integrated with ERPs, focusing on usability and performance.",
-      es: "Desarrollo de prototipo de ecommerce B2B integrado com ERPs, enfocado em usabilidade e desempenho."
+      pt: "Desenvolvimento de protótipo de ecommerce B2B com consumo de APIs REST para integração com ERPs, priorizando design responsivo, usabilidade e performance.",
+      en: "Development of a B2B ecommerce prototype consuming REST APIs for ERP integration, prioritizing responsive design, usability and performance.",
+      es: "Desarrollo de un prototipo de ecommerce B2B con consumo de APIs REST para integración con ERPs, priorizando diseño responsivo, usabilidad y rendimiento."
     },
-    technologies: ["Laravel", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap"]
+    technologies: ["Laravel", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap", "REST APIs"]
   },
   {
     title: {
@@ -155,11 +135,11 @@ export const experiences: ExperienceType[] = [
   startDate: "2019-08-01",
   endDate: "2023-12-01",
     description: {
-      pt: "Desenvolvimento e manutenção de aplicações front-end com foco em performance e acessibilidade.",
-      en: "Development and maintenance of front-end applications focused on performance and accessibility.",
-      es: "Desarrollo y mantenimiento de aplicaciones front-end con enfoque em rendimiento y accesibilidad."
+      pt: "Desenvolvimento e manutenção de aplicações front-end para o cliente Sky, consumindo APIs REST, com foco em performance, acessibilidade (a11y), compatibilidade entre navegadores e componentização reutilizável de interfaces. Colaboração próxima com o time de back-end e participação ativa em code reviews.",
+      en: "Development and maintenance of front-end applications for the Sky account, consuming REST APIs, focused on performance, accessibility (a11y), cross-browser compatibility and reusable UI componentization. Close collaboration with the back-end team and active participation in code reviews.",
+      es: "Desarrollo y mantenimiento de aplicaciones front-end para el cliente Sky, consumiendo APIs REST, con foco en rendimiento, accesibilidad (a11y), compatibilidad entre navegadores y componentización reutilizable de interfaces. Colaboración cercana con el equipo de back-end y participación activa en code reviews."
     },
-    technologies: ["React", "TypeScript", "Node.js", "Jest", "Cypress", "HTML5", "CSS3", "JavaScript"]
+    technologies: ["React", "TypeScript", "Node.js", "Jest", "Cypress", "HTML5", "CSS3", "JavaScript", "REST APIs", "Git"]
   },
   {
     title: {
@@ -175,11 +155,11 @@ export const experiences: ExperienceType[] = [
   startDate: "2024-01-01",
   endDate: "2024-07-01",
     description: {
-      pt: "Desenvolvimento e manutenção de ecommerce web (B2B), implementação de funcionalidades complexas e integração com sistemas.",
-      en: "Development and maintenance of B2B web ecommerce, implementation of complex features and system integration.",
-      es: "Desarrollo y manutenção de ecommerce web (B2B), implementación de funcionalidades complejas e integração com sistemas."
+      pt: "Desenvolvimento e manutenção de ecommerce web B2B em PHP/Laravel, com implementação de funcionalidades complexas e integração de sistemas via APIs REST.",
+      en: "Development and maintenance of a B2B web ecommerce in PHP/Laravel, implementing complex features and system integration via REST APIs.",
+      es: "Desarrollo y mantenimiento de un ecommerce web B2B en PHP/Laravel, implementando funcionalidades complejas e integración de sistemas vía APIs REST."
     },
-    technologies: ["Laravel", "PHP 7", "HTML5", "CSS3", "JavaScript"]
+    technologies: ["Laravel", "PHP 7", "HTML5", "CSS3", "JavaScript", "REST APIs", "Git"]
   },
   {
     title: {
@@ -195,10 +175,10 @@ export const experiences: ExperienceType[] = [
   startDate: "2024-07-01",
   isCurrent: true,
     description: {
-      pt: "Desenvolvimento de soluções web personalizadas, incluindo sites, sistemas e integrações.",
-      en: "Development of custom web solutions, including websites, systems and integrations.",
-      es: "Desarrollo de soluciones web personalizadas, incluindo sitios, sistemas e integraciones."
+      pt: "Desenvolvimento de soluções web personalizadas — sites, sistemas e integrações — com componentização reutilizável, consumo de APIs REST, design responsivo e foco em performance (Core Web Vitals).",
+      en: "Development of custom web solutions — websites, systems and integrations — with reusable componentization, REST API consumption, responsive design and a focus on performance (Core Web Vitals).",
+      es: "Desarrollo de soluciones web personalizadas — sitios, sistemas e integraciones — con componentización reutilizable, consumo de APIs REST, diseño responsivo y foco en rendimiento (Core Web Vitals)."
     },
-    technologies: ["Next.js", "React", "Node.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Wordpress", "WooCommerce"]
+    technologies: ["Next.js", "React", "Node.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Wordpress", "WooCommerce", "REST APIs", "Git"]
   }
 ];
