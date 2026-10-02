@@ -40,10 +40,10 @@ const About = ({ sectionTitle, headline, subtitle, description, imageSrc, imageA
           </div>
 
           <div>
-            <h3 className="text-1xl font-heading font-semibold text-black dark:text-white mb-1 sm:mb-4 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-heading font-semibold text-black dark:text-white mb-1 sm:mb-4 tracking-tight">
               {headline ?? t('hero.title')}
             </h3>
-            <h4 className="text-1xl mb-4">{subtitle ?? t('about.subtitle')}</h4>
+            <h4 className="text-lg sm:text-xl mb-4">{subtitle ?? t('about.subtitle')}</h4>
             <p className="text-2xl text-left font-body text-black dark:text-white font-light mb-4 sm:mb-6 leading-relaxed">
               {description ?? t('about.description')}
             </p>

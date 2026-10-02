@@ -5,7 +5,7 @@ import { blogPosts } from '@/components/BlogPosts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogImageParallax from '@/components/BlogImageParallax';
-import Link from 'next/link';
+import BlogPostNav from '@/components/BlogPostNav';
 import Breadcrumb from '@/components/Breadcrumb';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -13,6 +13,39 @@ import { Metadata } from 'next';
 type BlogPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const MARKDOWN_LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+function renderWithLinks(text: string) {
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+
+  MARKDOWN_LINK.lastIndex = 0;
+  while ((match = MARKDOWN_LINK.exec(text)) !== null) {
+    const [full, label, url] = match;
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    parts.push(
+      <a
+        key={key++}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold italic text-black dark:text-white hover:underline"
+      >
+        {label}
+      </a>
+    );
+    lastIndex = match.index + full.length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts;
+}
 
 export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -70,24 +103,6 @@ const BlogPostPage = async ({ params }: BlogPageProps) => {
               ))}
             </div>
             <div className="w-full flex flex-col lg:flex-row lg:justify-center gap-6">
-              {post.author && (
-                <span className="inline-flex items-center gap-2 text-base text-gray-700 dark:text-gray-300 font-medium h-7">
-                  <svg
-                    className="h-5 w-5 text-yellow-500 flex-shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M7 9a4 4 0 1 0 10 0 4 4 0 0 0-10 0" />
-                    <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
-                  </svg>
-                  <span className="leading-none text-sm lg:text-base text-gray-800 dark:text-gray-200">{post.author}</span>
-                </span>
-              )}
               <PostDate
                 date={post.date}
                 className="leading-none text-base text-gray-700 dark:text-gray-300 font-medium"
@@ -98,23 +113,12 @@ const BlogPostPage = async ({ params }: BlogPageProps) => {
             <p className="text-2xl mb-5 font-roboto">{post.excerpt}</p>
             <div className="mt-6">
               {post.content.split('\n').map((paragraph, idx) => (
-                <p key={idx} className="mb-5 text-2xl font-roboto">{paragraph}</p>
+                <p key={idx} className="mb-5 text-2xl font-roboto">{renderWithLinks(paragraph)}</p>
               ))}
             </div>
           </article>
 
-          <div className="flex justify-between items-center mt-12">
-            <Link href="/blog" className="text-black italic text-lg font-title transition-colors flex items-center gap-2 hover:text-yellow-500">
-              <span aria-hidden="true">←</span>
-              Voltar ao Blog
-            </Link>
-            {nextPost && (
-              <Link href={`/blog/${nextPost.slug}`} className="text-black italic text-lg font-title transition-colors flex items-center gap-2 hover:text-yellow-500">
-                Próximo Post
-                <span aria-hidden="true">→</span>
-              </Link>
-            )}
-          </div>
+          <BlogPostNav nextPostSlug={nextPost?.slug} />
         </div>
       </main>
       <Footer />

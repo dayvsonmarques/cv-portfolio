@@ -25,9 +25,9 @@ const HOME_TRANSLATIONS: Record<LanguageKey, {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Recife/PE * 36 anos * Web Dev',
+      subtitle: 'Recife/PE, Brasil * 37 anos',
       description:
-        'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas.',
+        'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas. Atuo com foco em performance, segurança e otimização para SEO e GEO (Generative Engine Optimization), garantindo projetos rápidos, seguros e bem posicionados tanto em buscadores tradicionais quanto em motores de busca com IA.',
     },
     skills: { frontend: 'Frontend', backend: 'Backend' },
     experience: { title: 'Experiência' },
@@ -44,9 +44,9 @@ const HOME_TRANSLATIONS: Record<LanguageKey, {
     },
     about: {
       title: 'About',
-      subtitle: 'Web developer * Recife/PE * 36 years old',
+      subtitle: 'Recife/PE, Brazil * 37 years old',
       description:
-        'Graduated in Information Systems from UniNabuco (2008 - 2012). Web developer for over 15 years, specialist in creating websites, online stores and web applications (front-end & back-end) using modern technologies.',
+        'Graduated in Information Systems from UniNabuco (2008 - 2012). Web developer for over 15 years, specialist in creating websites, online stores and web applications (front-end & back-end) using modern technologies. I focus on performance, security, and SEO & GEO (Generative Engine Optimization), ensuring projects are fast, secure, and well-positioned in both traditional search engines and AI-powered answer engines.',
     },
     skills: { frontend: 'Frontend', backend: 'Backend' },
     experience: { title: 'Experience' },
@@ -63,9 +63,9 @@ const HOME_TRANSLATIONS: Record<LanguageKey, {
     },
     about: {
       title: 'Sobre mí',
-      subtitle: 'Recife/PE * 36 años * Desarrollador web',
+      subtitle: 'Recife/PE, Brasil * 37 años',
       description:
-        'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especializado en crear sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas.',
+        'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especializado en crear sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas. Trabajo con foco en rendimiento, seguridad y optimización para SEO y GEO (Generative Engine Optimization), garantizando proyectos rápidos, seguros y bien posicionados tanto en buscadores tradicionales como en motores de búsqueda con IA.',
     },
     skills: { frontend: 'Frontend', backend: 'Backend' },
     experience: { title: 'Experiencia' },

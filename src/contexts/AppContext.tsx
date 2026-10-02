@@ -19,7 +19,8 @@ const translations = {
       experience: 'Experiência',
       projects: 'Projetos',
   contact: 'Contato',
-  blog: 'Blog'
+  blog: 'Blog',
+  homeAriaLabel: 'Ir para a página inicial'
     },
     hero: {
       title: 'Dayvson Marques',
@@ -33,8 +34,8 @@ const translations = {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Recife/PE * 36 anos * Web Dev',
-      description: 'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas.',
+      subtitle: 'Recife/PE, Brasil * 37 anos',
+      description: 'Graduado em Sistemas de Informação pela UniNabuco (2008 - 2012). Desenvolvedor web a +15 anos, especialista na criação de sites, lojas online e aplicações web (front-end & back-end) usando tecnologias modernas. Atuo com foco em performance, segurança e otimização para SEO e GEO (Generative Engine Optimization), garantindo projetos rápidos, seguros e bem posicionados tanto em buscadores tradicionais quanto em motores de busca com IA.',
       text1: 'Sou Dayvson Marques, desenvolvedor web com mais de 15 anos de experiência baseado em Recife-PE. Especializado em desenvolvimento full-stack e criação de soluções digitais personalizadas. Minha paixão é transformar ideias em experiências web excepcionais.',
       text2: 'Trabalho com tecnologias como React, Next.js, Node.js e tenho expertise em otimização de performance e desenvolvimento responsivo. Sempre em busca de entregar soluções que combinem funcionalidade e design moderno.',
       experience: 'Anos de Experiência',
@@ -93,7 +94,9 @@ const translations = {
     blogSection: {
       title: 'Blog',
       subtitle: 'Posts Recentes',
-      viewAll: 'Ver todas as postagens'
+      viewAll: 'Ver todas as postagens',
+      backToBlog: 'Voltar ao Blog',
+      nextPost: 'Próximo Post'
     },
     contact: {
       title: 'Contato',
@@ -140,7 +143,8 @@ const translations = {
       experience: 'Experience',
       projects: 'Projects',
   contact: 'Contact',
-  blog: 'Blog'
+  blog: 'Blog',
+  homeAriaLabel: 'Go to homepage'
     },
     hero: {
       title: 'Dayvson Marques',
@@ -154,8 +158,8 @@ const translations = {
     },
     about: {
       title: 'About',
-      subtitle: 'Web developer * Recife/PE * 36 years old',
-      description: 'Graduated in Information Systems from UniNabuco (2008 - 2012). Web developer for over 15 years, specialist in creating websites, online stores and web applications (front-end & back-end) using modern technologies.',
+      subtitle: 'Recife/PE, Brazil * 37 years old',
+      description: 'Graduated in Information Systems from UniNabuco (2008 - 2012). Web developer for over 15 years, specialist in creating websites, online stores and web applications (front-end & back-end) using modern technologies. I focus on performance, security, and SEO & GEO (Generative Engine Optimization), ensuring projects are fast, secure, and well-positioned in both traditional search engines and AI-powered answer engines.',
       text1: "I'm Dayvson Marques, a web developer with over 15 years of experience based in Recife-PE. Specialized in full-stack development and creating custom digital solutions. My passion is turning ideas into exceptional web experiences.",
       text2: "I work with technologies like React, Next.js, Node.js and have expertise in performance optimization and responsive development. Always striving to deliver solutions that combine functionality and modern design.",
       experience: 'Years of Experience',
@@ -214,7 +218,9 @@ const translations = {
     blogSection: {
       title: 'Blog',
       subtitle: 'Latest posts',
-      viewAll: 'View all posts'
+      viewAll: 'View all posts',
+      backToBlog: 'Back to Blog',
+      nextPost: 'Next Post'
     },
     contact: {
       title: 'Contact',
@@ -261,7 +267,8 @@ const translations = {
       experience: 'Experiencia',
       projects: 'Proyectos',
   contact: 'Contacto',
-  blog: 'Blog'
+  blog: 'Blog',
+  homeAriaLabel: 'Ir a la página de inicio'
     },
     hero: {
       title: 'Dayvson Marques',
@@ -275,8 +282,8 @@ const translations = {
     },
     about: {
       title: 'Sobre',
-      subtitle: 'Desarrollador web * Recife/PE * 36 años',
-      description: 'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especialista en la creación de sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas.',
+      subtitle: 'Recife/PE, Brasil * 37 años',
+      description: 'Graduado en Sistemas de Información por UniNabuco (2008 - 2012). Desarrollador web hace más de 15 años, especialista en la creación de sitios, tiendas online y aplicaciones web (front-end & back-end) usando tecnologías modernas. Trabajo con foco en rendimiento, seguridad y optimización para SEO y GEO (Generative Engine Optimization), garantizando proyectos rápidos, seguros y bien posicionados tanto en buscadores tradicionales como en motores de búsqueda con IA.',
       text1: 'Soy Dayvson Marques, desarrollador web con más de 15 años de experiencia radicado en Recife-PE. Especializado en desarrollo full-stack y creación de soluciones digitales personalizadas. Mi pasión es transformar ideas en experiencias web excepcionales.',
       text2: 'Trabajo con tecnologías como React, Next.js, Node.js y tengo experiencia en optimización de rendimiento y desarrollo responsivo. Siempre buscando entregar soluciones que combinen funcionalidad y diseño moderno.',
       experience: 'Años de Experiencia',
@@ -335,7 +342,9 @@ const translations = {
     blogSection: {
       title: 'Blog',
       subtitle: 'Publicaciones recientes',
-      viewAll: 'Ver todas las publicaciones'
+      viewAll: 'Ver todas las publicaciones',
+      backToBlog: 'Volver al Blog',
+      nextPost: 'Próxima Publicación'
     },
     contact: {
       title: 'Contacto',
