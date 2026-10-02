@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dayvsonmarques-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dayvsonmarques
+      POSTGRES_PASSWORD: dayvsonmarques
+      POSTGRES_DB: dayvsonmarques
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dayvsonmarques"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

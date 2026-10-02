@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "prisma generate && prisma db push && next dev --turbopack",
+    "dev:restart": "bash scripts/dev.sh",
     "build": "prisma generate && prisma db push && next build --turbopack",
     "start": "prisma generate && prisma db push && next start",
     "lint": "eslint",
