@@ -10,7 +10,7 @@ export const siteConfig = {
     linkedin: 'https://linkedin.com/in/dayvsonmarques',
     github: 'https://github.com/dayvsonmarques',
     email: 'mailto:dayvson.marques@gmail.com',
-    whatsapp: 'https://wa.me/5581999623374?text=Oi%2C%20tudo%20bem%3F%20Gostaria%20de%20entrar%20em%20contato.%20Aguardo%20retorno',
+    whatsapp: 'https://wa.me/5581999623374?text=Ol%C3%A1!%20Vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20entrar%20em%20contato.',
   },
   defaultLocale: 'pt-BR',
   availableLocales: {
