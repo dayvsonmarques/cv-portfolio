@@ -512,6 +512,116 @@ Construir um painel admin com Next.js do zero é um dos exercícios mais complet
     tags: ['Next.js', 'Admin', 'Autenticação', 'CRUD', 'Full Stack'],
     author: 'Dayvson Marques',
     categories: ['Next.js', 'Full Stack', 'Autenticação']
+  },
+  {
+    id: 16,
+    slug: 'migrando-nextjs-da-vercel-para-vps-com-coolify',
+    title: 'Migrando um portfólio Next.js da Vercel para uma VPS com Coolify',
+    image: images[0],
+    date: '2026-08-07',
+    excerpt: 'Por que e como migrei este portfólio em Next.js da Vercel para uma VPS própria usando Coolify, Docker e PostgreSQL self-hosted, sem abrir mão do deploy automático.',
+    content: `A Vercel é excelente para prototipagem e projetos pequenos, mas depois de conviver meses com o plano free da Supabase pausando o banco por inatividade — e precisar manter um cron só pra "manter o banco acordado" — decidi assumir o controle total da infraestrutura deste portfólio. A resposta foi migrar para uma VPS própria rodando Coolify.
+
+Coolify é uma alternativa open-source e self-hosted a plataformas como Vercel e Heroku: você aponta um repositório Git, ele builda a aplicação (via Nixpacks, que detecta automaticamente o tipo de projeto, ou via Dockerfile customizado), sobe o container, configura o proxy reverso com Traefik e emite certificados SSL automaticamente via Let's Encrypt. Tudo isso rodando no seu próprio servidor, sem vendor lock-in.
+
+A instalação é um único script (\`curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash\`) que sobe o dashboard em poucos minutos numa VPS Ubuntu comum. A partir daí, conectar o repositório do GitHub e configurar o domínio já é suficiente pra ter o primeiro deploy funcionando — no meu caso, o Nixpacks reconheceu o projeto Next.js sem precisar de configuração manual, só respeitando os scripts já definidos no \`package.json\`.
+
+O banco de dados foi a parte mais importante da migração. Em vez de manter a dependência da Supabase, criei um recurso PostgreSQL dedicado dentro do próprio Coolify, isolado de outros projetos que já rodavam no mesmo servidor. Como a aplicação roda no mesmo host, a conexão usa o endereço interno da rede Docker do Coolify — nunca precisei expor a porta 5432 publicamente, o que já elimina uma superfície de ataque inteira.
+
+Backup deixou de ser um "detalhe que a plataforma gerencia" e passou a ser responsabilidade minha — o Coolify tem um agendador de backups nativo pro recurso Postgres, que envia os dumps pra um storage S3-compatível. Usei Cloudflare R2, que tem camada gratuita generosa (10 GB de armazenamento e milhões de operações por mês) e egress zero, mais que suficiente pro tamanho de um banco de portfólio pessoal.
+
+O fluxo de deploy ficou muito parecido com o da Vercel: um webhook configurado no GitHub dispara o build a cada push na branch principal, o Coolify builda a nova imagem, sobe um container novo e só depois remove o antigo — um rolling update sem downtime perceptível.
+
+Nem tudo foi direto: o domínio precisa estar resolvendo corretamente pro IP do servidor antes do Let's Encrypt conseguir emitir o certificado, e dependendo de como o Traefik está configurado (desafio HTTP-01 ou DNS-01 via API da Cloudflare), um token com permissão insuficiente pode travar a emissão silenciosamente, caindo de volta pro certificado autoassinado padrão do Traefik. Esse troubleshooting específico rendeu outro post, porque o erro não é nada óbvio à primeira vista.
+
+No fim, o custo mensal ficou na mesma faixa do que pagaria num plano pago da Vercel + Supabase, mas agora com um banco dedicado, backups configuráveis do meu jeito e zero surpresa de "projeto pausado por inatividade". A troca valeu menos pela economia e mais pelo controle: entender exatamente onde cada peça da infraestrutura está rodando é um aprendizado que nenhuma plataforma gerenciada ensina.`,
+    tags: ['Coolify', 'VPS', 'Next.js', 'Self-hosted', 'Deploy'],
+    author: 'Dayvson Marques',
+    categories: ['DevOps', 'Self-hosted', 'Next.js']
+  },
+  {
+    id: 17,
+    slug: 'backup-automatico-postgresql-coolify-cloudflare-r2',
+    title: 'Backup automático de PostgreSQL com Coolify e Cloudflare R2',
+    image: images[1],
+    date: '2026-08-21',
+    excerpt: 'Configurando backups automáticos e gratuitos de um PostgreSQL self-hosted, usando o agendador nativo do Coolify e o armazenamento S3-compatível da Cloudflare R2.',
+    content: `Sair de um provedor gerenciado como a Supabase pra um PostgreSQL self-hosted tem um custo invisível: você perde a rede de segurança dos backups automáticos. Documentando aqui como configurei backups confiáveis e gratuitos pro banco deste portfólio, rodando num PostgreSQL provisionado dentro do Coolify.
+
+O Coolify já vem com um agendador de backups nativo pra recursos de banco de dados — na aba Backups do recurso Postgres, dá pra criar um "Scheduled Backup" definindo a frequência (aceita atalhos como \`daily\` e \`weekly\`, ou uma expressão cron completa) e, opcionalmente, um destino S3 pra onde o dump é enviado depois de gerado localmente no servidor.
+
+Esse "opcionalmente" é importante: sem um S3 Storage configurado e validado antes, o campo some do formulário com a mensagem "No validated S3 Storages found". É um passo que precisa ser feito numa tela separada, em Team/Settings → S3 Storages, antes de voltar pro agendamento do backup em si.
+
+Pra esse storage, escolhi Cloudflare R2 em vez de AWS S3. A principal razão é egress zero — R2 não cobra nada pra baixar dados, diferente do S3 tradicional, que cobra por GB transferido. Pra um backup que você eventualmente vai precisar restaurar (ou seja, baixar), isso importa. A camada gratuita mensal (10 GB de armazenamento, 1 milhão de operações de escrita e 10 milhões de leitura) cobre tranquilamente o dump de um banco de portfólio, que fica na casa de poucos megabytes.
+
+Configurar o R2 exige dois tipos de credencial diferentes da Cloudflare, que é fácil confundir: um Access Key/Secret Key no padrão S3 (gerado em R2 → Manage API Tokens, vinculado só àquele bucket) é o que o Coolify precisa pro upload dos backups — diferente de um API Token geral da conta Cloudflare, que serve pra outras coisas como editar DNS.
+
+Com o bucket criado e o token gerado, o cadastro no Coolify pede: Endpoint (\`https://<account_id>.r2.cloudflarestorage.com\`), Bucket, Region (\`auto\` no caso do R2) e as duas chaves. Depois de clicar em "Validate Connection", o storage fica disponível pra ser selecionado em qualquer agendamento de backup.
+
+Voltando na tela de Scheduled Backups, bastou escolher a frequência (\`0 3 * * *\`, todo dia às 3h da manhã, fora do horário de maior tráfego) e selecionar o storage recém-criado. O Coolify mantém uma cópia local no próprio servidor antes de subir pro R2, então mesmo numa eventual falha de rede durante o upload, ainda existe uma camada de proteção local.
+
+O que antes seria um script de cron chamando \`pg_dump\` e \`aws s3 cp\` escrito e mantido manualmente virou um formulário de dois passos. Pra um projeto pessoal, isso é a diferença entre ter backup de verdade e só ter boas intenções de configurar um dia.`,
+    tags: ['PostgreSQL', 'Backup', 'Cloudflare R2', 'Coolify', 'DevOps'],
+    author: 'Dayvson Marques',
+    categories: ['DevOps', 'Banco de Dados', 'Self-hosted']
+  },
+  {
+    id: 18,
+    slug: 'ssl-lets-encrypt-traefik-cloudflare-zone-could-not-be-found',
+    title: 'SSL com Let\'s Encrypt, Traefik e Cloudflare: resolvendo "zone could not be found"',
+    image: images[2],
+    date: '2026-09-02',
+    excerpt: 'Como diagnostiquei e corrigi o erro "cloudflare: failed to find zone... zone could not be found" ao emitir certificados Let\'s Encrypt via desafio DNS-01 com Traefik.',
+    content: `Depois de migrar o deploy deste portfólio pra uma VPS com Coolify, o primeiro deploy terminou sem erros — mas o site não carregava. O navegador bloqueava a conexão com um aviso de certificado inválido. Esse foi o ponto de partida pra um troubleshooting que ensinou mais sobre como o Let's Encrypt funciona na prática do que qualquer documentação.
+
+O primeiro passo foi inspecionar o certificado real sendo servido: \`openssl s_client -connect dominio:443 -servername dominio | openssl x509 -noout -issuer\`. O resultado veio como \`issuer=CN = TRAEFIK DEFAULT CERT\` — ou seja, o Traefik (o proxy reverso que o Coolify usa por baixo) nunca tinha conseguido emitir um certificado válido, e estava caindo de volta pro certificado autoassinado padrão dele.
+
+Minha primeira hipótese foi um problema clássico de desafio HTTP-01: testei bater diretamente em \`http://dominio/.well-known/acme-challenge/teste\` e recebi um redirect pra HTTPS. Isso pareceria o culpado óbvio — o Let's Encrypt precisa de uma resposta HTTP direta nesse caminho pra validar o domínio, e um redirect forçado pra HTTPS quebraria essa validação. Só que essa pista era falsa.
+
+A causa real só apareceu no log do próprio Traefik (aba Proxy → Logs, no Coolify): esse setup estava configurado pra usar desafio **DNS-01** via API da Cloudflare, não HTTP-01. E o erro específico era: \`cloudflare: failed to find zone dominio.: zone could not be found\`.
+
+Com DNS-01, o mecanismo é diferente: em vez de responder uma requisição HTTP, o Traefik usa um token de API pra criar um registro TXT temporário no DNS do domínio, provando que você controla a zona. Antes mesmo de criar esse registro, ele precisa localizar o ID da zona na API da Cloudflare — e é exatamente nessa busca que o erro acontecia.
+
+A causa raiz era permissão insuficiente no token: ele tinha \`Zone:DNS:Edit\` (permissão pra escrever registros), mas não tinha \`Zone:Zone:Read\` (permissão pra listar/localizar a zona). Sem o Read, a chamada de busca da zona retorna vazia, e o Traefik reporta "zone could not be found" mesmo com o domínio existindo e configurado corretamente na mesma conta.
+
+A correção foi recriar o token usando o template pronto "Edit zone DNS" da própria Cloudflare — que já vem com as duas permissões corretas combinadas — escopado especificamente pra aquela zona, atualizar a variável \`CF_DNS_API_TOKEN\` na configuração do proxy no Coolify e reiniciar o Traefik. Na tentativa seguinte, o certificado foi emitido sem erro.
+
+Uma lição paralela: como o valor do token antigo tinha sido colado num lugar que não deveria (uma conversa, um log compartilhado), a prática correta é revogá-lo e gerar um novo assim que o problema for resolvido — mesmo que o ambiente pareça privado, token exposto é token comprometido.
+
+E uma lição sobre leitura de log: o arquivo de log do proxy tinha outro erro repetido e não relacionado (\`invalid value for HostSNI matcher\`), sobra de configuração de outro domínio no mesmo servidor. Era fácil fixar atenção nesse erro por estar repetido com mais frequência — mas o problema real estava numa linha mais rara, específica e com um carimbo de horário batendo exatamente com a tentativa de deploy. Isolar o sintoma certo, não só o mais visível, foi o que resolveu.`,
+    tags: ['SSL', 'Let\'s Encrypt', 'Traefik', 'Cloudflare', 'DNS'],
+    author: 'Dayvson Marques',
+    categories: ['DevOps', 'Self-hosted', 'Troubleshooting']
+  },
+  {
+    id: 19,
+    slug: 'ciberseguranca-feminista-oficina-lampejo-sos-corpo-recife',
+    title: 'Cibersegurança feminista na prática: o que aprendi na oficina do coletivo Lampejo na SOS Corpo',
+    image: images[7],
+    date: '2026-09-08',
+    excerpt: 'Relato de uma oficina de cibersegurança feminista do coletivo Lampejo na SOS Corpo, em Recife: data centers, violência de gênero digital, criptografia e defesa digital.',
+    content: `Em setembro participei de uma oficina de cibersegurança na SOS Corpo – Instituto Feminista para a Democracia, organização feminista fundada no início dos anos 1980 em Recife, que atua na luta por direitos reprodutivos, enfrentamento à violência contra a mulher e democratização da vida social. A atividade foi conduzida pelo coletivo Lampejo, e saí de lá com uma visão bem diferente do que costumo ter sobre segurança digital no dia a dia de desenvolvedor.
+
+O Lampejo se define como um "lampejo transfeminista para iluminar estratégias, promover conexões e imaginar outros futuros" — uma articulação de organizações que leva educação em tecnologia sob uma perspectiva de gênero e antirracista. Entre os parceiros estão a Coding Rights, que atua desde 2015 "hackeando o patriarcado" em temas como colonialismo digital e vigilância, e a Maria D'Ajuda, a primeira linha de ajuda de segurança digital criada por feministas no Brasil. O Lampejo realiza oficinas presenciais de seis horas em mais de dez cidades brasileiras, gratuitas para organizações elegíveis, com foco especial em enfrentar a violência política de gênero no contexto das eleições de 2026.
+
+Uma parte da oficina tratou de data centers e Big Techs — não como infraestrutura abstrata, mas como concentração de poder: quem controla onde os dados moram, controla também quem tem acesso a eles e sob quais regras. Como desenvolvedor acostumado a escolher provedores de nuvem só pensando em preço e performance, foi um lembrete de que infraestrutura é também uma decisão política, especialmente quando o sistema lida com dados de pessoas em situação de vulnerabilidade.
+
+Pra quem quer visualizar isso de forma concreta, vale consultar o projeto [Cartografias da Internet](https://www.cartografiasdainternet.org/), desenvolvido pela própria Coding Rights em parceria com a Rede Transfeminista de Cuidado Digital, com apoio da Fundação Heinrich Böll Brasil. É um mapa que trata a internet como estrutura física e geolocalizada — cabos submarinos, satélites, servidores, mineração dos minerais usados em hardware, lixo eletrônico e sistemas algorítmicos — pra tornar visíveis as relações de poder, o colonialismo digital e a desigualdade de conectividade escondidas atrás da metáfora da "nuvem". Como o próprio projeto resume, "a internet é um território em disputa que afeta os futuros das nossas democracias". O material é tratado como um documento vivo, pensado pra apoiar oficinas e rodas de conversa como a que participei, com versão pra download em português disponível no próprio site.
+
+A discussão sobre violência de gênero digital, transfobia e misoginia online foi o eixo mais forte do encontro. Não foram tratadas como casos isolados de "mau comportamento" na internet, mas como padrões coordenados de ataque — campanhas de assédio, exposição não consentida, perseguição e silenciamento, muitas vezes amplificadas pelos próprios mecanismos de engajamento das plataformas. Entender esse padrão muda completamente como se pensa em moderação, privacidade e design de produto.
+
+A metodologia de segurança apresentada também fugiu do script técnico convencional. Em vez de partir só de firewalls e senhas fortes, o Lampejo trabalha o conceito de "cuidado digital": segurança não como ausência total de risco, mas como construção de autonomia, bem-estar emocional e rede de apoio diante de um ataque. É uma perspectiva que normalmente não aparece em treinamentos corporativos de segurança da informação, focados quase sempre só no aspecto técnico.
+
+As reflexões sobre ferramentas de mensageria e criptografia trouxeram um ponto prático importante: nenhuma ferramenta é segura "por padrão" pra todo mundo — a escolha depende de quem está usando, contra qual tipo de ameaça, e com que nível de exposição. Criptografia de ponta a ponta reduz riscos de interceptação, mas não protege contra um dispositivo comprometido ou contra a pessoa que tem acesso físico ao celular de alguém. Segurança real exige pensar no conjunto, não só na ferramenta.
+
+Sobre vulnerabilidades e o que fazer diante de um ataque virtual, a orientação central foi agir rápido e buscar ajuda especializada — e aqui a Maria D'Ajuda foi citada como recurso concreto: uma linha de atendimento gratuita e segura, com metodologia de escuta ativa, voltada a mulheres, pessoas não-binárias e comunidades LGBTQIAP+ em toda a América Latina, pra casos como conta invadida, ataques de ódio coordenados ou infraestrutura de organização sob ataque.
+
+A parte sobre como identificar golpes foi bem prática: reconhecer sinais de phishing, perfis falsos se passando por pessoas conhecidas, urgência artificial como tática de manipulação, e pedidos de dados sensíveis fora de canais oficiais. Nada tecnicamente complexo, mas que exige o hábito de desconfiar por padrão — um hábito que, puxando pro lado profissional, também deveria estar presente em como a gente desenha fluxos de autenticação e recuperação de conta.
+
+Saio desse tipo de oficina com uma certeza: segurança digital não é um problema só de infraestrutura, é também um problema de para quem a internet foi desenhada para ser segura. Quem constrói software tem responsabilidade direta nisso — desde decisões de onde hospedar dados até como um formulário de "esqueci minha senha" pode ser usado como vetor de ataque contra alguém. Levar essas perguntas pro código que escrevo no dia a dia é, pra mim, o maior aprendizado prático que trago desse encontro.`,
+    tags: ['Cibersegurança', 'Violência de Gênero Digital', 'Feminismo', 'Lampejo', 'SOS Corpo'],
+    author: 'Dayvson Marques',
+    categories: ['Cibersegurança', 'Sociedade', 'Eventos']
   }
 ];
 
@@ -551,26 +661,8 @@ export default function BlogPosts() {
                   {post.title}
                 </Link>
               </h2>
-              <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                 <PostDate date={post.date} className="text-sm text-gray-500 dark:text-gray-400" />
-                {post.author && (
-                  <span className="inline-flex items-center gap-2">
-                    <svg
-                      className="h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
-                      <path d="M7 9a4 4 0 1 0 10 0 4 4 0 0 0-10 0" />
-                      <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
-                    </svg>
-                    <span>{post.author}</span>
-                  </span>
-                )}
               </div>
               {post.tags && (
                 <div className="flex flex-wrap gap-2 mb-4 justify-center">

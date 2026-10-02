@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { blogPosts } from './BlogPosts';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,8 +18,11 @@ const STEP_PX = 288 + 24;
 
 const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => {
   const { t } = useApp();
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0); // logical index (0..total-1)
+  const [offset, setOffset] = useState(0);   // real index into tripled array
+  const [animated, setAnimated] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const pendingReset = useRef(false);
 
   const recent = [...blogPosts]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -27,21 +30,58 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
 
   const total = recent.length;
 
-  // goTo is a pure state update — no scrollTo, no refs, no events
+  // Tripled array: [clone-end | originals | clone-start]
+  // Originals live at indices [total .. 2*total-1]
+  // We start in the middle set: offset = total + current
+  const items = [...recent, ...recent, ...recent];
+
+  // Sync offset whenever current or animated state changes
+  useEffect(() => {
+    if (!pendingReset.current) {
+      setOffset(total + current);
+    }
+  }, [current, total]);
+
+  // After CSS transition ends, silently reset to middle set if needed
+  const handleTransitionEnd = useCallback(() => {
+    if (!pendingReset.current) return;
+    pendingReset.current = false;
+    setAnimated(false);
+    setOffset(total + current);
+  }, [current, total]);
+
+  // Re-enable animation after the silent jump (needs two rAF to guarantee paint)
+  useEffect(() => {
+    if (!animated) {
+      const id = requestAnimationFrame(() =>
+        requestAnimationFrame(() => setAnimated(true))
+      );
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animated]);
+
   const goTo = useCallback(
-    (index: number) => setCurrent(((index % total) + total) % total),
-    [total]
+    (index: number) => {
+      const next = ((index % total) + total) % total;
+      const delta = index - current; // direction & magnitude
+
+      // If the jump would escape the middle set, route through nearest clone
+      const nextOffset = total + current + delta;
+      pendingReset.current = nextOffset < total || nextOffset >= total * 2;
+
+      setCurrent(next);
+      setOffset(nextOffset);
+      setAnimated(true);
+    },
+    [current, total]
   );
 
-  // Auto-advance: functional update always reads latest state, no stale closure
+  // Auto-advance: always forward by 1
   useEffect(() => {
     if (hovered) return;
-    const timer = setTimeout(
-      () => setCurrent((prev) => (prev + 1) % total),
-      AUTO_INTERVAL
-    );
+    const timer = setTimeout(() => goTo(current + 1), AUTO_INTERVAL);
     return () => clearTimeout(timer);
-  }, [current, hovered, total]);
+  }, [current, hovered, goTo]);
 
   return (
     <section id="blog" className="my-4">
@@ -85,15 +125,19 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
           </svg>
         </button>
 
-        {/* Track: overflow-hidden + translateX — zero scroll events */}
+        {/* Track */}
         <div className="overflow-hidden px-14">
           <div
-            className="flex gap-6 pb-4 transition-transform duration-500 ease-in-out will-change-transform"
-            style={{ transform: `translateX(calc(-${current} * ${STEP_PX}px))` }}
+            className="flex gap-6 pb-4 will-change-transform"
+            style={{
+              transform: `translateX(calc(-${offset} * ${STEP_PX}px))`,
+              transition: animated ? 'transform 500ms ease-in-out' : 'none',
+            }}
+            onTransitionEnd={handleTransitionEnd}
           >
-            {recent.map((post) => (
+            {items.map((post, idx) => (
               <Link
-                key={post.id}
+                key={`${post.id}-${idx}`}
                 href={`/blog/${post.slug}`}
                 className="flex-shrink-0 w-72 bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-105 hover:shadow-xl transition-all duration-300"
               >
@@ -107,11 +151,11 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-sm font-bold text-black dark:text-white mb-2 text-center line-clamp-2 leading-snug">
+                  <h3 className="text-base font-bold text-black dark:text-white mb-2 text-center line-clamp-2 leading-snug">
                     {post.title}
                   </h3>
                   <div className="flex items-center justify-center mb-2">
-                    <PostDate date={post.date} className="text-xs text-gray-500 dark:text-gray-400" />
+                    <PostDate date={post.date} className="text-sm text-gray-500 dark:text-gray-400" />
                   </div>
                   <div className="flex flex-wrap gap-1 mb-3 justify-center">
                     {post.categories.slice(0, 2).map((category, cidx) => (
@@ -123,7 +167,7 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
                       </span>
                     ))}
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 line-clamp-3 text-xs leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 line-clamp-3 text-sm leading-relaxed">
                     {post.excerpt}
                   </p>
                 </div>

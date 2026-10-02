@@ -126,7 +126,7 @@ const Skills = ({ title, categories }: SkillsProps) => {
                 {category.skills.map((skill, skillIdx) => (
                   <span 
                     key={skillIdx}
-                    className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-semibold px-3 py-1.5 rounded-full"
+                    className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-semibold px-3 py-1.5 rounded-full"
                   >
                     {skill.name}
                   </span>
