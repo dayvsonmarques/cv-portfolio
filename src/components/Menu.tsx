@@ -72,7 +72,7 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
         aria-label="Toggle menu"
       >
         <svg
-          className="w-8 h-8 transition-transform duration-300 ease-in-out"
+          className="w-6 h-6 transition-transform duration-300 ease-in-out"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

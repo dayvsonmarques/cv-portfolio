@@ -6,8 +6,10 @@ import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useApp } from '@/contexts/AppContext';
 
 const Header = () => {
+  const { t } = useApp();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
@@ -66,7 +68,7 @@ const Header = () => {
           <Link
             href="/"
             className={`text-3xl md:text-4xl font-bold ${logoColorClass} z-50 relative font-logo tracking-wider transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'} focus:outline-none hover:text-yellow-500 hover:opacity-70 hover:transition-colors hover:duration-300 cursor-pointer`}
-            aria-label="Ir para a página inicial"
+            aria-label={t('nav.homeAriaLabel')}
           >
             Dayvson Marques
           </Link>
