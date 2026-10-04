@@ -37,7 +37,7 @@ const PortfolioProjects = () => {
             {t('projects.title')}
           </h2>
           <div className="w-24 h-1 bg-gray-700 dark:bg-gray-300 mx-auto mb-4"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('projects.subtitle')}
           </p>
         </div>
