@@ -166,6 +166,40 @@ export default async function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${loversQuarrel.variable} ${roboto.variable} font-sans antialiased`}
       >
+        <div id="top-loading-bar" aria-hidden="true" suppressHydrationWarning />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                var bar = document.getElementById('top-loading-bar');
+                if (!bar) return;
+                var progress = 0;
+                var raf;
+                function tick() {
+                  progress += (90 - progress) * 0.02 + 0.15;
+                  if (progress > 90) progress = 90;
+                  bar.style.width = progress + '%';
+                  if (progress < 90) raf = requestAnimationFrame(tick);
+                }
+                function finish() {
+                  if (raf) cancelAnimationFrame(raf);
+                  bar.style.width = '100%';
+                  setTimeout(function () {
+                    bar.style.opacity = '0';
+                    setTimeout(function () { bar.style.width = '0%'; }, 300);
+                  }, 150);
+                }
+                bar.style.opacity = '1';
+                raf = requestAnimationFrame(tick);
+                if (document.readyState === 'complete') {
+                  finish();
+                } else {
+                  window.addEventListener('load', finish, { once: true });
+                }
+              })();
+            `,
+          }}
+        />
         <Providers initialTheme={initialTheme} initialLanguage={initialLanguage}>
           {children}
         </Providers>

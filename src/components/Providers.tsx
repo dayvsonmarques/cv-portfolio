@@ -1,7 +1,9 @@
 'use client';
 
+import { Suspense } from "react";
 import { AppProvider } from "@/contexts/AppContext";
 import { SessionProvider } from "next-auth/react";
+import TopLoadingBar from "./TopLoadingBar";
 
 type ProvidersProps = {
   children: React.ReactNode;
@@ -13,6 +15,9 @@ export default function Providers({ children, initialTheme, initialLanguage }: P
   return (
     <SessionProvider refetchInterval={0} refetchOnWindowFocus={false} refetchWhenOffline={false}>
       <AppProvider initialTheme={initialTheme} initialLanguage={initialLanguage}>
+        <Suspense fallback={null}>
+          <TopLoadingBar />
+        </Suspense>
         {children}
       </AppProvider>
     </SessionProvider>

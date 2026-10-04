@@ -10,8 +10,8 @@ const ROLES = [
   'Desenvolvedor Web',
   'Desenvolvedor Front-end',
   'Desenvolvedor Back-end',
-  'Analista de Sistemas',
   'Consultoria & Treinamentos',
+  'Analista de Sistemas',
 ];
 
 type HeroProps = {
@@ -20,9 +20,6 @@ type HeroProps = {
 
 const Hero = ({ description }: HeroProps) => {
   const { t } = useApp();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
 
   const handleScrollDown = () => {
     const heroSection = document.querySelector('section');

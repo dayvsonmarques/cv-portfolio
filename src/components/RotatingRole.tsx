@@ -25,7 +25,7 @@ const RotatingRole = ({
   className,
 }: RotatingRoleProps) => {
   const [roleIndex, setRoleIndex] = React.useState(0);
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState(roles[0] ?? '');
   const [isDeleting, setIsDeleting] = React.useState(false);
   const [reducedMotion, setReducedMotion] = React.useState(false);
 
