@@ -32,8 +32,8 @@ export const experiences: ExperienceType[] = [
       en: "Advertising Agencies",
       es: "Agencias de Publicidad"
     },
-  startDate: "2015-02-01",
-  endDate: "2017-03-01",
+  startDate: "2015-06-01",
+  endDate: "2018-03-01",
     description: {
       pt: "Desenvolvimento de sites responsivos, lojas online, temas e plugins para diversos clientes do setor publicitário, com integração a APIs REST, Google Maps e Charts.",
       en: "Development of responsive websites, online stores, themes and plugins for various advertising clients, with integration to REST APIs, Google Maps and Charts.",
@@ -52,34 +52,14 @@ export const experiences: ExperienceType[] = [
       en: "Idealizza",
       es: "Idealizza"
     },
-  startDate: "2017-03-01",
-  endDate: "2019-12-01",
+  startDate: "2018-03-01",
+  endDate: "2019-07-01",
     description: {
       pt: "Desenvolvimento de lojas online, plugins e templates customizados para diversos clientes.",
       en: "Development of online stores, plugins and custom templates for various clients.",
       es: "Desarrollo de tiendas online, plugins y plantillas personalizadas para diversos clientes."
     },
     technologies: ["WordPress", "WooCommerce", "Laravel", "PHP 7", "HTML5", "CSS3/Sass", "JavaScript"]
-  },
-  {
-    title: {
-      pt: "Desenvolvedor Ecommerce",
-      en: "Ecommerce Developer",
-      es: "Desarrollador Ecommerce"
-    },
-    company: {
-      pt: "Agile Ecommerce",
-      en: "Agile Ecommerce",
-      es: "Agile Ecommerce"
-    },
-  startDate: "2019-01-01",
-  endDate: "2019-07-01",
-    description: {
-      pt: "Trabalho temporário para o desenvolvimento de um MVP de ecommerce B2B integrado a ERPs, com foco em design responsivo, usabilidade e performance. O produto foi inscrito no programa de aceleração e investimento em negócios de tecnologia do Grupo Ser Educacional, sendo aprovado e contemplado com aporte financeiro. Mais tarde retornei à empresa para um novo ciclo de trabalho.",
-      en: "Temporary engagement to build a B2B ecommerce MVP integrated with ERPs, focused on responsive design, usability and performance. The product was submitted to Grupo Ser Educacional's technology business acceleration and investment program, where it was approved and received funding. I later returned to the company for a new engagement.",
-      es: "Trabajo temporal para el desarrollo de un MVP de ecommerce B2B integrado con ERPs, con foco en diseño responsivo, usabilidad y rendimiento. El producto fue inscrito en el programa de aceleración e inversión en negocios de tecnología del Grupo Ser Educacional, siendo aprobado y recibiendo financiación. Más tarde volví a la empresa para un nuevo ciclo de trabajo."
-    },
-    technologies: ["Laravel", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap", "REST APIs"]
   },
   {
     title: {
@@ -93,7 +73,7 @@ export const experiences: ExperienceType[] = [
       es: "Accenture"
     },
   startDate: "2019-08-01",
-  endDate: "2024-04-01",
+  endDate: "2023-04-01",
     description: {
       pt: "Desenvolvimento e manutenção de aplicações front-end para o DirecTV GO, plataforma de streaming para desktop e mobile, com foco em performance, acessibilidade (a11y), compatibilidade entre navegadores e componentização reutilizável de interfaces. Colaboração próxima com o time de back-end e participação ativa em code reviews.",
       en: "Development and maintenance of front-end applications for DirecTV GO, a desktop and mobile streaming platform, focused on performance, accessibility (a11y), cross-browser compatibility and reusable UI componentization. Close collaboration with the back-end team and active participation in code reviews.",
@@ -112,7 +92,7 @@ export const experiences: ExperienceType[] = [
       en: "Agile Ecommerce",
       es: "Agile Ecommerce"
     },
-  startDate: "2024-01-01",
+  startDate: "2023-07-01",
   endDate: "2026-06-01",
     description: {
       pt: "Desenvolvimento e manutenção de ecommerce web B2B em PHP/Laravel: novas funcionalidades e telas, filtros avançados, exportação de dados, melhorias de usabilidade, customizações sob demanda e integração com APIs.",
