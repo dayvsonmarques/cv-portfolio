@@ -24,20 +24,12 @@ const LanguageSelector = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:space-x-2 rounded-full md:rounded-lg md:px-3 md:py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         aria-label="Select language"
       >
         <span className="text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">
           {currentLanguage?.code.split('-')[0].toUpperCase()}
         </span>
-        <svg
-          className={`hidden md:block w-4 h-4 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-        </svg>
       </button>
 
       {isOpen && (

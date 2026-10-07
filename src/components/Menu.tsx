@@ -7,11 +7,9 @@ import { useRouter, usePathname } from 'next/navigation';
 interface MenuProps {
   isOpen: boolean;
   onToggle: () => void;
-  isScrolled?: boolean;
-  hasLightBackground?: boolean;
 }
 
-const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false }: MenuProps) => {
+const Menu = ({ isOpen, onToggle }: MenuProps) => {
   const { t } = useApp();
   const router = useRouter();
   const pathname = usePathname();
@@ -49,11 +47,13 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
     }
   };
 
+  const buttonWrapperClasses = isOpen
+    ? ''
+    : 'rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 p-2';
+
   const buttonIconClasses = isOpen
     ? 'text-white hover:text-yellow-400 dark:text-white dark:hover:text-yellow-400'
-    : isScrolled || hasLightBackground
-      ? 'text-black dark:text-white hover:text-yellow-400 dark:hover:text-yellow-400'
-      : 'text-white dark:text-gray-300 hover:text-yellow-400 dark:hover:text-white';
+    : 'text-gray-800 dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400';
 
   const menuItems = [
     { id: 'about', label: t('nav.about') },
@@ -68,7 +68,7 @@ const Menu = ({ isOpen, onToggle, isScrolled = false, hasLightBackground = false
     <>
       <button
         onClick={onToggle}
-        className={`transition-colors z-50 relative ${buttonIconClasses}`}
+        className={`transition-colors z-50 relative ${buttonWrapperClasses} ${buttonIconClasses}`}
         aria-label="Toggle menu"
       >
         <svg

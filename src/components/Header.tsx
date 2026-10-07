@@ -82,8 +82,6 @@ const Header = () => {
               <Menu
                 isOpen={isMobileMenuOpen}
                 onToggle={toggleMobileMenu}
-                isScrolled={isScrolled}
-                hasLightBackground={hasLightBackground}
               />
             </div>
           </div>
