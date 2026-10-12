@@ -55,11 +55,11 @@ export const experiences: ExperienceType[] = [
   startDate: "2018-03-01",
   endDate: "2019-07-01",
     description: {
-      pt: "Desenvolvimento de lojas online, plugins e templates customizados para diversos clientes.",
-      en: "Development of online stores, plugins and custom templates for various clients.",
-      es: "Desarrollo de tiendas online, plugins y plantillas personalizadas para diversos clientes."
+      pt: "ERP de empréstimos consignados em Laravel: análise de crédito, contratos e relatórios gerenciais em sistema financeiro crítico, com SQL Server e Stored Procedures. Manutenção de plataforma EAD com mais de 10.000 alunos ativos e de lojas online em diversos segmentos, com testes automatizados e boas práticas de segurança.",
+      en: "Laravel ERP for consigned loans: credit analysis, contracts and management reports on a critical financial system, with SQL Server and Stored Procedures. Maintenance of an online learning platform with 10,000+ active students, plus online stores across multiple segments, with automated tests and security best practices.",
+      es: "ERP de préstamos consignados en Laravel: análisis de crédito, contratos e informes gerenciales en un sistema financiero crítico, con SQL Server y Stored Procedures. Mantenimiento de una plataforma de aprendizaje en línea con más de 10.000 alumnos activos y de tiendas online en varios segmentos, con pruebas automatizadas y buenas prácticas de seguridad."
     },
-    technologies: ["WordPress", "WooCommerce", "Laravel", "PHP 7", "HTML5", "CSS3/Sass", "JavaScript"]
+    technologies: ["Laravel", "PHP", "SQL Server", "Stored Procedures", "PHPUnit", "ERP", "Análise de Crédito", "Segurança"]
   },
   {
     title: {
