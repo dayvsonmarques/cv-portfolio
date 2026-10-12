@@ -1,7 +1,6 @@
 import React from 'react';
-// ...existing code...
 import PostDate from '@/components/PostDate';
-import { blogPosts } from '@/components/BlogPosts';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogImageParallax from '@/components/BlogImageParallax';
@@ -14,42 +13,9 @@ type BlogPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const MARKDOWN_LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
-
-function renderWithLinks(text: string) {
-  const parts: React.ReactNode[] = [];
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-  let key = 0;
-
-  MARKDOWN_LINK.lastIndex = 0;
-  while ((match = MARKDOWN_LINK.exec(text)) !== null) {
-    const [full, label, url] = match;
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
-    }
-    parts.push(
-      <a
-        key={key++}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-bold italic text-black dark:text-white hover:underline"
-      >
-        {label}
-      </a>
-    );
-    lastIndex = match.index + full.length;
-  }
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
-  return parts;
-}
-
 export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find(p => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -74,11 +40,12 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
 
 const BlogPostPage = async ({ params }: BlogPageProps) => {
   const { slug } = await params;
-  const post = blogPosts.find(p => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const currentIndex = blogPosts.findIndex(p => p.slug === post.slug);
-  const nextPost = blogPosts[currentIndex + 1];
+  const allPosts = await getAllPosts();
+  const currentIndex = allPosts.findIndex(p => p.slug === post.slug);
+  const nextPost = allPosts[currentIndex + 1];
 
   return (
     <div className="min-h-screen bg-white dark:bg-black flex flex-col">
@@ -111,11 +78,10 @@ const BlogPostPage = async ({ params }: BlogPageProps) => {
           </div>
           <article className="prose prose-xl dark:prose-invert mx-auto mt-10 pt-10 mb-10 pb-10 font-roboto">
             <p className="text-2xl mb-5 font-roboto">{post.excerpt}</p>
-            <div className="mt-6">
-              {post.content.split('\n').map((paragraph, idx) => (
-                <p key={idx} className="mb-5 text-2xl font-roboto">{renderWithLinks(paragraph)}</p>
-              ))}
-            </div>
+            <div
+              className="mt-6 [&_a]:font-bold [&_a]:italic [&_a]:text-black [&_a]:dark:text-white [&_a]:hover:underline"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
           </article>
 
           <BlogPostNav nextPostSlug={nextPost?.slug} />

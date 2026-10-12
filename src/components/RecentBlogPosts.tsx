@@ -1,22 +1,23 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { blogPosts } from './BlogPosts';
 import Link from 'next/link';
 import Image from 'next/image';
 import PostDate from '@/components/PostDate';
 import { useApp } from '@/contexts/AppContext';
+import type { BlogPost } from '@/types/blog';
 
 type RecentBlogPostsProps = {
   title?: string;
   viewAll?: string;
+  posts: BlogPost[];
 };
 
 const AUTO_INTERVAL = 4000;
 // w-72 = 288px, gap-6 = 24px
 const STEP_PX = 288 + 24;
 
-const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => {
+const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll, posts }) => {
   const { t } = useApp();
   const [current, setCurrent] = useState(0); // logical index (0..total-1)
   const [offset, setOffset] = useState(0);   // real index into tripled array
@@ -24,7 +25,7 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ title, viewAll }) => 
   const [hovered, setHovered] = useState(false);
   const pendingReset = useRef(false);
 
-  const recent = [...blogPosts]
+  const recent = [...posts]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 10);
 

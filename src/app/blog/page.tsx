@@ -24,14 +24,17 @@ export const metadata: Metadata = {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogPosts from '@/components/BlogPosts';
+import { getAllPosts } from '@/lib/posts';
 
-const BlogPage = () => {
+const BlogPage = async () => {
+  const posts = await getAllPosts();
+
   return (
     <div className="min-h-screen bg-white dark:bg-black flex flex-col">
       <Header />
       <main className="flex-1 py-10">
         <div className="container mx-auto max-w-6xl px-4">
-          <BlogPosts />
+          <BlogPosts posts={posts} />
         </div>
       </main>
       <Footer />

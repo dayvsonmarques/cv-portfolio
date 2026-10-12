@@ -8,6 +8,7 @@ import RecentBlogPosts from '@/components/RecentBlogPosts';
 import Footer from '@/components/Footer';
 import { cookies, headers } from 'next/headers';
 import { getHomeContent } from '@/lib/homeContent';
+import { getAllPosts } from '@/lib/posts';
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -35,6 +36,7 @@ export default async function Home() {
 
   const language: LanguageKey = cookieLanguage ?? detectLanguageFromHeader();
   const homeContent = await getHomeContent(language);
+  const posts = await getAllPosts();
 
   return (
     <div className="min-h-screen">
@@ -53,7 +55,7 @@ export default async function Home() {
       <Skills title={homeContent.skills?.title} categories={homeContent.skills?.categories} />
       <Experience title={homeContent.experience?.title} items={homeContent.experience?.items} />
       <Projects />
-      <RecentBlogPosts title={homeContent.blogSection?.title} viewAll={homeContent.blogSection?.viewAll} />
+      <RecentBlogPosts title={homeContent.blogSection?.title} viewAll={homeContent.blogSection?.viewAll} posts={posts} />
       <Footer />
     </div>
   );

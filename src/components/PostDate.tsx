@@ -1,41 +1,24 @@
 "use client";
-import React, { useMemo } from "react";
+import React from "react";
 import clsx from "clsx";
-import { useApp } from "@/contexts/AppContext";
 
 interface PostDateProps {
   date: string;
   className?: string;
 }
 
-const localeMap = {
-  pt: "pt-BR",
-  en: "en-US",
-  es: "es-ES"
-} as const;
+const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  timeZone: "UTC"
+});
 
 const PostDate: React.FC<PostDateProps> = ({ date, className }) => {
-  const { language } = useApp();
-  const locale = localeMap[language] ?? localeMap.pt;
-
-  const { formattedDate, isoDate } = useMemo(() => {
-    const parsedDate = new Date(date);
-    if (Number.isNaN(parsedDate.getTime())) {
-      return { formattedDate: date, isoDate: undefined };
-    }
-
-    const formatter = new Intl.DateTimeFormat(locale, {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      timeZone: "UTC"
-    });
-
-    return {
-      formattedDate: formatter.format(parsedDate),
-      isoDate: parsedDate.toISOString()
-    };
-  }, [date, locale]);
+  const parsedDate = new Date(date);
+  const isValid = !Number.isNaN(parsedDate.getTime());
+  const formattedDate = isValid ? dateFormatter.format(parsedDate) : date;
+  const isoDate = isValid ? parsedDate.toISOString() : undefined;
 
   const composedClassName = clsx(
     'inline-flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200',
