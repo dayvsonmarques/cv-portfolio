@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { hash } from 'bcryptjs';
 import { experiences } from '../src/data/experiences';
+import { postsSeedData } from './seedData/posts';
 
 const prisma = new PrismaClient();
 
@@ -310,6 +311,34 @@ async function main() {
     });
 
     console.log(`Home content seed concluído (${rows.length} registros).`);
+  }
+
+  // Blog posts — only seed if the table is empty, so this never overwrites
+  // content created/edited through /admin/blog.
+  const existingPostCount = await prisma.post.count();
+  if (existingPostCount === 0 && postsSeedData.length > 0) {
+    await prisma.post.createMany({
+      data: postsSeedData.map((p) => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        image: p.image,
+        date: p.date,
+        excerpt: p.excerpt,
+        content: p.content,
+        tags: p.tags ?? [],
+        author: p.author ?? null,
+        categories: p.categories,
+      })),
+    });
+    // Explicit ids bypass the auto-increment sequence — resync it so the
+    // next post created via the admin UI doesn't collide with a seeded id.
+    await prisma.$executeRawUnsafe(
+      `SELECT setval(pg_get_serial_sequence('"Post"', 'id'), (SELECT MAX(id) FROM "Post"))`
+    );
+    console.log(`Blog posts seed concluído (${postsSeedData.length} registros).`);
+  } else {
+    console.log(`Post table já tem ${existingPostCount} registro(s) — pulando seed de posts.`);
   }
 
   console.log('Dados iniciais criados!');
